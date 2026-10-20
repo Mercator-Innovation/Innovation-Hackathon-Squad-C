@@ -38,3 +38,5 @@ The **squad lead** runs the squad's setup before the day: agreeing the two roles
 ## Working agreements
 
 <!-- Optional. Anything the squad agrees about how it works, for example "say what you're grabbing in the Teams chat". -->
+
+Our objectives: win ethically, learn something new, enjoy our time.
