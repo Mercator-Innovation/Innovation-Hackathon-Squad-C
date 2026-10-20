@@ -17,6 +17,7 @@
 | Carl McCullagh | Product Manager | In person | Yes |
 | Elena Barker | Business Analyst | In person |  |
 | Patricia Sanchez | Interaction Designer | In person |  |
+| Joseph Thrush | User Researcher | In person |  |
 
 The **squad lead** runs the squad's setup before the day: agreeing the two roles and getting everyone into the Teams chat. They're the product owner unless the squad agrees otherwise.
 
