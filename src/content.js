@@ -54,7 +54,8 @@ window.CONTENT = {
     hint: "Tap one. Only you can see this.",
     ok: "I'm OK",
     notGreat: "Not great",
-    needSomeone: "I need someone"
+    needSomeone: "I need someone",
+    checkin: "Check in on me later tonight"
   },
 
   ok: {
