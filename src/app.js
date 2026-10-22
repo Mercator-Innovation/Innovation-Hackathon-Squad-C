@@ -191,13 +191,26 @@
     const vals = { volunteer: v.name, until: formatTime(v.onUntil), about: v.about };
     show([
       el("h1", {}, C.helpNow.heading),
-      el("p", {}, fill(C.helpNow.volunteer, vals)),
+      personCard(v),
       el("p", {}, fill(C.helpNow.question, vals)),
       choices([
         button(C.helpNow.yes, "btn-primary", callBack),
         button(C.helpNow.no, "btn-secondary", services)
       ])
     ]);
+  }
+
+  // A volunteer's card: initials in a circle (not a photo), name, shift and a line about them.
+  function personCard(v) {
+    const card = el("div", { class: "person-card" });
+    const initials = v.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+    card.appendChild(el("span", { class: "avatar", "aria-hidden": "true" }, initials));
+    const text = el("div");
+    text.appendChild(el("p", { class: "person-name" }, v.name));
+    text.appendChild(el("p", { class: "person-role" }, fill(C.helpNow.role, { until: formatTime(v.onUntil) })));
+    text.appendChild(el("p", {}, v.about.replace(/^Volunteer supporter\. /, "")));
+    card.appendChild(text);
+    return card;
   }
 
   // Ask only for a name and a number, and only for this one call.
@@ -427,21 +440,36 @@
       call.appendChild(el("h1", {}, fill(C.services.calling, { volunteer: opts.calling.name })));
       call.appendChild(el("p", {}, C.services.callingBody));
       nodes.push(call);
+      nodes.push(personCard(opts.calling));
       nodes.push(el("h2", {}, C.services.heading));
     } else {
       nodes.push(el("h1", {}, C.services.heading));
     }
     nodes.push(el("p", { class: "hint" }, fill(C.services.nowLabel, { day: D.demoNow.day, time: formatTime(D.demoNow.time) })));
     if (open.length === 0) nodes.push(el("p", {}, C.services.none));
-    open.forEach((s) => {
+    // Nearest first (phone, text and online count as nearest), three to start with.
+    open.sort((a, b) => (a.miles || 0) - (b.miles || 0));
+    const list = el("div", { class: "service-list" });
+    open.forEach((s, i) => {
       const card = el("div", { class: "card" });
+      if (i >= 3) card.hidden = true;
       card.appendChild(el("h3", {}, s.name));
       card.appendChild(el("p", {}, s.what));
-      if (s.where) card.appendChild(el("p", { class: "where" }, s.where));
+      if (s.where) card.appendChild(el("p", { class: "where" }, s.miles ? `${s.where} · ${fill(C.services.miles, { miles: s.miles })}` : s.where));
       card.appendChild(el("p", { class: "how" }, s.how));
       card.appendChild(el("p", { class: "until" }, s.opens === "00:00" && s.closes === "24:00" ? C.services.allDay : fill(C.services.closesAt, { time: formatTime(s.closes) })));
-      nodes.push(card);
+      list.appendChild(card);
     });
+    nodes.push(list);
+    if (open.length > 3) {
+      const more = button(fill(C.services.showMore, { count: open.length - 3 }), "btn-secondary", () => {
+        list.querySelectorAll(".card[hidden]").forEach((c) => (c.hidden = false));
+        more.remove();
+        list.querySelectorAll(".card")[3].setAttribute("tabindex", "-1");
+        list.querySelectorAll(".card")[3].focus();
+      });
+      nodes.push(more);
+    }
     if (D.meetings) nodes.push(meetings());
     if (!profile && opts && opts.banner) nodes.push(banner());
     nodes.push(choices([button(C.summary.startAgain, "btn-link", home)]));

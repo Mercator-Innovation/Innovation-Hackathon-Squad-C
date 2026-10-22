@@ -1,7 +1,7 @@
 // All the words people see. Change them here without touching the code.
 // {name}, {who} and {message} are filled in by app.js.
 window.CONTENT = {
-  appName: "Alex",
+  appName: "Still here",
   quickExit: "Quick exit",
   back: "Back",
   emergency: "If someone's life may be at risk, call 999. We will never call it for you.",
@@ -27,7 +27,8 @@ window.CONTENT = {
     question: "Would you like {volunteer} to call you?",
     yes: "Yes, I'd like a call",
     no: "No, show me what's open now",
-    noVolunteer: "There's no volunteer supporter on right now."
+    noVolunteer: "There's no volunteer supporter on right now.",
+    role: "Volunteer supporter · on until {until}"
   },
 
   callBack: {
@@ -124,6 +125,8 @@ window.CONTENT = {
     nowLabel: "{day}, {time}",
     none: "Nothing nearby is open right now. You can still call 999 if life may be at risk.",
     closesAt: "Open until {time}",
+    showMore: "Show {count} more open now",
+    miles: "{miles} miles away",
     calling: "{volunteer} will call you soon.",
     callingBody: "Keep your phone nearby. You don't need to do anything else. If you'd rather, you can also use a service below.",
     meetingsHeading: "Recovery meetings",
