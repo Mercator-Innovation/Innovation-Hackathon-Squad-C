@@ -33,6 +33,7 @@ ai_use_week_after:
 - 18:03 dead end: relying on some of the genrated flows → can be tricky, they do need simultating through the look together
 - 18:04 something I expected: people tend to focus on the look of something vs how it works and if functional
 - 18:37 there is a big rush to the end
+- 18:38 the show and tell is hard to prep for
 
 ## At 19:00
 - What I worked on: <answers>
