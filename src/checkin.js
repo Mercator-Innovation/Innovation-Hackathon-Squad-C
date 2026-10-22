@@ -235,6 +235,7 @@
       el("h1", {}, fill(W.heading, v)),
       el("p", {}, fill(plan.tell.length ? W.body : W.bodyNoOne, v)),
       choices([
+        button(fill(W.demo, v), "btn-demo", checkinText),
         button(W.change, "btn-secondary", setup),
         button(W.off, "btn-link", turnOff)
       ])
@@ -257,7 +258,8 @@
       button(T.reply1, "btn-secondary", () => okByText()),
       button(T.reply2, "btn-secondary", () => handover(hooks.onNotGreat)),
       button(T.reply3, "btn-primary", () => needByText()),
-      button(T.link, "btn-secondary", () => (hooks.onLink ? hooks.onLink() : webReply()))
+      button(T.link, "btn-secondary", () => (hooks.onLink ? hooks.onLink() : webReply())),
+      button(next.label, "btn-demo", next.go)
     ]);
   }
 
@@ -342,7 +344,10 @@
     const people = trusted();
     const who = people[i].name;
     const texts = before.concat([{ text: i === 0 ? fill(W.sentTo, { who }) : fill(W.tryNext, { who: people[i - 1].name, next: who }) }]);
-    sms(texts, []);
+    sms(texts, [
+      button(fill(W.demoReplies, { who }), "btn-demo", () => sms([{ text: fill(W.calling, { who }) }], [button(W.done, "btn-link", done)])),
+      button(W.demoNobody, "btn-demo", () => (i + 1 < people.length ? sendTo(i + 1, []) : nobodyPicksUp([])))
+    ]);
   }
 
   // 3. Nobody picked up: offer the volunteer, keep trying, or services open now.
