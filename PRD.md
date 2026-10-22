@@ -158,6 +158,8 @@ For sensitive scenarios, consider privacy, consent, exclusion, inaccurate output
 | Help right now (trap door): ask for a call, then services open now | No sign-up; asks before connecting; shows who's been told | Works end to end (scenarios 7.1 to 7.4, 7.7, 7.8, 7.10, 7.12 to 7.14 in [test-scenarios.md](sketches/test-scenarios.md)) | Pass |
 | Edge cases: blank number, "abc" as a number, no volunteer on, just after midnight | Clear errors; nothing missed | Blank number: clear error. "abc" is accepted (7.6). "No volunteer on" message is easy to miss (7.9). **After midnight, the 6pm to 2am Night Line disappears** (7.11) | 1 fail, 2 to decide |
 | Keyboard and 375px phone width | Usable and understandable | Fits at 375px, focus clearly visible, quick exit leaves no Back-button trail. Quick exit is hard to reach by keyboard once you're on the page (5.1) | Partly |
+| Sign-up, Your people and check-in (scenarios 8.1 to 8.18) | Every step skippable; nobody added without agreeing; only "didn't reply" is shared | 14 pass. Gaps: no button to reach Your people after sign-up (8.17); a made-up name means Lorraine won't know who's asking (8.16); "pretend he didn't reply" (8.15) | 3 fail, 3 partly |
+| Contrast, tap size, focus ring, page titles (5.4, 5.7 to 5.10) | WCAG AA basics | Text contrast passes everywhere; buttons at least 47px. **Focus ring is 1.5:1, too faint** (5.8). Page title is "Still here" on every screen (5.10) | 2 fail |
 
 **What we have demonstrated:** _..._  
 **What we have not demonstrated:** _..._
