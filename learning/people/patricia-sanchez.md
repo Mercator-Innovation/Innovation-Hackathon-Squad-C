@@ -29,7 +29,9 @@ ai_use_week_after:
 
 ## During
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
+- 17:05 prompt: "Could you make it look more like this?" (with a reference image from Google) → Claude picked the colours from the image, checked contrast and restyled the preview to match
 - 17:07 I built the supporter journey, normally a developer's job: family and volunteer sign-up in src/supporter.js, tested and shared.
+- 17:31 prompt: "For the 'a text like this' for 'What you'll see when someone needs you' The actual text, make it look like a iPhone notification like this" (with a screenshot from Google) → the example text became a phone notification in the supporter journey
 - 17:37 I restyled the whole app and fixed its contrast, normally a developer's job: new purple look, flat style, motion and night mode, all text passing WCAG AA.
 - 18:02 surprise: I learned that Claude can produce mockups of design options before making any changes.
 
