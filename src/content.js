@@ -1,7 +1,7 @@
 // All the words people see. Change them here without touching the code.
 // {name}, {who} and {message} are filled in by app.js.
 window.CONTENT = {
-  appName: "Still here",
+  appName: "Alex",
   quickExit: "Quick exit",
   back: "Back",
   emergency: "If someone's life may be at risk, call 999. We will never call it for you.",
