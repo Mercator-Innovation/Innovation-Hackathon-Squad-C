@@ -9,14 +9,14 @@ ai_use_before: 3
 hopes: [see-claude, build-fast, other-jobs, new-people, other]
 feeling: excited
 # At 19:00
-worked_on: []
-outside_usual_job:
-got_in_way: []
-ai_use_after:
-enjoyed:
-pace:
-worked_best: []
-again:
+worked_on: [code, design, content, research]
+outside_usual_job: a-bit
+got_in_way: [time]
+ai_use_after: 1
+enjoyed: loved
+pace: right
+worked_best: [building, mixed-squad]
+again: definitely
 # In the week after
 specialist:
 helped_squad: []
@@ -35,17 +35,18 @@ ai_use_week_after:
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
 - 17:02 prompt: "we need to split the tasks between all of us" → Claude split the work with one file per journey, so only the merge captain touched app.js and index.html. Since then, we've had hardly any pull request clashes.
 - 18:04 surprise: the speed of how the project can be build is extraordinary
+- 18:37 it was a great experience
 
 ## At 19:00
-- What I worked on: <answers>
-- How much of it was outside my usual job: <answer>
-- What got in the way: <answers>
-- How much I'd use AI tools in my work now: <answer>
-- How much I enjoyed the hackathon: <answer>
-- The pace of the afternoon: <answer>
-- What worked best for me: <answers>
-- Would I take part in another: <answer>
-- One thing to change next time: <in my words>
+- What I worked on: Code or features; The design or the look; The words people see; Research or finding things out
+- How much of it was outside my usual job: A bit
+- What got in the way: Not enough time
+- How much I'd use AI tools in my work now: Never or hardly ever
+- How much I enjoyed the hackathon: Loved it
+- The pace of the afternoon: About right
+- What worked best for me: Building with Claude; Working in a mixed squad
+- Would I take part in another: Definitely
+- One thing to change next time: more time please
 
 ## In the week after
 - Did I still need a human specialist: <answer>, for <what>

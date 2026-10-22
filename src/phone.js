@@ -30,6 +30,14 @@
   const meetings = (D.meetings || []).slice(0, 3);
   $("clock").textContent = D.demoNow.time;
 
+  // ---------- Dark by default; the button switches to light and back
+  $("theme").addEventListener("click", () => {
+    const light = document.documentElement.dataset.theme !== "light";
+    document.documentElement.dataset.theme = light ? "light" : "dark";
+    $("theme").textContent = light ? "Dark mode" : "Light mode";
+    $("theme").setAttribute("aria-pressed", light);
+  });
+
   // ---------- Tabs
   function tab(which) {
     $("tab-call").setAttribute("aria-pressed", which === "call");
