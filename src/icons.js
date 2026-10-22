@@ -5,6 +5,8 @@
   const C = window.CONTENT;
 
   const ICONS = {
+    "lifebuoy": ["M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0", "M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0", "M15 15l3.35 3.35", "M9 15l-3.35 3.35", "M5.65 5.65l3.35 3.35", "M18.35 5.65l-3.35 3.35"],
+    "heart": ["M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"],
     "heart-handshake": ["M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572", "M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25", "M12.5 15.5l2 2", "M15 13l2 2"],
     "users-plus": ["M5 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0", "M3 21v-2a4 4 0 0 1 4 -4h4c.96 0 1.84 .338 2.53 .901", "M16 3.13a4 4 0 0 1 0 7.75", "M16 19h6", "M19 16v6"],
     "friends": ["M7 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0", "M5 22v-5l-1 -1v-4a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4l-1 1v5", "M17 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0", "M15 22v-4h-2l2 -6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1l2 6h-2v4"],
@@ -15,9 +17,9 @@
 
   // Which button gets which icon. Words with {placeholders} match any name or time.
   const RULES = [
-    [C.welcome.helpNow, "heart-handshake"],
+    [C.welcome.helpNow, "lifebuoy"],
     [C.welcome.setUp, "users-plus"],
-    [C.welcome.support, "friends"],
+    [C.welcome.support, "heart"],
     [C.choose.send, "send"],
     [C.choose.volunteer, "phone-call"],
     [C.choose.services, "clock"]
