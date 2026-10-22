@@ -46,10 +46,10 @@
     },
 
     message: {
-      heading: "What should the message say?",
-      body: "We'll always ask you before we send it. You can change it any time.",
+      heading: "Write a message for later",
+      body: "We'll only send it if you ask us to. You can change it any time.",
       label: "Your message",
-      ready: "Hi, it's {name}. I'm not doing great tonight. Can you call me?",
+      ready: "Hi, it's {name}. I'm not doing great. Can you call me?",
       use: "Use this message"
     },
 
