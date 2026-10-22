@@ -34,6 +34,7 @@ ai_use_week_after:
 - Prompt that worked: "can you analyse the tests for any gaps. Considering this is just for a demo but considering accessibility ( contacts, touch size etc)"
 - Squad: the SSH passphrase on every save slowed sharing down; a mistyped passphrase left a catch-up half-done once.
 - 18:02 surprise: Claude ran 60+ test scenarios in the browser for me and measured contrast and tap sizes, faster than I could by hand.
+- 18:36 dead end: tests went out of date fast → the app changed (name, screens, look) faster than I could re-run them.
 
 ## At 19:00
 - What I worked on: <answers>
