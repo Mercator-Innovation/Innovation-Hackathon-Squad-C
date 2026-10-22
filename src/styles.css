@@ -10,6 +10,7 @@
   --border: #c9d1cd;
   --focus: #ffbf47;
   --exit: #5a2a82;
+  --error: #b3261e;
   --radius: 14px;
   --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
@@ -112,3 +113,31 @@ button:focus-visible, main:focus-visible {
 }
 .emergency { font-weight: 600; color: var(--text); }
 .demo-note { font-size: 0.85rem; }
+
+/* Forms */
+.field { margin: 20px 0; }
+.field label { display: block; font-weight: 700; margin-bottom: 4px; }
+.field .hint { font-size: 1rem; margin-bottom: 6px; }
+input[type="text"], input[type="tel"] {
+  width: 100%;
+  font: inherit;
+  padding: 12px;
+  border: 2px solid var(--text);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text);
+}
+input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+input[aria-invalid="true"] { border-color: var(--error); }
+.error { color: var(--error); font-weight: 700; margin-bottom: 6px; }
+.error::before { content: "Error: "; }
+
+/* "Want to add people you trust?" */
+.banner {
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin: 16px 0;
+}
+.banner p { margin-bottom: 10px; }
