@@ -122,3 +122,42 @@ From Joseph's sign-up (`signup.js`) and Carl's check-in (`checkin.js`). Run on 2
 ## 9. Supporter sign-up
 
 Patricia's journey (`supporter.js`) isn't in the shared copy yet. Add scenarios when it lands: consent first, vetting shown as a step, family versus volunteer routes.
+
+## 10. Who would you like to reach, night mode, meetings and the supporter journey
+
+Run on 22 Oct by Anastasia with Claude, in a browser. New since the last run: Joseph's "Who would you like to reach?", Patricia's night mode and supporter journey, Spencer's real recovery meetings.
+
+| # | Scenario | Steps | Expected result | Outcome |
+|---|---|---|---|---|
+| 10.1 | Choose more than one person | As Gary: **I need someone**, **Choose someone else**, tick Lorraine and Mick, send | "Send this to Lorraine and Mick?" Both listed under "Who's been told" | Pass: "Send this to Lorraine and Mick?", both in "Who's been told" |
+| 10.2 | Choose nobody, then send | Untick everyone and press send | Clear error, focus moves to the first tick box. Nothing sent | Pass: "Tick at least one person, or choose another option below", focus on the first box |
+| 10.3 | Choose a volunteer instead | Pick the volunteer option | "Jo is calling you" at the top, then services. Jo in "Who's been told" | Pass: "Sam will call you soon" at the top, Sam in "Who's been told" |
+| 10.4 | Choose nobody at all | Pick **nobody** | Back home. Nothing sent | Pass: "Nobody right now" goes home, nothing sent |
+| 10.5 | Volunteer on after midnight | Set the demo time to Sunday 01:00 | A volunteer whose shift runs to 2am is still offered | Pass: Jo (on until 2am) offered at Sunday 1am. **But services still vanish after midnight** (7.11) |
+| 10.6 | Night mode by default | Open the app fresh | Night colours. Text contrast at least 4.5:1 | Pass: night by default, all text at least 4.5:1 (measured) |
+| 10.7 | Switch to light mode | Press the mode button | Light colours. The button's name and state agree (a screen reader isn't told the opposite) | **Fail:** in night mode the button says "Light mode" and is marked *pressed*, so a screen reader hears "Light mode, selected", the opposite of what's on. Fix: keep one label ("Dark mode") with pressed on/off, or drop "pressed" |
+| 10.8 | Remembers the choice | Switch mode, reload | Same mode as before | Pass: choice saved on this phone ("alex-theme") |
+| 10.9 | Recovery meetings | Go to services open now | Real meetings shown, with when they were checked. Links open in a new tab | Pass: real NA, AA and CA meetings, "checked on 22 October 2026", links open in a new tab |
+| 10.10 | Supporter: family, invited | **I want to support someone**, Someone I know, Someone asked me. Fill in. Say yes | Consent first. Shows the text they got. Ends "You're Lorraine's supporter" (or whoever asked) | Pass: consent first, shows Gary's text, ends "You're Gary's supporter" |
+| 10.11 | Supporter: offer, person says no | Someone I know, I'd like to offer. Demo: they say no | Kind words, "not about you", nothing saved | Pass: "That's their choice, and it's not about you", plus support for families |
+| 10.12 | Supporter: volunteer | Anyone who needs someone. Pick nights and times | Vetting shown as a step. Ends with the nights and times chosen | Pass: vetting shown ("Not built in this demo"), ends with the nights chosen |
+| 10.13 | Volunteer with no nights | Pick no nights, continue | Clear error, focus moves there | Pass: "Pick at least one night", focus on Monday |
+| 10.14 | Volunteer times the wrong way round | From 11pm until 11pm | It asks for a later finish (or accepts it, if agreed) | **Fail:** accepts "11pm to 11pm" and says "on Saturday, 11pm to 11pm" |
+| 10.15 | Supporter form errors | Leave first name and phone blank | Both errors shown and linked to the fields | Partly: only the first error ("Enter your first name") shows, not the phone one too |
+| 10.16 | Stop and delete | At the end, **Stop being a supporter** and **Delete my details** | Clear confirmation. Nothing kept | Pass: "Your details have been deleted" |
+| 10.17 | Not now | On "Before you start", press **Not now** | "Nothing has been saved", with a way back | Pass: "Nothing has been saved", Back to start |
+| 10.18 | Focus ring on tick boxes, light mode | Light mode. Tab to a tick box in "Who would you like to reach?" or check-in | Ring visible, at least 3:1 | **Fail:** tick boxes still use the pale yellow ring: 1.02:1 on the light background, invisible. Buttons and links now get a dark ring (5.8 fixed for those) |
+
+## Re-check of earlier findings (22 Oct, latest version)
+
+| # | Finding | Now |
+|---|---|---|
+| 5.8 | Faint focus ring | **Mostly fixed:** dark ring on buttons and links in light mode, yellow on night (10:1). Tick boxes still faint (10.18) |
+| 8.16 | Made-up name in messages to trusted people | **Fixed** by Joseph: sign-up asks for a name your people know you by |
+| 8.15, 8.17 | "he didn't reply"; no way to reach Your people | **Fixed** (Anastasia) |
+| 7.11 | Services vanish after midnight | **Still open.** Volunteers now handle midnight correctly, services don't |
+| 5.10 | Same page title on every screen | **Still open:** "Alex" everywhere |
+| 5.13 | No Esc for quick exit | **Still open** |
+| 7.2 | "Jo is a volunteer supporter… Volunteer supporter." | **Still open** (`data/people.js`) |
+| 7.6 | "abc" accepted as a phone number | **Still open** (squad to decide) |
+| 8.13 | "again tomorrow at 1am" | **Still open** |

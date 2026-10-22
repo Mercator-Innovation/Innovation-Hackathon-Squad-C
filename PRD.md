@@ -160,6 +160,7 @@ For sensitive scenarios, consider privacy, consent, exclusion, inaccurate output
 | Keyboard and 375px phone width | Usable and understandable | Fits at 375px, focus clearly visible, quick exit leaves no Back-button trail. Quick exit is hard to reach by keyboard once you're on the page (5.1) | Partly |
 | Sign-up, Your people and check-in (scenarios 8.1 to 8.18) | Every step skippable; nobody added without agreeing; only "didn't reply" is shared | 14 pass. Gaps: a made-up name means Lorraine won't know who's asking (8.16, Joseph may have fixed this since). **Fixed and re-tested:** a Your people button after sign-up (8.17) and "pretend they didn't reply" (8.15) | 1 fail, 3 partly, 2 fixed |
 | Contrast, tap size, focus ring, page titles (5.4, 5.7 to 5.10) | WCAG AA basics | Text contrast passes everywhere; buttons at least 47px. **Focus ring is 1.5:1, too faint** (5.8). Page title is "Alex" on every screen (5.10) | 2 fail |
+| Who would you like to reach, night mode, meetings, supporter journey (10.1 to 10.18) | Consent first; clear errors; works in both colour modes | 13 pass. **Fail:** night mode button tells screen readers the opposite (10.7); volunteer shift "11pm to 11pm" accepted (10.14); tick box focus ring invisible in light mode (10.18). Still open from before: services vanish after midnight (7.11), page titles (5.10), Esc (5.13) | 3 fail, 1 partly |
 
 **What we have demonstrated:** _..._  
 **What we have not demonstrated:** _..._

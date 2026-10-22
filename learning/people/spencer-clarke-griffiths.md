@@ -29,6 +29,9 @@ ai_use_week_after:
 
 ## During
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
+18:02 I shaped the flow, design and interaction with the squad's other professions feeding in to Claude, normally a designer's job: working with the different professions feeding in to claude has made the flow, design and interaction better than working just dev
+18:03 surprise: claudes ability to generate the MVP and know the stretch goals is so quick but also doesn't come across human in some of the text or design
+18:04 dead end: everyone making small changes in parallel → where we currently are fels like there are so many small things in lots of places and hard to manage were the progression is
 
 ## At 19:00
 - What I worked on: <answers>
