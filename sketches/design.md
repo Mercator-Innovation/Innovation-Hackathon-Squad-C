@@ -1,5 +1,5 @@
-# Still here — Style Reference
-> Still here — a friendly light in a dusky purple room. Warm, playful enough to feel human, never clinical, never an alarm.
+# Alex — Style Reference
+> Alex — a friendly light in a dusky purple room. Warm, playful enough to feel human, never clinical, never an alarm.
 
 **Scope:** styling only (colours, typography, spacing and the look of existing elements). It doesn't change the screens, what's on them or their order. Token names and classes match `styles.css`, so applying it means adding rules, not rewriting.
 
