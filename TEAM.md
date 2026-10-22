@@ -36,9 +36,9 @@ The **squad lead** runs the squad's setup before the day: agreeing the two roles
 
 <!-- At the look together, the squad uses the prototype as the person it's helping. The product owner's session writes one short line for each, then what the squad will do next, and shares it. -->
 
-**What's working:** _(at 17:15)_
-**What's confusing:** _(at 17:15)_
-**What's missing:** _(at 17:15)_
+**What's working:** "I need help right now" is clear end to end: volunteer call-back, "Sam will call you now", Back on every screen. The start-screen icons are liked.
+**What's confusing:** the name "Alex" clashes with people's names (volunteers, contacts, "Alex, my brother"); the services list is too long, with no priority; "Add people I trust" doesn't make clear you're committing information; sign-up repeats itself, asks "who they are to you" before name and number, and has a Skip that makes no sense.
+**What's missing:** a person card for the volunteer (an avatar, not a photo); services sorted by nearest and open, from a postcode, with a simple map, with "show me what's open" ending on the same page; "This takes about 2 minutes" on Add people I trust, with a real "Talk to someone now, no name needed" button; icons next to button titles.
 **What we'll do next:** _(the product owner's call)_
 **Presenting at show and tell:** _(chosen at 17:15)_
 
