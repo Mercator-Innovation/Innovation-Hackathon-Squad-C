@@ -8,7 +8,7 @@
     next: "Next",
 
     intro: {
-      heading: "Set up Still here",
+      heading: "Add people you trust",
       body: "Best done when you're feeling OK. It takes about 2 minutes, and you can skip any step.",
       promise: "We never tell anyone anything without asking you first.",
       start: "Start",
