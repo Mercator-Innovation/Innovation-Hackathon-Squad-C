@@ -32,6 +32,7 @@ ai_use_week_after:
 - 17:40 I built the scheduled check-in journey (texts, replies and the unhappy path) with Claude, normally a developer's job: its quite hard to think while everything is going on and people are trying to make progress but after a while a good flow emerges
 - 18:03 dead end: relying on some of the genrated flows → can be tricky, they do need simultating through the look together
 - 18:04 something I expected: people tend to focus on the look of something vs how it works and if functional
+- 18:37 there is a big rush to the end
 
 ## At 19:00
 - What I worked on: <answers>
