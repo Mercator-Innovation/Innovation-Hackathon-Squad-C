@@ -170,7 +170,7 @@
   }
   function trusted() {
     const p = profile();
-    const people = p ? p.trustedPeople.filter((t) => t.agreed !== false) : (D.trustedPeople || []);
+    const people = p ? p.trustedPeople.filter((t) => t.agreed === true) : (D.trustedPeople || []);
     return people.map((t, i) => Object.assign({ id: t.id || "person-" + i, relationship: "" }, t));
   }
   function whoText() {
