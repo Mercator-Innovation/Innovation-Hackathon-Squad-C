@@ -45,7 +45,7 @@ The **squad lead** runs the squad's setup before the day: agreeing the two roles
 ## Links
 
 - [Lean PRD](PRD.md): the squad's product requirements. Claude: read it before building, and keep changes within the MVP scope unless the product owner says otherwise.
-- Discovery Wall (optional): _(added if the squad makes one)_
+- Discovery Wall: https://claude.ai/artifact/AaTVdeyhJzB2x8ojgweYvC (made by Anastasia, with Elena's OK)
 
 ## Working agreements
 
