@@ -12,7 +12,7 @@
 **Selected challenge:** 2. Help when it's needed (out-of-hours support for people affected by substance use)  
 **Why this challenge:** We care about it most personally.
 
-> **Combined draft: Carl's notes, the talk-through, Anastasia's personas and research. Squad to confirm.**
+> **Agreed by Elena Barker (product owner), 16:06.**
 
 **Primary user(s):** People who use drugs or alcohol and need help, out of hours (persona: Gary, in `sketches/personas.md`).  
 **Circle of support:** Friends and family (persona: Lorraine), professionals (persona: Aisha), and **volunteer supporters**: people who sign up to support anyone who needs someone, often family of someone affected.  
@@ -34,7 +34,7 @@
 
 ## 2. Desired outcome
 
-> **Draft. Elena to confirm.**
+> **Agreed by Elena Barker (product owner), 16:06.**
 
 **User outcome:** Feel safer and less alone at night, with someone who can help knowing when they need it, and the person staying in control.  
 **How we might recognise value:** _..._  
@@ -52,7 +52,7 @@
 
 **The idea (agreed):** For a person who uses drugs or alcohol, alone at night, a tiny page or text check-in where they tap, type or talk to say how they are. With their consent at every step, it reaches their own trusted people first, then a volunteer supporter, then services open now, and never calls 999 for them.
 
-> **Combined draft. Squad to confirm.**
+> **Agreed by Elena Barker (product owner), 16:06.**
 
 > We believe that a low-friction way to reach out (tap a ready-made answer, type or talk), with optional scheduled check-ins ("text me at 11pm; if I don't reply, tell these people"), will help people who use drugs or alcohol feel safer and less alone at night by connecting them first to someone in their own circle, then to a volunteer supporter, then to services open now, escalating gently rather than straight to 999. We will test this by walking through Gary's Saturday night from start to finish in the prototype, with made-up data.
 
@@ -66,7 +66,7 @@
 
 ## 4. MVP: smallest valuable journey _(fill at 15:30)_
 
-> **Agreed by the squad (16:04).** First version: journey steps 1 to 4, with the tap answers. The scheduled check-in and type or talk come next, in grab and build.
+> **Agreed by the squad (16:04) and the product owner (16:06).** First version: journey steps 1 to 4, with the tap answers. The scheduled check-in and type or talk come next, in grab and build.
 
 **Core scenario:**
 
@@ -119,12 +119,12 @@ Capture ideas freely, but **do not start them until the MVP works end to end**. 
 
 | Assumption or risk | Why it matters | Evidence / mitigation today | Confidence or status |
 |---|---|---|---|
-| Automatically calling 999 or sharing location would stop people using it | They may be somewhere with illegal substances; they'd avoid the tool | The person always decides; escalation is gentle and opt-in | Unvalidated (draft) |
-| A human needs to stay in the loop | Something robotic could make a vulnerable moment worse | Any chatbot step hands over to a person in their circle | Unvalidated (draft) |
-| We must not give medical advice | Wrong advice could cause harm | Point to people and services, not diagnoses | Unvalidated (draft) |
-| Volunteer supporters could be unsafe or out of their depth | Vulnerable people at night; safeguarding | Show sign-up, consent and vetting as a step; don't build it today | Unvalidated (draft) |
-| Contacts, check-in times and location are sensitive personal data | Substance use is special category data; fear of being tracked | Ask for the bare minimum; consent for each use; synthetic data only | Unvalidated (draft) |
-| People have low battery, data or signal | Needs to work when the phone is nearly dead or out of data | SMS check-ins; tiny page; works on old phones | Unvalidated (draft) |
+| Automatically calling 999 or sharing location would stop people using it | They may be somewhere with illegal substances; they'd avoid the tool | The person always decides; escalation is gentle and opt-in | Unvalidated (agreed working assumption) |
+| A human needs to stay in the loop | Something robotic could make a vulnerable moment worse | Any chatbot step hands over to a person in their circle | Unvalidated (agreed working assumption) |
+| We must not give medical advice | Wrong advice could cause harm | Point to people and services, not diagnoses | Unvalidated (agreed working assumption) |
+| Volunteer supporters could be unsafe or out of their depth | Vulnerable people at night; safeguarding | Show sign-up, consent and vetting as a step; don't build it today | Unvalidated (agreed working assumption) |
+| Contacts, check-in times and location are sensitive personal data | Substance use is special category data; fear of being tracked | Ask for the bare minimum; consent for each use; synthetic data only | Unvalidated (agreed working assumption) |
+| People have low battery, data or signal | Needs to work when the phone is nearly dead or out of data | SMS check-ins; tiny page; works on old phones | Unvalidated (agreed working assumption) |
 
 For sensitive scenarios, consider privacy, consent, exclusion, inaccurate outputs and unintended harm. Keep a human decision-maker involved where appropriate.
 
@@ -161,6 +161,7 @@ Record important activities that cannot reasonably be completed during the hacka
 | Time | Original belief or decision | What we discovered | What changed / next action |
 |---|---|---|---|
 | 16:04 | MVP scope had six capabilities | Too much for a 20-minute first version | Squad agreed: first version is journey steps 1 to 4 with tap answers; scheduled check-in and type or talk come next |
+| 16:06 | Separate ideas: scheduled check-ins (Carl's notes) and tap, type or talk with volunteer supporters (the talk-through) | They fit together as one journey; consent is needed at every step | Product owner agreed the combined idea and MVP scope; Spencer builds the first version |
 
 ## 11. End-of-day summary
 
