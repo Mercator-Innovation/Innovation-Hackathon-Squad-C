@@ -29,6 +29,10 @@ ai_use_week_after:
 
 ## During
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
+- Outside my usual job: researched who's at risk and wrote the personas (Gary, Lorraine, Aisha) the squad used as its test case.
+- Outside my usual job: went from writing test scenarios to fixing two bugs in the app myself (a Your people button, and "pretend they didn't reply"), after the squad approved them.
+- Prompt that worked: "can you analyse the tests for any gaps. Considering this is just for a demo but considering accessibility ( contacts, touch size etc)"
+- Squad: the SSH passphrase on every save slowed sharing down; a mistyped passphrase left a catch-up half-done once.
 
 ## At 19:00
 - What I worked on: <answers>
