@@ -16,7 +16,7 @@
 
     how: {
       heading: "How did you hear about this?",
-      invited: "{person} asked me to be their supporter",
+      invited: "Someone asked me to be their supporter",
       offer: "I'd like to offer to support someone"
     },
 
@@ -54,6 +54,13 @@
       question: "Would you like to be {person}'s supporter?",
       yes: "Yes, I'll be their supporter",
       no: "No, not right now"
+    },
+
+    asked: {
+      heading: "Who asked you?",
+      label: "Their first name",
+      hint: "The name you know them by",
+      error: "Enter their first name"
     },
 
     offer: {
@@ -138,9 +145,8 @@
 
     // What the supporter has told us so far (only in this page, nothing saved).
     const draft = { type: "", invited: false, name: "", phone: "", person: "", nights: [], from: "9pm", until: "2am" };
-    const invitedBy = (window.DATA && DATA.person && DATA.person.name) || "Gary";
 
-    const p = () => ({ person: draft.person || invitedBy });
+    const p = () => ({ person: draft.person || "the person you support" });
 
     // An error message above an input, linked to it for screen readers.
     function showError(form, inputId, errorEl) {
@@ -173,7 +179,7 @@
       show([
         el("h1", {}, W.how.heading),
         choices([
-          button(fill(W.how.invited, { person: invitedBy }), "btn-secondary", () => { draft.invited = true; draft.person = invitedBy; consent(); }),
+          button(W.how.invited, "btn-secondary", () => { draft.invited = true; draft.person = ""; consent(); }),
           button(W.how.offer, "btn-secondary", () => { draft.invited = false; draft.person = ""; consent(); })
         ])
       ]);
@@ -232,8 +238,8 @@
         draft.name = name;
         draft.phone = phone;
         if (draft.type === "volunteer") nights();
-        else if (draft.invited) invite();
-        else offer();
+        else if (draft.invited) personForm(W.asked, invite);
+        else personForm(W.offer, waiting);
       });
 
       show([el("h1", {}, W.about.heading), form]);
@@ -253,11 +259,11 @@
       ]);
     }
 
-    // 4b. Family, offering: who, then wait for them to say yes
-    function offer() {
+    // Family: the name of the person they support (who asked them, or who they'd like to offer to)
+    function personForm(words, next) {
       const form = el("form", { novalidate: "" });
-      const wrap = field("sp-person", W.offer.label, W.offer.hint, "text", "off");
-      const err = errorFor(wrap, "sp-person", W.offer.error);
+      const wrap = field("sp-person", words.label, words.hint, "text", "off");
+      const err = errorFor(wrap, "sp-person", words.error);
       form.appendChild(wrap);
       form.querySelector("#sp-person").value = draft.person;
       form.appendChild(choices([
@@ -268,9 +274,9 @@
         const v = form.querySelector("#sp-person").value.trim();
         if (!v) return showError(form, "sp-person", err);
         draft.person = v;
-        waiting();
+        next();
       });
-      show([el("h1", {}, W.offer.heading), form]);
+      show([el("h1", {}, words.heading), form]);
     }
 
     function waiting() {
