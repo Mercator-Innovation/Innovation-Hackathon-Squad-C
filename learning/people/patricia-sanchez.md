@@ -29,6 +29,7 @@ ai_use_week_after:
 
 ## During
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
+- 18:02 surprise: I learned that Claude can produce mockups of design options before making any changes.
 
 ## At 19:00
 - What I worked on: <answers>
