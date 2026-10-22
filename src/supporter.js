@@ -5,7 +5,6 @@
 // Plan: sketches/supporter-journey.md
 (function () {
   const W = {
-    back: "Back",
     next: "Continue",
 
     who: {
@@ -138,7 +137,6 @@
     const invitedBy = (window.DATA && DATA.person && DATA.person.name) || "Gary";
 
     const p = () => ({ person: draft.person || invitedBy });
-    const backLink = (to) => button(W.back, "btn-link", to);
 
     // An error message above an input, linked to it for screen readers.
     function showError(form, inputId, errorEl) {
@@ -161,8 +159,7 @@
         el("p", {}, W.who.body),
         choices([
           button(W.who.family, "btn-secondary", () => { draft.type = "family"; how(); }),
-          button(W.who.volunteer, "btn-secondary", () => { draft.type = "volunteer"; draft.person = ""; consent(); }),
-          backLink(home)
+          button(W.who.volunteer, "btn-secondary", () => { draft.type = "volunteer"; draft.person = ""; consent(); })
         ])
       ]);
     }
@@ -173,8 +170,7 @@
         el("h1", {}, W.how.heading),
         choices([
           button(fill(W.how.invited, { person: invitedBy }), "btn-secondary", () => { draft.invited = true; draft.person = invitedBy; consent(); }),
-          button(W.how.offer, "btn-secondary", () => { draft.invited = false; draft.person = ""; consent(); }),
-          backLink(who)
+          button(W.how.offer, "btn-secondary", () => { draft.invited = false; draft.person = ""; consent(); })
         ])
       ]);
     }
@@ -192,8 +188,7 @@
       nodes.push(el("p", {}, W.consent.stop));
       nodes.push(choices([
         button(W.consent.agree, "btn-primary", about),
-        button(W.consent.notNow, "btn-secondary", notNow),
-        backLink(draft.type === "family" ? how : who)
+        button(W.consent.notNow, "btn-secondary", notNow)
       ]));
       show(nodes);
     }
@@ -218,8 +213,7 @@
       form.querySelector("#sp-name").value = draft.name;
       form.querySelector("#sp-phone").value = draft.phone;
       form.appendChild(choices([
-        el("button", { type: "submit", class: "btn-primary" }, W.next),
-        backLink(consent)
+        el("button", { type: "submit", class: "btn-primary" }, W.next)
       ]));
 
       form.addEventListener("submit", (e) => {
@@ -250,8 +244,7 @@
         el("h2", {}, fill(W.invite.question, p())),
         choices([
           button(W.invite.yes, "btn-primary", previewScreen),
-          button(W.invite.no, "btn-secondary", () => saidNo(true)),
-          backLink(about)
+          button(W.invite.no, "btn-secondary", () => saidNo(true))
         ])
       ]);
     }
@@ -264,8 +257,7 @@
       form.appendChild(wrap);
       form.querySelector("#sp-person").value = draft.person;
       form.appendChild(choices([
-        el("button", { type: "submit", class: "btn-primary" }, W.next),
-        backLink(about)
+        el("button", { type: "submit", class: "btn-primary" }, W.next)
       ]));
       form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -283,8 +275,7 @@
         el("p", {}, fill(W.waiting.body, p())),
         choices([
           button(fill(W.waiting.yes, p()), "btn-demo", previewScreen),
-          button(fill(W.waiting.no, p()), "btn-demo", () => saidNo(false)),
-          backLink(offer)
+          button(fill(W.waiting.no, p()), "btn-demo", () => saidNo(false))
         ])
       ]);
     }
@@ -330,8 +321,7 @@
       form.appendChild(select("sp-from", W.nights.fromLabel, W.nights.from, draft.from));
       form.appendChild(select("sp-until", W.nights.untilLabel, W.nights.until, draft.until));
       form.appendChild(choices([
-        el("button", { type: "submit", class: "btn-primary" }, W.next),
-        backLink(about)
+        el("button", { type: "submit", class: "btn-primary" }, W.next)
       ]));
 
       form.addEventListener("submit", (e) => {
@@ -358,7 +348,7 @@
         el("h1", {}, W.vetting.heading),
         el("p", {}, W.vetting.body),
         el("p", { class: "hint" }, W.vetting.notBuilt),
-        choices([button(W.vetting.next, "btn-primary", previewScreen), backLink(nights)])
+        choices([button(W.vetting.next, "btn-primary", previewScreen)])
       ]);
     }
 
@@ -371,7 +361,7 @@
         el("p", { class: "message" }, family ? fill(W.preview.familyText, p()) : W.preview.volunteerText),
         el("p", { class: "hint" }, W.preview.callNow + "  ·  " + W.preview.cant),
         el("p", {}, W.preview.okToMiss),
-        choices([button(W.next, "btn-primary", done), backLink(family ? (draft.invited ? invite : waiting) : vetting)])
+        choices([button(W.next, "btn-primary", done)])
       ]);
     }
 
