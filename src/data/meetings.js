@@ -24,6 +24,22 @@ window.DATA.meetings = [
     // Helpline number and the Overnight filter checked on the AA site. 24 hours from AA's Scotland listing.
   },
   {
+    name: "AA: 24-hour marathon meeting (online)",
+    when: "Runs all day and all night, with a new meeting starting every hour. Open to anyone.",
+    how: "On Zoom. No password. Joining details are on the AA page.",
+    link: "https://www.alcoholics-anonymous.org.uk/meeting/5906/",
+    linkText: "Join details (AA meeting finder)"
+    // Checked on the AA meeting finder: Online only, Overnight, Saturday and Sunday.
+  },
+  {
+    name: "AA: 2am UK Night Owls (online)",
+    when: "2am to 3am, including Saturday and Sunday nights. Open to anyone.",
+    how: "On Zoom. Joining details are on the AA page.",
+    link: "https://www.alcoholics-anonymous.org.uk/meeting/5725/",
+    linkText: "Join details (AA meeting finder)"
+    // Checked on the AA meeting finder: Online only, Overnight, Saturday and Sunday.
+  },
+  {
     name: "Cocaine Anonymous Scotland",
     when: "Meetings in person and online across Scotland.",
     how: "Helpline: 0141 959 6363, 8am to 11pm every day",
