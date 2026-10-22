@@ -35,7 +35,7 @@
     text: {
       heading: "A text arrives on {name}'s phone",
       app: "Messages",
-      from: "Still here",
+      from: "Alex",
       message: "Hi {name}, it's {time}. How are you right now? Reply 1 if you're OK, 2 if not great, 3 if you need someone. Or tap {link}",
       hint: "He can reply by text, which needs no data, or tap the link.",
       reply1: "Reply 1: I'm OK",
@@ -71,7 +71,7 @@
       pick1: "Reply 1: {volunteer} calls me",
       pick2: "Reply 2: keep trying",
       pick3: "Reply 3: what's open now",
-      volunteerCalling: "{volunteer} will call you in the next few minutes. The number will show as Still here.",
+      volunteerCalling: "{volunteer} will call you in the next few minutes. The number will show as Alex.",
       keepTrying: "OK, we'll keep trying {people} and text you when one replies. Reply 1 any time for {volunteer} to call you.",
       openNow: "Open now: {list}. If your life may be at risk, call 999.",
       noneOpen: "Nothing is open right now. Reply 1 for {volunteer} to call you. If your life may be at risk, call 999.",
@@ -243,7 +243,7 @@
   }
 
   // 3. The check-in text arrives. This is where "Hi Gary" and "I'm OK" belong.
-  // A pretend phone messages screen: texts from Still here on the left, Gary's replies on the right.
+  // A pretend phone messages screen: texts from Alex on the left, Gary's replies on the right.
   function phone(messages) {
     const T = WORDS.text;
     const box = el("section", { class: "phone", "aria-label": T.app + ": " + T.from });
