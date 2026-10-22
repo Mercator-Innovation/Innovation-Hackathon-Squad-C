@@ -12,17 +12,21 @@
 **Selected challenge:** 2. Help when it's needed (out-of-hours support for people affected by substance use)  
 **Why this challenge:** We care about it most personally.
 
-> **Draft from the 15:30 talk-through (Carl's notes). Elena to confirm.**
+> **Combined draft: Carl's notes, the talk-through, Anastasia's personas and research. Squad to confirm.**
 
-**Primary user(s):** People who use drugs or alcohol and need help, out of hours.  
-**Circle of support:** Friends and family, professionals and volunteers.  
+**Primary user(s):** People who use drugs or alcohol and need help, out of hours (persona: Gary, in `sketches/personas.md`).  
+**Circle of support:** Friends and family (persona: Lorraine), professionals (persona: Aisha), and **volunteer supporters**: people who sign up to support anyone who needs someone, often family of someone affected.  
 **Stakeholder (not a user):** Emergency services. They're affected by escalations but don't use the tool.  
 **Problem:** They need someone who can help in the moment, at night, but most support closes at 5pm and they don't want to go straight to 999.  
 **Why it matters:** They face it alone, or the situation escalates into a crisis.  
-**Evidence we have** (from Anastasia's research, **not yet checked with sources**):
-- Digital Lifelines Scotland gave people phones and data. People felt more connected, but feared being tracked, and the funding ran out.
-- A "call before you use" line was trialled in Glasgow.
-- Low trust in institutions and in tech; many people prefer a human.
+**Evidence we have** (sources in `sketches/personas.md` unless linked):
+- **Fact:** about 60% of people who died a drug-related death in Scotland lived alone, and 81% died in their own home (Public Health Scotland).
+- **Fact:** more than 80% of drug support services in Scotland are closed at weekends, according to the Salvation Army.
+- **Fact:** Digital Lifelines Scotland gave people phones and data. People felt more connected, but feared being tracked, lacked trust in institutions and tech, and the funding ran out (Harm Reduction Journal, 2024).
+- **Fact:** "call before you use" lines exist: Never Use Alone was trialled in Glasgow and Ayrshire; Canada's [National Overdose Response Service](https://www.cmaj.ca/content/cmaj/194/46/E1568.full.pdf) reported no deaths in its pilot.
+- **Fact:** out-of-hours helplines are patchy. Scottish Families' helpline runs to about 11pm; only general lines (Samaritans, NHS 24) run 24/7 ([gov.scot](https://gov.scot/publications/resources-mental-health-wellbeing-primary-care-services-2/pages/10), hours not re-checked).
+- **Assumption:** Saturday night is the hardest time. Ambulance call-outs to overdoses peak on Fridays and Saturdays (not checked in full), but we found no Scottish data on time of night.
+- **Assumption:** typing is hard when you're struggling, and talking can be overheard, so tapping ready-made answers is the most private way in.
 
 **Problem statement:**
 
@@ -40,31 +44,37 @@
 - **No barriers to start:** no sign-up, password or app store.
 - **Tone:** plain English, non-judgemental, easy to read.
 - **Trust and control:** never call 999 or share location automatically; the person decides.
+- **Low friction, several ways in:** tap a ready-made answer (most private), type, or talk.
+- **Doesn't feel like being watched:** no remembering where they were; a quick exit on every screen.
 
 ## 3. Proposed solution hypothesis _(fill at 15:30)_
 
-> **Draft. Elena to confirm.**
+> **Combined draft. Squad to confirm.**
 
-> We believe that scheduled check-ins ("text me at 11pm; if I don't reply, tell these people") will help people who use drugs or alcohol feel safer and less alone at night by connecting them with someone in their own circle of support who's available now, escalating gently rather than straight to 999. We will test this by [hackathon demonstration or check].
+> We believe that a low-friction way to reach out (tap a ready-made answer, type or talk), with optional scheduled check-ins ("text me at 11pm; if I don't reply, tell these people"), will help people who use drugs or alcohol feel safer and less alone at night by connecting them first to someone in their own circle, then to a volunteer supporter, then to services open now, escalating gently rather than straight to 999. We will test this by walking through Gary's Saturday night from start to finish in the prototype, with made-up data.
 
 **Alternative approaches considered:**
 - **Automatically alerting emergency services:** rejected. It would stop people using it, and emergency services don't want an onslaught of alerts.
-- **A chatbot that triages and connects:** may sit in front of the check-ins, with a human in the loop.
+- **A chatbot that triages and connects:** may sit in front of the check-ins, with a human in the loop. Free-form chat is the easiest input to offer but the hardest to keep safe, so ready-made answers come first.
+- **A service directory on its own:** the sponsors don't want "another directory". Volunteer supporters and the person's own circle make it "a directory with the bow on".
+- **Remembering where they were last time:** rejected. It could spook people ("I know where you were last night").
 - **A Life360-style circle with a map:** location only with consent, because of fears about being tracked.
 - **Free short codes and zero-rated websites** (free to use with no data): may exist, **not yet checked**. Simulate them in the prototype.
 
 ## 4. MVP: smallest valuable journey _(fill at 15:30)_
 
+> **Combined draft. Squad to confirm.**
+
 **Core scenario:**
 
-> As a [user], I need to [action] so that [benefit].
+> As a person who uses drugs, alone on a Saturday night, I need to let someone I trust know I'm struggling, without typing much or being overheard, so that I don't face it alone.
 
 **Journey (3–5 steps):**
 
-1. _User starts by..._
-2. _User provides or chooses..._
-3. _The product responds by..._
-4. _User understands or acts on..._
+1. Gary opens a tiny page (no sign-up), or replies to the 11pm check-in he set up earlier.
+2. It asks "How are you right now?" He taps **I'm OK**, **Not great** or **I need someone**. He can type or talk instead.
+3. If he needs someone, it sends the message he wrote earlier ("Can you call me?") to Lorraine. If nobody replies within a few minutes, it offers a volunteer supporter, then services open now.
+4. Gary sees who's been told and what happens next. A quick exit is always there. If life may be at risk, 999 is shown clearly, but never called for him.
 
 **Definition of done for the hackathon MVP:**
 
@@ -78,10 +88,14 @@
 
 | Capability | Why it is essential | How we will check it | Status |
 |---|---|---|---|
-| _Capability 1_ | _User value_ | _Demonstration or test_ | Not started |
-| _Capability 2_ | _User value_ | _Demonstration or test_ | Not started |
+| "How are you right now?" with three tap answers | The most private, lowest-friction way in | Walk through Gary's night | Not started |
+| Send a ready-made message to a trusted person | Keeps a human from his own circle in the loop | Demo with made-up contacts | Not started |
+| If nobody replies: volunteer supporter, then services open now | He isn't left alone if family don't answer; more than a directory | Demo with synthetic data | Not started |
+| Scheduled check-in (simulated) | Reaches people who won't reach out first | Demo with a pretend 11pm text | Not started |
+| Type or talk instead of tapping | Choice of input; type first, talk if time allows | Demo | Not started |
+| Quick exit, and 999 shown but never automatic | Safety and trust | Keyboard and phone-width check | Not started |
 
-**Explicitly out of MVP:** _List tempting capabilities that are not needed for the core journey._
+**Explicitly out of MVP:** sending real texts, a free-form AI chat, maps or location, real sign-up and vetting of volunteer supporters, remembering anything about where someone was.
 
 ## 6. Beyond MVP: enhancements and future opportunities
 
@@ -89,8 +103,10 @@ Capture ideas freely, but **do not start them until the MVP works end to end**. 
 
 | Idea / capability | User value or assumption addressed | Layer | Priority | Status |
 |---|---|---|---|---|
-| _Idea_ | _Why it matters_ | Enhancement | High / Medium / Low | Idea |
-| _Idea_ | _Why it matters_ | Future opportunity | High / Medium / Low | Idea |
+| Support for the supporter (e.g. Lorraine: what to do if he doesn't answer, naloxone info) | Families wait years for support and stay hidden | Enhancement | Medium | Idea |
+| A chatbot in front, handing over to a person | Free-form input, with a human in the loop | Future opportunity | Medium | Idea |
+| Real SMS check-ins, free short code or zero-rated site | Works with no data | Future opportunity | High | Idea |
+| Sign-up, vetting and matching for volunteer supporters | Makes the wider circle safe | Future opportunity | High | Idea |
 
 - **Enhancement:** A feasible addition or improvement if time remains today.
 - **Future opportunity:** Valuable but likely to need more research, integration or time.
@@ -103,6 +119,7 @@ Capture ideas freely, but **do not start them until the MVP works end to end**. 
 | Automatically calling 999 or sharing location would stop people using it | They may be somewhere with illegal substances; they'd avoid the tool | The person always decides; escalation is gentle and opt-in | Unvalidated (draft) |
 | A human needs to stay in the loop | Something robotic could make a vulnerable moment worse | Any chatbot step hands over to a person in their circle | Unvalidated (draft) |
 | We must not give medical advice | Wrong advice could cause harm | Point to people and services, not diagnoses | Unvalidated (draft) |
+| Volunteer supporters could be unsafe or out of their depth | Vulnerable people at night; safeguarding | Show sign-up, consent and vetting as a step; don't build it today | Unvalidated (draft) |
 | Contacts, check-in times and location are sensitive personal data | Substance use is special category data; fear of being tracked | Ask for the bare minimum; consent for each use; synthetic data only | Unvalidated (draft) |
 | People have low battery, data or signal | Needs to work when the phone is nearly dead or out of data | SMS check-ins; tiny page; works on old phones | Unvalidated (draft) |
 
