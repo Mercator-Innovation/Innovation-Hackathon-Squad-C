@@ -36,6 +36,18 @@
   --error: #ffb4a6;
 }
 
+/* Night: ticked boxes in lemon (10:1 on dusk; periwinkle was only 2:1) */
+.night input[type="checkbox"], .night input[type="radio"] { accent-color: var(--link); }
+
+/* Pictures of a phone stay in daylight colours, even at night (white phone, dark text) */
+.night .phone, .night .notif {
+  --text: #1f1a3d;
+  --muted: #5c5675;
+  --primary: #5a4fe0;
+  --primary-text: #ffffff;
+  color: var(--text);
+}
+
 * { box-sizing: border-box; }
 
 body {
