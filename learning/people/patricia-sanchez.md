@@ -29,6 +29,8 @@ ai_use_week_after:
 
 ## During
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
+- 17:07 I built the supporter journey, normally a developer's job: family and volunteer sign-up in src/supporter.js, tested and shared.
+- 17:37 I restyled the whole app and fixed its contrast, normally a developer's job: new purple look, flat style, motion and night mode, all text passing WCAG AA.
 - 18:02 surprise: I learned that Claude can produce mockups of design options before making any changes.
 
 ## At 19:00
