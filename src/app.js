@@ -212,7 +212,8 @@
       choices([
         button(C.start.ok, "btn-secondary", ok),
         button(C.start.notGreat, "btn-secondary", notGreat),
-        button(C.start.needSomeone, "btn-primary", ask)
+        button(C.start.needSomeone, "btn-primary", ask),
+        button(C.start.checkin, "btn-link", journey("checkin"))
       ])
     ]);
   }
@@ -221,7 +222,10 @@
     show([
       el("h1", {}, C.ok.heading),
       el("p", {}, C.ok.body),
-      choices([button(C.ok.back, "btn-secondary", home)])
+      choices([
+        button(C.start.checkin, "btn-secondary", journey("checkin")),
+        button(C.ok.back, "btn-link", home)
+      ])
     ]);
   }
 
@@ -350,6 +354,8 @@
     show, el, button, choices, field, fill, formatTime,
     home,                   // back to the start (welcome, or "How are you?" if signed up)
     howAreYou,              // "Hi {name}. How are you right now?" (for checkin.js)
+    notGreat,               // "What would help right now?"
+    ask,                    // "Send this to {trusted person}?" (falls back to a volunteer if there's nobody)
     helpNow,                // the trap door
     services,               // services open now
     setProfile,             // signup.js calls this when the person finishes
