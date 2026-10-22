@@ -47,7 +47,7 @@
       ok: "I'm OK",
       notGreat: "Not great",
       needSomeone: "I need someone",
-      demoNoReply: "Demo: pretend he didn't reply"
+      demoNoReply: "Demo: pretend they didn't reply"
     },
     okText: {
       message: "Thanks {name}. Glad you're OK. We'll text again tomorrow at {time}. If that changes tonight, reply 3 any time.",

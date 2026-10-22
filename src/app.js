@@ -258,7 +258,9 @@
         button(C.start.ok, "btn-secondary", ok),
         button(C.start.notGreat, "btn-secondary", notGreat),
         button(C.start.needSomeone, "btn-primary", ask),
-        button(C.start.checkin, "btn-link", journey("checkin"))
+        button(C.start.checkin, "btn-link", journey("checkin")),
+        // Once signed up, signup.js opens "Your people" to add, remove or change the message.
+        button(C.start.yourPeople, "btn-link", journey("signup"))
       ])
     ]);
   }
