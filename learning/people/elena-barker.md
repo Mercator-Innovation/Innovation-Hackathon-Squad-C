@@ -33,6 +33,7 @@ ai_use_week_after:
 
 ## During
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
+- 17:02 prompt: "we need to split the tasks between all of us" → Claude split the work with one file per journey, so only the merge captain touched app.js and index.html. Since then, we've had hardly any pull request clashes.
 
 ## At 19:00
 - What I worked on: <answers>
