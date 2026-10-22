@@ -350,3 +350,18 @@ legend { font-weight: 700; padding: 0; margin-bottom: 4px; }
 .person-name { font-weight: 700; font-size: 1.15rem; }
 .person-role { color: var(--muted); font-size: 1rem; }
 .service-list + .btn-secondary { width: 100%; margin-bottom: 12px; }
+
+/* ===== Patricia: finishing touches ===== */
+/* Night sky: dusky purple fading to deeper plum (text contrast only goes up) */
+html:has(body.night) { min-height: 100%; background: #2a2450 linear-gradient(180deg, #3b3363 0%, #2a2450 100%) no-repeat; }
+body.night { background: transparent; }
+
+/* Softer, rounder buttons */
+.btn-primary, .btn-secondary { border-radius: 18px; padding: 18px 20px; }
+
+/* Tighter, bolder headings */
+h1 { letter-spacing: -0.02em; line-height: 1.15; font-weight: 800; }
+h2, h3 { letter-spacing: -0.01em; }
+
+/* Small line drawing above each question (art.js) */
+.mini-art { display: block; color: var(--link); margin: 8px 0 12px; }
