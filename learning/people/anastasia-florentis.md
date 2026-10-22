@@ -9,10 +9,14 @@ ai_use_before: 1
 hopes: [see-claude, build-fast, other-jobs, new-people]
 feeling: excited
 # At 19:00
-worked_on: []
-outside_usual_job:
-got_in_way: []
-ai_use_after:
+worked_on: [code, design, research]
+outside_usual_job: a-lot
+got_in_way: [time]
+ai_use_after: 4
+enjoyed: loved
+pace: right
+worked_best: [building, mixed-squad, setup]
+again: definitely
 # In the week after
 specialist:
 helped_squad: []
@@ -37,10 +41,15 @@ ai_use_week_after:
 - 18:36 dead end: tests went out of date fast → the app changed (name, screens, look) faster than I could re-run them.
 
 ## At 19:00
-- What I worked on: <answers>
-- How much of it was outside my usual job: <answer>
-- What got in the way: <answers>
-- How much I'd use AI tools in my work now: <answer>
+- What I worked on: Code or features; The design or the look; Research or finding things out
+- How much of it was outside my usual job: A lot
+- What got in the way: Not enough time
+- How much I'd use AI tools in my work now: Every day
+- How much I enjoyed the hackathon: Loved it
+- The pace of the afternoon: About right
+- What worked best for me: Building with Claude; Working in a mixed squad; The setup before the day
+- Would I take part in another: Definitely
+- One thing to change next time: nothing!
 
 ## In the week after
 - Did I still need a human specialist: <answer>, for <what>
