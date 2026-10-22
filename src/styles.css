@@ -1,18 +1,39 @@
-/* The look. Change colours and fonts here. */
+/* The look. Change colours and fonts here. Colours and contrast: sketches/design.md */
 :root {
-  --bg: #f6f3ee;
+  --bg: #f5f3fc;            /* lavender white */
   --card: #ffffff;
-  --text: #1f2328;
-  --muted: #555b63;
-  --primary: #2f5d50;       /* calm green, 7:1 on white */
+  --text: #1f1a3d;          /* deep plum, 15:1 on bg */
+  --muted: #5c5675;        /* 6.3:1 on bg */
+  --primary: #5a4fe0;       /* periwinkle, white text 5.8:1 */
   --primary-text: #ffffff;
-  --secondary: #e6ece9;
-  --border: #c9d1cd;
-  --focus: #ffbf47;
-  --exit: #5a2a82;
+  --link: #5a4fe0;
+  --secondary: #dcd7fa;     /* lilac, plum text 11.9:1 */
+  --border: #7d77a3;        /* 3.8:1 on bg */
+  --focus: #f3f6b4;
+  --focus-ring: #1f1a3d;
+  --exit: #1f1a3d;
+  --exit-text: #ffffff;
   --error: #b3261e;
   --radius: 14px;
   --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Night colours (not switched on yet: the squad decides when). <body class="night"> */
+.night {
+  --bg: #3b3363;
+  --card: #4a4278;
+  --text: #ffffff;
+  --muted: #d9d4f2;
+  --primary: #5a4fe0;
+  --primary-text: #ffffff;
+  --link: #f3f6b4;
+  --secondary: #4a4278;
+  --border: #9d95d6;
+  --focus: #f3f6b4;
+  --focus-ring: #f3f6b4;
+  --exit: #f3f6b4;
+  --exit-text: #1f1a3d;
+  --error: #ffb4a6;
 }
 
 * { box-sizing: border-box; }
@@ -171,3 +192,121 @@ input[aria-invalid="true"] { border-color: var(--error); }
 .card .where { color: var(--muted); font-size: 1rem; }
 .meetings { margin-top: 28px; }
 .meetings a { color: var(--primary); }
+
+/* ===== Patricia's look (sketches/design.md), agreed with Spencer ===== */
+/* Colour-only tweaks to the rules above */
+.app-name, .btn-link, .btn-back, .meetings a { color: var(--link); }
+.quick-exit { color: var(--exit-text); }
+input[type="text"], input[type="tel"] { color: var(--text); }
+button:focus-visible, input:focus-visible, main:focus-visible, a:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Flat and borderless: space and type do the work, not boxes */
+
+/* No borders, no inset containers */
+button, .card, .banner, .message, .summary { border: 0; box-shadow: none; }
+
+/* More room between sections */
+main { padding-top: 24px; padding-bottom: 48px; }
+h1 { font-size: 1.75rem; line-height: 1.2; margin: 24px 0 12px; }
+h2 { font-size: 1.25rem; margin: 48px 0 12px; }
+.choices { gap: 12px; margin-top: 32px; }
+
+/* Buttons: flat solid fills, no outlines */
+.btn-primary, .btn-secondary { border: 0; }
+.btn-secondary { background: var(--secondary); color: var(--text); font-weight: 600; }
+.btn-link { padding: 12px 0; }
+.btn-demo { border: 0; padding: 12px 0; color: var(--muted); text-decoration: underline dotted; text-underline-offset: 4px; }
+
+/* Saved message: big quoted text, no bubble */
+.message { background: none; color: var(--text); padding: 0; border-radius: 0; font-size: 1.375rem; line-height: 1.4; margin: 16px 0 8px; }
+.message::before { content: "\201C"; }
+.message::after { content: "\201D"; }
+
+/* Services: just text on the background, spaced apart */
+.card { background: none; border-radius: 0; padding: 0; margin: 0 0 32px; }
+.card h3 { font-size: 1.2rem; margin-bottom: 4px; }
+
+/* Banner and summary: separated by space, not boxes or lines */
+.banner { background: none; border-radius: 0; padding: 0; margin: 48px 0; }
+.summary { margin-top: 56px; padding-top: 0; }
+
+/* Inputs: a single underline, so you can still see where to type */
+input[type="text"], input[type="tel"] { border: 0; border-bottom: 2px solid var(--text); border-radius: 0; background: transparent; padding: 12px 0; }
+input[aria-invalid="true"] { border-bottom-color: var(--error); }
+
+/* Footer: space above, no rule */
+.bottom { padding-top: 40px; }
+
+/* Motion: soft, quick, and only on opacity, transform and background-color */
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);   /* reveals: fast start, gentle settle */
+  --ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1); /* hover and press */
+  --dur-micro: 160ms;  /* hover, press, focus */
+  --dur-quick: 200ms;  /* colour changes */
+  --dur-reveal: 300ms; /* a new screen appearing */
+}
+
+/* Enter: each new screen fades up 8px; its parts follow 40ms apart */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+main > * { animation: rise-in var(--dur-reveal) var(--ease-out) both; }
+main > *:nth-child(2) { animation-delay: 40ms; }
+main > *:nth-child(3) { animation-delay: 80ms; }
+main > *:nth-child(n+4) { animation-delay: 120ms; }
+
+/* Buttons: colour eases, a tiny lift on hover, a soft press */
+.btn-primary, .btn-secondary {
+  transition:
+    background-color var(--dur-quick) var(--ease-soft),
+    transform var(--dur-micro) var(--ease-soft);
+}
+@media (hover: hover) {
+  .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
+  .btn-secondary:hover { background-color: var(--secondary-hover); transform: translateY(-1px); }
+  .btn-link:hover, .btn-demo:hover { opacity: 0.75; }
+}
+.btn-primary:active, .btn-secondary:active {
+  transform: scale(0.98);
+  transition-duration: 100ms;
+}
+.btn-link, .btn-demo { transition: opacity var(--dur-micro) var(--ease-soft); }
+
+/* Hover colours (contrast still passes) */
+:root { --primary-hover: #4a3fd0; --secondary-hover: #cfc8f7; }
+.night { --primary-hover: #6a60ea; --secondary-hover: #564d8a; }
+
+/* Quick exit never animates: it must leave instantly */
+.quick-exit { transition: none; animation: none; }
+
+/* People who've asked their phone for less motion get none */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* The logo: someone held. The arc draws round once, then the dot breathes slowly. */
+.brand { display: inline-flex; align-items: center; gap: 8px; }
+.logo { color: var(--primary); flex: none; }
+.logo-arc { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+.logo-dot { fill: currentColor; transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: no-preference) {
+  .logo-arc { stroke-dasharray: 1; stroke-dashoffset: 1; animation: logo-draw 1.2s ease-out 0.2s forwards; }
+  .logo-dot { animation: logo-breathe 5s ease-in-out 1.4s infinite; }
+}
+@keyframes logo-draw { to { stroke-dashoffset: 0; } }
+@keyframes logo-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+
+/* Tick boxes ("Who would you like to reach?") */
+fieldset { border: 0; padding: 0; margin: 20px 0; }
+legend { font-weight: 700; padding: 0; margin-bottom: 4px; }
+.check { display: flex; align-items: center; gap: 12px; min-height: 44px; }
+.check input { width: 24px; height: 24px; margin: 0; accent-color: var(--primary); }
+.check label { flex: 1; padding: 8px 0; }
+.check input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }

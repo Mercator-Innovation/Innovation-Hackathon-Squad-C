@@ -58,7 +58,7 @@
       heading: "We've asked {who}.",
       body: "{who} will get a text asking if they're happy to be someone you can reach. We won't add them unless they say yes.",
       theySee: "What {who} sees:",
-      text: "{name} would like you to be someone they can reach at night, using Still here. You can say no, and you can stop at any time. Reply YES or NO.",
+      text: "{name} would like you to be someone they can reach at night, using Alex, a free night-time support service. You can say no, and you can stop at any time. Reply YES or NO.",
       yes: "Demo: {who} says yes",
       no: "Demo: {who} says no",
       saidYes: "{who} said yes.",
@@ -76,16 +76,16 @@
       removed: "{who} has been removed. We won't tell them.",
       add: "Add someone",
       changeMessage: "Change your message",
-      back: "Back to Still here"
+      back: "Back to start"
     },
 
     done: {
       heading: "You're set up, {name}.",
       headingNoName: "You're set up.",
-      body: "When you open Still here, we'll ask how you are. You decide who's told, every time.",
+      body: "When you open Alex, we'll ask how you are. You decide who's told, every time.",
       yourPeople: "Your people:",
       nobody: "Nobody yet. A volunteer supporter can be there for you instead.",
-      go: "Go to Still here"
+      go: "Done"
     }
   };
 

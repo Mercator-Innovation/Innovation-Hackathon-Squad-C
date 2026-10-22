@@ -24,7 +24,7 @@
 
   // What's happened so far tonight (only in this page, nothing saved).
   let state = newState();
-  function newState() { return { told: [], next: "", contactIndex: 0 }; }
+  function newState() { return { told: [], next: "", contactIndex: 0, sendTo: null }; }
 
   // Fill {placeholders} in a piece of text.
   function fill(text, values) {
@@ -82,6 +82,13 @@
     return profile ? profile.trustedPeople.filter((p) => p.agreed !== false) : [];
   }
   function contact() { return trustedPeople()[state.contactIndex]; }
+  // Who the message goes to: the people picked on "Who would you like to reach?", or the first in the list.
+  function chosen() { return state.sendTo && state.sendTo.length ? state.sendTo : [contact()].filter(Boolean); }
+  // "Lorraine", "Lorraine and Mick", "Lorraine, Mick and Dee"
+  function names(list) {
+    const n = list.map((p) => p.name);
+    return n.length < 2 ? (n[0] || "") : n.slice(0, -1).join(", ") + " and " + n[n.length - 1];
+  }
   // The volunteer supporter who's on now (at the demo's pretend time).
   function volunteer() {
     const now = toMinutes(D.demoNow.time);
@@ -258,7 +265,9 @@
         button(C.start.ok, "btn-secondary", ok),
         button(C.start.notGreat, "btn-secondary", notGreat),
         button(C.start.needSomeone, "btn-primary", ask),
-        button(C.start.checkin, "btn-link", journey("checkin"))
+        button(C.start.checkin, "btn-link", journey("checkin")),
+        // Once signed up, signup.js opens "Your people" to add, remove or change the message.
+        button(C.start.yourPeople, "btn-link", journey("signup"))
       ])
     ]);
   }
@@ -288,44 +297,93 @@
 
   // Ask before sending anything. No trusted people yet? Go to a volunteer.
   function ask() {
-    const p = contact();
-    if (!p) return noReply();
+    const list = chosen();
+    if (!list.length) return noReply();
     show([
-      el("h1", {}, fill(C.ask.heading, { who: p.name })),
+      el("h1", {}, fill(C.ask.heading, { who: names(list) })),
       el("p", {}, C.ask.body),
       el("p", { class: "message" }, profile.message || D.person.savedMessage),
       choices([
         button(C.ask.yes, "btn-primary", send),
-        button(C.ask.other, "btn-secondary", () => {
-          state.contactIndex = (state.contactIndex + 1) % trustedPeople().length;
-          ask();
-        }),
+        button(C.ask.other, "btn-secondary", chooseSomeone),
         button(C.ask.no, "btn-link", home)
       ])
     ]);
   }
 
+  // "Who would you like to reach?": tick one or more of your people, or pick a volunteer, services or nobody.
+  function chooseSomeone() {
+    const people = trustedPeople();
+    const nodes = [el("h1", {}, C.choose.heading)];
+    if (people.length) {
+      const form = el("form", { novalidate: "" });
+      const fs = el("fieldset", { "aria-describedby": "choose-hint" });
+      fs.appendChild(el("legend", {}, C.choose.legend));
+      fs.appendChild(el("p", { class: "hint", id: "choose-hint" }, C.choose.hint));
+      const error = el("p", { class: "error", id: "choose-error", hidden: "" }, C.choose.error);
+      fs.appendChild(error);
+      people.forEach((p, i) => {
+        const row = el("div", { class: "check" });
+        const box = el("input", { type: "checkbox", id: "choose-" + i, value: String(i) });
+        if (chosen().includes(p)) box.checked = true;
+        row.appendChild(box);
+        row.appendChild(el("label", { for: "choose-" + i }, p.relationship ? `${p.name} (${p.relationship.toLowerCase()})` : p.name));
+        fs.appendChild(row);
+      });
+      form.appendChild(fs);
+      form.appendChild(choices([el("button", { type: "submit", class: "btn-primary" }, C.choose.send)]));
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const picked = [...form.querySelectorAll("input:checked")].map((b) => people[Number(b.value)]);
+        if (!picked.length) {
+          error.hidden = false;
+          fs.setAttribute("aria-describedby", "choose-hint choose-error");
+          form.querySelector("input").focus();
+          return;
+        }
+        state.sendTo = picked;
+        ask();
+      });
+      nodes.push(form);
+    }
+    nodes.push(el("h2", {}, C.choose.orHeading));
+    const v = volunteer();
+    const others = [];
+    if (v) {
+      others.push(button(fill(C.choose.volunteer, { volunteer: v.name, until: formatTime(v.onUntil) }), "btn-secondary", () => {
+        state.told.push(`${v.name} (volunteer supporter): asked to call you`);
+        state.next = `${v.name} will call you soon.`;
+        services({ calling: v });
+      }));
+    }
+    others.push(button(C.choose.services, "btn-secondary", services));
+    others.push(button(C.choose.nobody, "btn-link", home));
+    nodes.push(choices(others));
+    show(nodes);
+  }
+
   function send() {
-    const p = contact();
-    state.told.push(`${p.name}${p.relationship ? " (" + p.relationship.toLowerCase() + ")" : ""}: your message`);
-    state.next = fill(C.waiting.body, { who: p.name });
+    chosen().forEach((p) => {
+      state.told.push(`${p.name}${p.relationship ? " (" + p.relationship.toLowerCase() + ")" : ""}: your message`);
+    });
+    state.next = fill(C.waiting.body, { who: names(chosen()) });
     waiting();
   }
 
   function waiting() {
-    const who = contact().name;
+    const who = names(chosen());
     show([
       el("h1", {}, fill(C.waiting.heading, { who })),
       el("p", {}, fill(C.waiting.body, { who })),
       choices([
-        button(fill(C.waiting.replied, { who }), "btn-demo", replied),
+        button(fill(C.waiting.replied, { who: chosen()[0].name }), "btn-demo", replied),
         button(C.waiting.skip, "btn-demo", noReply)
       ])
     ], true);
   }
 
   function replied() {
-    const who = contact().name;
+    const who = chosen()[0].name;
     state.next = fill(C.replied.heading, { who });
     show([
       el("h1", {}, fill(C.replied.heading, { who })),
@@ -338,11 +396,11 @@
   function noReply() {
     const v = volunteer();
     if (!v) return services();
-    const p = contact();
-    const vals = { who: p ? p.name : "Nobody", volunteer: v.name, until: formatTime(v.onUntil), about: v.about };
+    const list = chosen();
+    const vals = { who: list.length ? names(list) : "Nobody", volunteer: v.name, until: formatTime(v.onUntil), about: v.about };
     state.next = fill(C.volunteer.question, vals);
     show([
-      el("h1", {}, p ? fill(C.volunteer.heading, vals) : C.helpNow.heading),
+      el("h1", {}, list.length ? fill(list.length > 1 ? C.volunteer.headingMany : C.volunteer.heading, vals) : C.helpNow.heading),
       el("p", {}, fill(C.volunteer.body, vals)),
       el("p", {}, fill(C.volunteer.question, vals)),
       choices([

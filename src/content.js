@@ -1,7 +1,7 @@
 // All the words people see. Change them here without touching the code.
 // {name}, {who} and {message} are filled in by app.js.
 window.CONTENT = {
-  appName: "Still here",
+  appName: "Alex",
   quickExit: "Quick exit",
   back: "Back",
   emergency: "If someone's life may be at risk, call 999. We will never call it for you.",
@@ -59,7 +59,8 @@ window.CONTENT = {
     ok: "I'm OK",
     notGreat: "Not great",
     needSomeone: "I need someone",
-    checkin: "Check in on me later tonight"
+    checkin: "Check in on me later tonight",
+    yourPeople: "Your people"
   },
 
   ok: {
@@ -84,6 +85,19 @@ window.CONTENT = {
     no: "No, don't send anything"
   },
 
+  // "Choose someone else": pick one or more of your people, or another kind of help.
+  choose: {
+    heading: "Who would you like to reach?",
+    legend: "Your people",
+    hint: "Tick one or more. We'll send your message to everyone you tick.",
+    error: "Tick at least one person, or choose another option below",
+    send: "Send my message",
+    orHeading: "Or",
+    volunteer: "Ask {volunteer}, a volunteer supporter, to call (on until {until})",
+    services: "See what's open now",
+    nobody: "Nobody right now"
+  },
+
   waiting: {
     heading: "Sent to {who}.",
     body: "We'll wait a few minutes for {who} to reply.",
@@ -98,6 +112,7 @@ window.CONTENT = {
 
   volunteer: {
     heading: "{who} hasn't replied yet.",
+    headingMany: "{who} haven't replied yet.",
     body: "{volunteer} is a volunteer supporter, on until {until}. {about}",
     question: "Would you like {volunteer} to call you?",
     yes: "Yes, ask {volunteer} to call",

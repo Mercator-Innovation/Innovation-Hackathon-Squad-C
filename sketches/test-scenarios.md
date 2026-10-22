@@ -53,9 +53,17 @@ All names and contacts are made up (see `personas.md`).
 | 5.1 | Keyboard only | Tab through every screen, then press Enter or Space | Everything can be reached and used. The focus is always visible | Partly: every button reachable, focus ring clear. But Quick exit comes *before* the page in tab order, so once you're in, you have to tab all the way round to reach it |
 | 5.2 | Phone width | View at 375 pixels wide | No sideways scrolling. Buttons are big enough to tap | Pass at 375px: no sideways scroll, buttons at least 47px tall |
 | 5.3 | Not colour alone | Look at status (sent, waiting, no reply) | Each status has words, not only colour | |
-| 5.4 | Contrast | Check text and buttons | Contrast at least 4.5:1 | |
+| 5.4 | Contrast | Check text and buttons | Contrast at least 4.5:1 | Pass for text: every piece of text on 6 screens is at least 4.5:1 (measured) |
 | 5.5 | Screen reader | Use VoiceOver (Cmd + F5 on a Mac) | Headings in order. Buttons and form fields have clear labels | |
 | 5.6 | Plain words | Read every screen | Short sentences, "you", no jargon, person-first language | |
+| 5.7 | Tap size | Measure every button on each screen | At least 44 by 44 pixels | Pass: smallest button 47px tall on 6 screens (measured) |
+| 5.8 | Focus ring contrast | Tab to a button. Compare the yellow ring with what's around it | At least 3:1 against the background | **Fail:** yellow ring is 1.5:1 on the cream page and 1.4:1 on grey buttons (4.6:1 on green). Easy to lose. Fix: add a dark edge to the ring (as GOV.UK does) |
+| 5.9 | Button edges | Look at the grey buttons on the cream page | You can tell where each button is | Weak: border is 1.4:1. The words still say it's a button, so low priority |
+| 5.10 | Page title per step | Move through the screens. Check the browser tab title | The title says where you are ("Who to tell – Still here") | **Fail:** "Still here" on every screen, so screen reader users don't hear which step they're on |
+| 5.11 | Zoom to 200% | Zoom the browser to 200% at laptop width | Nothing cut off, no sideways scroll | Not run |
+| 5.12 | Screen changes announced once | With VoiceOver, move to a new screen | The new heading is read once, not twice | Not run. The page both moves focus to the heading and announces changes, so it may read twice |
+| 5.13 | Quick exit by keyboard | Press Esc on any screen | Leaves straight away, like the button | **Fail:** no Esc shortcut (see 5.1) |
+| 5.14 | Form errors in sign-up and check-in | Leave required fields blank in the new journeys | Clear error next to the field, focus moves there | Not run |
 
 ## 6. Privacy
 
@@ -85,3 +93,30 @@ From Elena's brief (`brief-start-of-journey.md`) and Spencer's start screen.
 | 7.12 | Not built yet | Tap **Set up** and **I want to support someone** | "Coming soon", with a way back. No errors | Pass: "Coming soon" with Back to start |
 | 7.13 | Demo sign-in | Tap **Demo: open as Gary** | "Hi Gary. How are you right now?" Name shown only now | Pass: "Hi Gary" only after demo sign-in |
 | 7.14 | Start again | From services, tap **Start again** | Back to the welcome screen, with tonight's state cleared | Pass: back to welcome, summary cleared |
+## 8. Sign-up, your people and check-in
+
+From Joseph's sign-up (`signup.js`) and Carl's check-in (`checkin.js`). Run on 22 Oct by Anastasia with Claude, in a browser.
+
+| # | Scenario | Steps | Expected result | Outcome |
+|---|---|---|---|---|
+| 8.1 | Skip everything | **Set up**, then **Skip** on every step | Ends "You're set up." with no name and "Nobody yet". No errors | Pass: "You're set up." and "Nobody yet". Home then says "Hi there." |
+| 8.2 | Made-up name | On the name step, tap **Give me a made-up name** | A clearly made-up name (for example "Calm Otter") is used from then on | Pass: "Kind River". But see 8.16 |
+| 8.3 | Escape hatch on every step | Look for **Talk to someone now, no name needed** on each sign-up step | It's on every step, and goes to help right now | Partly: on every step except "We've asked Lorraine" (only demo buttons there) |
+| 8.4 | Add a person, they say yes | Add Lorraine. Demo: she says yes | Shows exactly what Lorraine sees. Then she's in "Your people" | Pass: shows Lorraine's text, then she's in Your people |
+| 8.5 | They say no | Add Mick. Demo: he says no | Kind words ("That's OK"). Mick is **not** added, and can't be messaged | Pass: kind words, and Mick isn't added |
+| 8.6 | Person with no name | On the people step, add with the name blank | Clear error next to the field, focus moves there | Pass: error linked to the field, focus moves there |
+| 8.7 | Three-person limit | Add 3 people | It says that's plenty. No way to add a 4th | Pass: "That's 3 people, which is plenty". The form disappears |
+| 8.8 | Remove someone | In Your people, remove Lorraine | "Lorraine has been removed. We won't tell them." She's no longer offered in "Send this to…" | Pass, once there. **But there's no button to reach Your people** after sign-up (see 8.17) |
+| 8.9 | Change the message | In Your people, change the message, then go to **I need someone** | The new message is the one shown before sending | Pass: new message shown in "Send this to Sam?" |
+| 8.10 | Check-in, no reply | Set a check-in. Demo: skip to the time, then no reply twice | Texts once, nudges once, then tells only the chosen people that he didn't reply. Nothing else | Pass: text at 11pm, one nudge, then "We've let Sam know… We didn't tell them anything else" |
+| 8.11 | Check-in, nobody chosen | Set a check-in with **Nobody. Just remind me again** | After no reply, nobody is told | Pass: "We haven't told anyone" |
+| 8.12 | Check-in, needs someone | Reply **I need someone** to the check-in text | Hands over to "Send this to Lorraine?" and asks first | Pass: goes to "Send this to Sam?" and asks first |
+| 8.13 | Check-in after midnight | Set the check-in for 00:00 or 01:00 | Times read correctly ("12am", "1am"), and "tomorrow" means the right day | Partly: "midnight" and "1am" read well. But after a 1am check-in it says "again **tomorrow** at 1am", which could mean the wrong night |
+| 8.14 | Only agreed people offered | Have one person say no. Open check-in set-up | Only people who said yes are listed | Pass: removed and declined people aren't listed |
+| 8.15 | Words | Read every new screen | Short, kind, no jargon. The demo button says "pretend he didn't reply": use "you" or "they" | **Fixed** (Anastasia, approved by the squad): now "Demo: pretend they didn't reply". Re-tested: pass |
+| 8.16 | Made-up name in messages to trusted people | Sign up with a made-up name. Add Lorraine | Lorraine can tell who's asking | **Fail:** Lorraine is asked by "Kind River" and later gets "Hi, it's Kind River". She won't know it's Gary. Suggest a separate "name your people know you by" |
+| 8.17 | Reach Your people after sign-up | Signed up, look for a way to see or change your people | A button on the home screen | **Fixed** (Anastasia, approved by the squad): a **Your people** button on the "Hi Gary" screen opens Your people. Re-tested: pass |
+| 8.18 | Check-in options tap size | Measure each time and wait option | At least 44 pixels tall | Partly: 39 pixels. Passes the 24-pixel minimum, under the 44 we're aiming for |
+## 9. Supporter sign-up
+
+Patricia's journey (`supporter.js`) isn't in the shared copy yet. Add scenarios when it lands: consent first, vetting shown as a step, family versus volunteer routes.

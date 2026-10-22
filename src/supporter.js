@@ -5,7 +5,6 @@
 // Plan: sketches/supporter-journey.md
 (function () {
   const W = {
-    back: "Back",
     next: "Continue",
 
     who: {
@@ -51,7 +50,7 @@
     invite: {
       heading: "{person} has asked you to be their supporter",
       body: "This is the text you got:",
-      text: "{person} would like you to be someone they can reach at night, using Still here. You can say no, and you can stop at any time.",
+      text: "{person} would like you to be someone they can reach at night, using Alex, a free night-time support service. You can say no, and you can stop at any time.",
       question: "Would you like to be {person}'s supporter?",
       yes: "Yes, I'll be their supporter",
       no: "No, not right now"
@@ -105,9 +104,13 @@
     preview: {
       heading: "What you'll see when someone needs you",
       familyBody: "A text like this:",
-      familyText: "{person}: I'm not doing great tonight. Can you call me?",
+      familyText: "I'm not doing great tonight. Can you call me?",
       volunteerBody: "A text like this:",
-      volunteerText: "Still here: someone needs a person to talk to. Are you free to call?",
+      volunteerFrom: "Alex",
+      volunteerText: "Someone needs a person to talk to. Are you free to call?",
+      app: "Messages",
+      when: "now",
+      label: "Example text message from {from}",
       callNow: "I'll call now",
       cant: "I can't right now",
       okToMiss: "If you can't answer, that's OK. We'll offer them a volunteer, then services open now."
@@ -138,7 +141,6 @@
     const invitedBy = (window.DATA && DATA.person && DATA.person.name) || "Gary";
 
     const p = () => ({ person: draft.person || invitedBy });
-    const backLink = (to) => button(W.back, "btn-link", to);
 
     // An error message above an input, linked to it for screen readers.
     function showError(form, inputId, errorEl) {
@@ -161,8 +163,7 @@
         el("p", {}, W.who.body),
         choices([
           button(W.who.family, "btn-secondary", () => { draft.type = "family"; how(); }),
-          button(W.who.volunteer, "btn-secondary", () => { draft.type = "volunteer"; draft.person = ""; consent(); }),
-          backLink(home)
+          button(W.who.volunteer, "btn-secondary", () => { draft.type = "volunteer"; draft.person = ""; consent(); })
         ])
       ]);
     }
@@ -173,8 +174,7 @@
         el("h1", {}, W.how.heading),
         choices([
           button(fill(W.how.invited, { person: invitedBy }), "btn-secondary", () => { draft.invited = true; draft.person = invitedBy; consent(); }),
-          button(W.how.offer, "btn-secondary", () => { draft.invited = false; draft.person = ""; consent(); }),
-          backLink(who)
+          button(W.how.offer, "btn-secondary", () => { draft.invited = false; draft.person = ""; consent(); })
         ])
       ]);
     }
@@ -192,8 +192,7 @@
       nodes.push(el("p", {}, W.consent.stop));
       nodes.push(choices([
         button(W.consent.agree, "btn-primary", about),
-        button(W.consent.notNow, "btn-secondary", notNow),
-        backLink(draft.type === "family" ? how : who)
+        button(W.consent.notNow, "btn-secondary", notNow)
       ]));
       show(nodes);
     }
@@ -218,8 +217,7 @@
       form.querySelector("#sp-name").value = draft.name;
       form.querySelector("#sp-phone").value = draft.phone;
       form.appendChild(choices([
-        el("button", { type: "submit", class: "btn-primary" }, W.next),
-        backLink(consent)
+        el("button", { type: "submit", class: "btn-primary" }, W.next)
       ]));
 
       form.addEventListener("submit", (e) => {
@@ -250,8 +248,7 @@
         el("h2", {}, fill(W.invite.question, p())),
         choices([
           button(W.invite.yes, "btn-primary", previewScreen),
-          button(W.invite.no, "btn-secondary", () => saidNo(true)),
-          backLink(about)
+          button(W.invite.no, "btn-secondary", () => saidNo(true))
         ])
       ]);
     }
@@ -264,8 +261,7 @@
       form.appendChild(wrap);
       form.querySelector("#sp-person").value = draft.person;
       form.appendChild(choices([
-        el("button", { type: "submit", class: "btn-primary" }, W.next),
-        backLink(about)
+        el("button", { type: "submit", class: "btn-primary" }, W.next)
       ]));
       form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -283,8 +279,7 @@
         el("p", {}, fill(W.waiting.body, p())),
         choices([
           button(fill(W.waiting.yes, p()), "btn-demo", previewScreen),
-          button(fill(W.waiting.no, p()), "btn-demo", () => saidNo(false)),
-          backLink(offer)
+          button(fill(W.waiting.no, p()), "btn-demo", () => saidNo(false))
         ])
       ]);
     }
@@ -330,8 +325,7 @@
       form.appendChild(select("sp-from", W.nights.fromLabel, W.nights.from, draft.from));
       form.appendChild(select("sp-until", W.nights.untilLabel, W.nights.until, draft.until));
       form.appendChild(choices([
-        el("button", { type: "submit", class: "btn-primary" }, W.next),
-        backLink(about)
+        el("button", { type: "submit", class: "btn-primary" }, W.next)
       ]));
 
       form.addEventListener("submit", (e) => {
@@ -358,8 +352,21 @@
         el("h1", {}, W.vetting.heading),
         el("p", {}, W.vetting.body),
         el("p", { class: "hint" }, W.vetting.notBuilt),
-        choices([button(W.vetting.next, "btn-primary", previewScreen), backLink(nights)])
+        choices([button(W.vetting.next, "btn-primary", previewScreen)])
       ]);
+    }
+
+    // A phone lock-screen notification, so supporters see exactly what would arrive.
+    function notification(from, text) {
+      const n = el("div", { class: "notif", role: "group", "aria-label": fill(W.preview.label, { from }) });
+      const top = el("div", { class: "notif-top" });
+      top.appendChild(el("span", { class: "notif-icon", "aria-hidden": "true" }));
+      top.appendChild(el("span", { class: "notif-app" }, W.preview.app));
+      top.appendChild(el("span", { class: "notif-when" }, W.preview.when));
+      n.appendChild(top);
+      n.appendChild(el("p", { class: "notif-from" }, from));
+      n.appendChild(el("p", { class: "notif-text" }, text));
+      return n;
     }
 
     // 6. What you'll see when someone needs you
@@ -368,10 +375,10 @@
       show([
         el("h1", {}, W.preview.heading),
         el("p", {}, family ? W.preview.familyBody : W.preview.volunteerBody),
-        el("p", { class: "message" }, family ? fill(W.preview.familyText, p()) : W.preview.volunteerText),
+        notification(family ? p().person : W.preview.volunteerFrom, family ? W.preview.familyText : W.preview.volunteerText),
         el("p", { class: "hint" }, W.preview.callNow + "  ·  " + W.preview.cant),
         el("p", {}, W.preview.okToMiss),
-        choices([button(W.next, "btn-primary", done), backLink(family ? (draft.invited ? invite : waiting) : vetting)])
+        choices([button(W.next, "btn-primary", done)])
       ]);
     }
 
@@ -419,6 +426,17 @@
     .check label { flex: 1; padding: 8px 0; }
     select { width: 100%; font: inherit; padding: 12px; border: 2px solid var(--text); border-radius: 8px; background: var(--card); color: var(--text); }
     select:focus-visible, .check input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+    /* Example phone notification (a picture of a phone, so it's allowed a box) */
+    .notif { background: rgba(255, 255, 255, 0.92); color: #1c1c1e; border-radius: 22px; padding: 14px 16px 16px; margin: 12px 0 20px;
+             box-shadow: 0 8px 24px rgba(31, 26, 61, 0.18); font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; }
+    .notif-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .notif-icon { width: 22px; height: 22px; border-radius: 6px; background: #34c759; position: relative; flex: none; }
+    .notif-icon::after { content: ""; position: absolute; left: 5px; top: 6px; width: 12px; height: 9px; background: #fff; border-radius: 50%; }
+    .notif-app { text-transform: uppercase; letter-spacing: 0.02em; font-size: 0.85rem; color: #5f5f64; flex: 1; }
+    .notif-when { font-size: 0.85rem; color: #5f5f64; }
+    .notif-from { font-weight: 700; margin: 0; }
+    .notif-text { margin: 0; }
   `;
   document.head.appendChild(css);
 })();
