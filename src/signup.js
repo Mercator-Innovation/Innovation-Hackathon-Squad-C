@@ -40,6 +40,8 @@
       phoneHint: "Demo only: please don't type a real number.",
       nameError: "Enter their name",
       add: "Add this person",
+      edit: "Edit",
+      remove: "Remove",
       added: "You've asked:",
       waiting: "waiting for a yes",
       saidYes: "said yes",
@@ -59,6 +61,8 @@
 
     asking: {
       heading: "{who} has been asked.",
+      headingAll: "We've asked these people",
+      bodyAll: "They'll each get a text asking if they're happy to be someone you can reach. Nobody is added unless they say yes. You can see who's said yes in Your people.",
       body: "Waiting for {who} to say yes. They'll get a text asking if they're happy to be someone you can reach. They won't be added unless they say yes.",
       theySee: "What {who} sees:",
       text: "{name} would like you to be someone they can reach at night, using Still here, a free night-time support service. You can say no, and you can stop at any time. Reply YES or NO.",
@@ -73,7 +77,7 @@
 
     manage: {
       heading: "Your people",
-      body: "Only people who said yes can be messaged. You can change this any time.",
+      body: "Only people who've said yes can be messaged. You can change this any time.",
       nobody: "Nobody yet. A volunteer supporter can be there for you instead.",
       remove: "Remove {who}",
       removed: "{who} has been removed. We won't tell them.",
@@ -108,7 +112,7 @@
     // What the person has given us so far (only in this page, nothing saved).
     const draft = { name: "", trustedPeople: [], message: "", helped: false };
 
-    function escape() { return button(W.escape, "btn-link", helpNow); }
+    function escape() { return button(W.escape, "btn-secondary", helpNow); }
 
     function intro() {
       show([
@@ -150,14 +154,21 @@
       show([el("h1", {}, W.name.heading), form]);
     }
 
-    function people() {
+    function people(prefill) {
       const nodes = [el("h1", {}, W.people.heading), el("p", {}, W.people.body)];
 
       if (draft.trustedPeople.length) {
         nodes.push(el("p", {}, W.people.added));
-        const ul = el("ul");
-        draft.trustedPeople.forEach((p) => ul.appendChild(el("li", {}, `${label(p)}: ${status(p)}`)));
-        nodes.push(ul);
+        draft.trustedPeople.forEach((p) => nodes.push(card(p, [
+          button(W.people.edit, "btn-secondary", () => {
+            draft.trustedPeople = draft.trustedPeople.filter((x) => x !== p);
+            people(p);
+          }),
+          button(W.people.remove, "btn-secondary", () => {
+            draft.trustedPeople = draft.trustedPeople.filter((x) => x !== p);
+            people();
+          })
+        ])));
       }
 
       if (draft.trustedPeople.length >= 3) {
@@ -174,7 +185,12 @@
       form.appendChild(field("su-p-phone", W.people.phoneLabel, W.people.phoneHint, "tel", "off"));
       form.appendChild(field("su-p-rel", W.people.relationshipLabel, W.people.relationshipHint, "text", "off"));
 
-      const buttons = [el("button", { type: "submit", class: "btn-primary" }, draft.trustedPeople.length ? W.people.addAnother : W.people.add)];
+      if (prefill) {
+        form.querySelector("#su-p-name").value = prefill.name || "";
+        form.querySelector("#su-p-phone").value = prefill.phone || "";
+        form.querySelector("#su-p-rel").value = prefill.relationship || "";
+      }
+      const buttons = [el("button", { type: "submit", class: "btn-primary" }, prefill ? W.people.add : draft.trustedPeople.length ? W.people.addAnother : W.people.add)];
       if (draft.trustedPeople.length) buttons.push(button(W.people.done, "btn-secondary", afterPeople));
       else buttons.push(button(W.intro.notNow, "btn-link", editing ? manage : home));
       buttons.push(escape());
@@ -193,6 +209,7 @@
         draft.trustedPeople.push({
           name: nameInput.value.trim(),
           relationship: form.querySelector("#su-p-rel").value.trim(),
+          phone: form.querySelector("#su-p-phone").value.trim(),
           agreed: null
         });
         people();
@@ -225,23 +242,46 @@
 
     // Each trusted person says yes or no. Nobody is added without agreeing.
     function asking() {
-      const p = draft.trustedPeople.find((x) => x.agreed === null);
-      if (!p) {
+      if (!draft.trustedPeople.length) {
         if (!editing) return done();
         save();
         return manage();
       }
-      const vals = { who: p.name, name: draft.name || "Someone you know" };
-      show([
-        el("h1", {}, fill(W.asking.heading, vals)),
-        el("p", {}, fill(W.asking.body, vals)),
-        el("p", {}, fill(W.asking.theySee, vals)),
-        el("p", { class: "message" }, fill(W.asking.text, vals)),
-        choices([
-          button(fill(W.asking.yes, vals), "btn-demo", () => answer(p, true)),
-          button(fill(W.asking.no, vals), "btn-demo", () => answer(p, false))
-        ])
-      ]);
+      const vals = { who: "Lorraine", name: draft.name || "Someone you know" };
+      const nodes = [el("h1", {}, W.asking.headingAll), el("p", {}, W.asking.bodyAll)];
+      draft.trustedPeople.forEach((p) => {
+      const v = { who: p.name };
+        nodes.push(card(p, p.agreed === null ? [
+          button(fill(W.asking.yes, v), "btn-demo", () => { p.agreed = true; asking(); }),
+          button(fill(W.asking.no, v), "btn-demo", () => { p.agreed = false; asking(); })
+        ] : []));
+      });
+      nodes.push(el("p", {}, "What they'll see:"));
+      nodes.push(el("p", { class: "message" }, fill(W.asking.text, vals)));
+      nodes.push(choices([button(W.asking.carryOn, "btn-primary", () => {
+        if (!editing) return done();
+        save();
+        manage();
+      })]));
+      show(nodes);
+    }
+
+    // A person as a card: initials (not a photo), name, who they are, and whether they've said yes.
+    function card(p, actions) {
+      const c = el("div", { class: "person-card" });
+      const initials = p.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+      c.appendChild(el("span", { class: "avatar", "aria-hidden": "true" }, initials));
+      const t = el("div", { class: "person-text" });
+      t.appendChild(el("p", { class: "person-name" }, p.name));
+      if (p.relationship) t.appendChild(el("p", { class: "person-role" }, p.relationship));
+      t.appendChild(el("p", { class: "person-status status-" + (p.agreed === true ? "yes" : p.agreed === false ? "no" : "waiting") }, status(p)));
+      if (actions && actions.length) {
+        const row = el("div", { class: "card-actions" });
+        actions.forEach((a) => row.appendChild(a));
+        t.appendChild(row);
+      }
+      c.appendChild(t);
+      return c;
     }
 
     function answer(p, yes) {
@@ -255,11 +295,10 @@
     }
 
     function done() {
-      const agreed = draft.trustedPeople.filter((p) => p.agreed);
       const profile = {
         name: draft.name || "there",
         message: draft.message || fill(W.message.ready, { name: draft.name || "me" }),
-        trustedPeople: agreed.map((p) => ({ name: p.name, relationship: p.relationship, agreed: true }))
+        trustedPeople: draft.trustedPeople.filter((p) => p.agreed !== false).map((p) => ({ name: p.name, relationship: p.relationship, phone: p.phone, agreed: p.agreed }))
       };
       const nodes = [
         el("h1", {}, draft.name ? fill(W.done.heading, { name: draft.name }) : W.done.headingNoName),
@@ -267,9 +306,7 @@
         el("h2", {}, W.done.yourPeople)
       ];
       if (draft.trustedPeople.length) {
-        const ul = el("ul");
-        draft.trustedPeople.forEach((p) => ul.appendChild(el("li", {}, `${label(p)}: ${status(p)}`)));
-        nodes.push(ul);
+        draft.trustedPeople.forEach((p) => nodes.push(card(p)));
       } else {
         nodes.push(el("p", {}, W.done.nobody));
       }
@@ -284,7 +321,7 @@
       editing = true;
       draft.name = existing.name === "there" ? "" : existing.name;
       draft.message = existing.message;
-      draft.trustedPeople = existing.trustedPeople.map((p) => Object.assign({}, p, { agreed: true }));
+      draft.trustedPeople = existing.trustedPeople.map((p) => Object.assign({ agreed: true }, p));
       manage();
     } else {
       intro();
@@ -299,27 +336,31 @@
       setProfile({
         name: draft.name || "there",
         message: draft.message || fill(W.message.ready, { name: draft.name || "me" }),
-        trustedPeople: draft.trustedPeople.filter((p) => p.agreed).map((p) => ({ name: p.name, relationship: p.relationship, agreed: true }))
+        trustedPeople: draft.trustedPeople.filter((p) => p.agreed !== false).map((p) => ({ name: p.name, relationship: p.relationship, phone: p.phone, agreed: p.agreed }))
       });
     }
 
     function manage(note) {
-      draft.trustedPeople = draft.trustedPeople.filter((p) => p.agreed);
+      draft.trustedPeople = draft.trustedPeople.filter((p) => p.agreed !== false);
       const nodes = [el("h1", {}, W.manage.heading)];
       if (note) nodes.push(el("p", { class: "message" }, note));
       nodes.push(el("p", {}, W.manage.body));
       if (draft.trustedPeople.length) {
-        const ul = el("ul", { class: "people" });
         draft.trustedPeople.forEach((p) => {
-          const li = el("li", {}, `${label(p)}: ${status(p)} `);
-          li.appendChild(button(fill(W.manage.remove, { who: p.name }), "btn-link", () => {
+          const actions = [];
+          if (p.agreed === null) actions.push(button(fill(W.asking.yes, { who: p.name }), "btn-demo", () => { p.agreed = true; save(); manage(); }));
+          actions.push(button(W.people.edit, "btn-secondary", () => {
+            draft.trustedPeople = draft.trustedPeople.filter((x) => x !== p);
+            save();
+            people(p);
+          }));
+          actions.push(button(W.people.remove, "btn-secondary", () => {
             draft.trustedPeople = draft.trustedPeople.filter((x) => x !== p);
             save();
             manage(fill(W.manage.removed, { who: p.name }));
           }));
-          ul.appendChild(li);
+          nodes.push(card(p, actions));
         });
-        nodes.push(ul);
       } else {
         nodes.push(el("p", {}, W.manage.nobody));
       }
