@@ -111,13 +111,13 @@
 |---|---|---|---|
 | Start screen with no name, and three ways in | Nobody is greeted by name out of nowhere | Open it fresh: no name shown | Built (Spencer) |
 | Help right now, no sign-up: volunteer on now, then services | A first visit may be a crisis; no barriers | Demo the trap door start to finish | Built (Spencer) |
-| Optional sign-up, every step skippable | Personal help next time, without pushing anyone | Demo, including skipping | Joseph |
-| Trusted people say yes before they're added | You can't sign someone up without their say-so | Demo Lorraine accepting and declining | Joseph |
+| Optional sign-up, every step skippable | Personal help next time, without pushing anyone | Demo, including skipping | Built (Joseph) |
+| Trusted people say yes before they're added | You can't sign someone up without their say-so | Demo Lorraine accepting and declining | Built (Joseph) |
 | Supporter sign-up (family or volunteer) | Gives people someone to reach when family don't answer | Demo, with vetting shown as a step | Patricia |
 | "How are you right now?" with three tap answers, once signed up | The most private, lowest-friction way in | Walk through Gary's night | First version |
 | Send a ready-made message to a trusted person | Keeps a human from his own circle in the loop | Demo with made-up contacts | First version |
 | If nobody replies: volunteer supporter, then services open now | He isn't left alone if family don't answer; more than a directory | Demo with synthetic data | First version |
-| Scheduled check-in (simulated): where "I'm OK" belongs | Reaches people who won't reach out first | Demo with a pretend 11pm text | Carl |
+| Scheduled check-in (simulated): where "I'm OK" belongs | Reaches people who won't reach out first | Demo with a pretend 11pm text | Built (Carl) |
 | Type or talk instead of tapping | Choice of input; type first, talk if time allows | Demo | Next (grab and build) |
 | Quick exit, and 999 shown but never automatic | Safety and trust | Keyboard and phone-width check | First version |
 
