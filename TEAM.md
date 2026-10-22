@@ -6,7 +6,7 @@
 **Squad name:** the halluCinators
 **Challenge:** 2. Help when it's needed: connecting people affected by substance use with support, out of hours ([sheet](challenges/challenge-2-help-when-its-needed.md))
 **Why we chose it:** We care about it most personally.
-**The idea:** _(one or two sentences, agreed on the day: who it's for, when they need it, and what it does)_
+**The idea:** For a person who uses drugs or alcohol, alone at night, a tiny page or text check-in where they tap, type or talk to say how they are. With their consent at every step, it reaches their own trusted people first, then a volunteer supporter, then services open now, and never calls 999 for them.
 
 ## Members
 

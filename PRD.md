@@ -39,6 +39,7 @@
 **User outcome:** Feel safer and less alone at night, with someone who can help knowing when they need it, and the person staying in control.  
 **How we might recognise value:** _..._  
 **Constraints:**
+- **Consent at every step:** nothing is sent to anyone without the person saying yes.
 - **Low battery:** check-ins, and a last-known location only with consent.
 - **Low data or signal:** plain SMS (no data), a tiny web page, works on old phones.
 - **No barriers to start:** no sign-up, password or app store.
@@ -48,6 +49,8 @@
 - **Doesn't feel like being watched:** no remembering where they were; a quick exit on every screen.
 
 ## 3. Proposed solution hypothesis _(fill at 15:30)_
+
+**The idea (agreed):** For a person who uses drugs or alcohol, alone at night, a tiny page or text check-in where they tap, type or talk to say how they are. With their consent at every step, it reaches their own trusted people first, then a volunteer supporter, then services open now, and never calls 999 for them.
 
 > **Combined draft. Squad to confirm.**
 
@@ -73,7 +76,7 @@
 
 1. Gary opens a tiny page (no sign-up), or replies to the 11pm check-in he set up earlier.
 2. It asks "How are you right now?" He taps **I'm OK**, **Not great** or **I need someone**. He can type or talk instead.
-3. If he needs someone, it sends the message he wrote earlier ("Can you call me?") to Lorraine. If nobody replies within a few minutes, it offers a volunteer supporter, then services open now.
+3. If he needs someone, it asks before it sends the message he wrote earlier ("Can you call me?") to Lorraine. If nobody replies within a few minutes, it offers a volunteer supporter, then services open now.
 4. Gary sees who's been told and what happens next. A quick exit is always there. If life may be at risk, 999 is shown clearly, but never called for him.
 
 **Definition of done for the hackathon MVP:**
