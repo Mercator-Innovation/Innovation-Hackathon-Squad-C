@@ -10,7 +10,7 @@
     intro: {
       heading: "Add people you trust",
       body: "Best done when you're feeling OK. It takes about 2 minutes, and you can skip any step.",
-      promise: "We never tell anyone anything without asking you first.",
+      promise: "Alex never tells anyone anything without asking you first.",
       start: "Start",
       helped: "Someone's helping me set this up",
       notNow: "Not now"
@@ -23,7 +23,7 @@
     },
 
     name: {
-      heading: "What should we call you?",
+      heading: "What should Alex call you?",
       label: "Your name",
       hint: "Your trusted people will see this name, so use one they know you by. A nickname is fine.",
       // "Give me a made-up name" is for the anonymous trap door (StillHere.madeUpName), not here:
@@ -32,7 +32,7 @@
 
     people: {
       heading: "Who would you like to reach when you need someone?",
-      body: "Pick people you trust. We'll ask them first, and they can say no.",
+      body: "Pick people you trust. Alex will ask them first, and they can say no.",
       nameLabel: "Their name",
       relationshipLabel: "Who they are to you",
       relationshipHint: "For example, sister or friend.",
@@ -48,15 +48,15 @@
 
     message: {
       heading: "Write a message for later",
-      body: "We'll only send it if you ask us to. You can change it any time.",
+      body: "Alex will only send it if you ask. You can change it any time.",
       label: "Your message",
       ready: "Hi, it's {name}. I'm not doing great. Can you call me?",
       use: "Use this message"
     },
 
     asking: {
-      heading: "We've asked {who}.",
-      body: "{who} will get a text asking if they're happy to be someone you can reach. We won't add them unless they say yes.",
+      heading: "Alex has asked {who}.",
+      body: "{who} will get a text asking if they're happy to be someone you can reach. Alex won't add them unless they say yes.",
       theySee: "What {who} sees:",
       text: "{name} would like you to be someone they can reach at night, using Alex, a free night-time support service. You can say no, and you can stop at any time. Reply YES or NO.",
       yes: "Demo: {who} says yes",
@@ -73,7 +73,7 @@
       body: "Only people who said yes can be messaged. You can change this any time.",
       nobody: "Nobody yet. A volunteer supporter can be there for you instead.",
       remove: "Remove {who}",
-      removed: "{who} has been removed. We won't tell them.",
+      removed: "{who} has been removed. Alex won't tell them.",
       add: "Add someone",
       changeMessage: "Change your message",
       back: "Back to start"
@@ -82,7 +82,7 @@
     done: {
       heading: "You're set up, {name}.",
       headingNoName: "You're set up.",
-      body: "When you open Alex, we'll ask how you are. You decide who's told, every time.",
+      body: "Next time, Alex will ask how you are. You decide who's told, every time.",
       yourPeople: "Your people:",
       nobody: "Nobody yet. A volunteer supporter can be there for you instead.",
       go: "Done"
