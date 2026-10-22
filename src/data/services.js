@@ -1,4 +1,5 @@
 // Made-up services for the demo. Names, numbers and hours are invented.
+// Phone numbers are from Ofcom's range kept for TV and drama (0808 157 0xxx), so none are real.
 // Times are 24-hour. "closes" after midnight is written as 24:00 or more (e.g. 26:00 = 2am).
 window.DATA = window.DATA || {};
 
@@ -9,13 +10,13 @@ window.DATA.services = [
   {
     name: "Night Line (example)",
     what: "Talk to someone who understands drugs and alcohol. No judgement.",
-    how: "Free call 0800 000 0001",
+    how: "Free call 0808 157 0001",
     opens: "18:00", closes: "26:00", days: ["Friday", "Saturday", "Sunday"]
   },
   {
     name: "Families Line (example)",
     what: "For you or someone worried about you.",
-    how: "Free call 0800 000 0002",
+    how: "Free call 0808 157 0002",
     opens: "17:00", closes: "23:00", days: ["Saturday", "Sunday"]
   },
   {
@@ -33,7 +34,31 @@ window.DATA.services = [
   {
     name: "Recovery meeting online (example)",
     what: "A peer meeting you can join from your phone.",
-    how: "Join by phone: 0800 000 0003",
+    how: "Join by phone: 0808 157 0003",
     opens: "22:00", closes: "23:30", days: ["Saturday"]
+  },
+  {
+    name: "Late Pharmacy (example)",
+    what: "Ask about naloxone, a medicine that reverses an opioid overdose. Free, and they'll show you how to use it.",
+    how: "3 Example Road, Port Glasgow",
+    opens: "08:00", closes: "23:30", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  },
+  {
+    name: "Safe Space at Night (example)",
+    what: "Somewhere warm and safe to be tonight. Staff who won't judge you.",
+    how: "45 Example Lane, Greenock",
+    opens: "21:00", closes: "31:00", days: ["Friday", "Saturday"]
+  },
+  {
+    name: "Peer Chat (example)",
+    what: "Chat online with someone who's been there. Works on a slow connection.",
+    how: "Tap to chat (demo only)",
+    opens: "19:00", closes: "27:00", days: ["Thursday", "Friday", "Saturday", "Sunday"]
+  },
+  {
+    name: "Drug and Alcohol Service (example)",
+    what: "Your key worker and the team. Closed now, but you can leave a message for Monday.",
+    how: "Call 0808 157 0004",
+    opens: "09:00", closes: "17:00", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
   }
 ];

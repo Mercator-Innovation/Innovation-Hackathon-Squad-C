@@ -14,6 +14,10 @@ window.DATA.trustedPeople = [
 ];
 
 // Volunteer supporters on tonight (made up).
+// The app offers the first one in the list.
 window.DATA.volunteers = [
-  { id: "v1", name: "Jo", about: "Volunteer supporter. Her brother uses drugs, so she gets it.", onUntil: "02:00" }
+  { id: "v1", name: "Jo", about: "Volunteer supporter. Her brother uses drugs, so she gets it.", onUntil: "02:00" },
+  { id: "v2", name: "Sam", about: "Volunteer supporter. Sam is in recovery and remembers how long the nights felt.", onUntil: "03:00" },
+  { id: "v3", name: "Priya", about: "Volunteer supporter. Her dad drank, so she knows what it's like for families too.", onUntil: "01:00" },
+  { id: "v4", name: "Alan", about: "Volunteer supporter. A retired nurse who's good at just listening.", onUntil: "04:00" }
 ];
