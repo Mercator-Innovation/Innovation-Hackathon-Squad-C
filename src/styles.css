@@ -1,0 +1,114 @@
+/* The look. Change colours and fonts here. */
+:root {
+  --bg: #f6f3ee;
+  --card: #ffffff;
+  --text: #1f2328;
+  --muted: #555b63;
+  --primary: #2f5d50;       /* calm green, 7:1 on white */
+  --primary-text: #ffffff;
+  --secondary: #e6ece9;
+  --border: #c9d1cd;
+  --focus: #ffbf47;
+  --exit: #5a2a82;
+  --radius: 14px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.app-name { font-weight: 700; color: var(--primary); }
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 8px 16px 24px;
+  outline: none;
+}
+
+h1 { font-size: 1.6rem; line-height: 1.25; margin: 16px 0 8px; }
+h2 { font-size: 1.2rem; margin: 24px 0 8px; }
+p { margin: 0 0 12px; }
+.hint { color: var(--muted); }
+
+.choices { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  padding: 16px 18px;
+  text-align: left;
+}
+
+.btn-primary { background: var(--primary); color: var(--primary-text); font-weight: 700; }
+.btn-secondary { background: var(--secondary); color: var(--text); border-color: var(--border); }
+.btn-link { background: none; color: var(--primary); text-decoration: underline; padding: 8px 0; }
+.btn-demo { background: none; border: 2px dashed var(--border); color: var(--muted); font-size: 1rem; }
+
+.quick-exit {
+  background: var(--exit);
+  color: #fff;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+button:focus-visible, main:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.message {
+  background: var(--card);
+  border-left: 4px solid var(--primary);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-style: italic;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.card h3 { margin: 0 0 4px; font-size: 1.1rem; }
+.card p { margin: 0 0 4px; }
+.card .how { font-weight: 700; }
+.card .until { color: var(--muted); font-size: 1rem; }
+
+.summary { margin-top: 28px; border-top: 1px solid var(--border); padding-top: 4px; }
+.summary ul { padding-left: 20px; margin: 0 0 12px; }
+
+.bottom {
+  padding: 12px 16px 20px;
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.emergency { font-weight: 600; color: var(--text); }
+.demo-note { font-size: 0.85rem; }
