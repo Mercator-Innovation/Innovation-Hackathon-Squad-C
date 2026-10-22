@@ -49,7 +49,7 @@ ai_use_week_after:
 - The pace of the afternoon: About right
 - What worked best for me: Building with Claude; Working in a mixed squad; The shared screen and badges; The setup before the day
 - Would I take part in another: Definitely
-- One thing to change next time: I think this one worked really well. Having a bit more setup time so having access to the rules a little bit more beforehand and getting the niceties out of the way would have worked a little bit better, because you would have been off for a flying start.
+- One thing to change next time: I think this one worked really well. Having a bit more setup time so having access to the rooms a little bit more beforehand and getting the niceties out of the way would have worked a little bit better, because you would have been off for a flying start. It would have been good to have the rooms set up before the start time so you could acclimatise with your teammates, make sure the screens were set up and that type of stuff. Unfortunately, the meeting rooms were in use right up to the time.
 
 ## In the week after
 - Did I still need a human specialist: <answer>, for <what>
