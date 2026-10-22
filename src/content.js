@@ -59,7 +59,8 @@ window.CONTENT = {
     ok: "I'm OK",
     notGreat: "Not great",
     needSomeone: "I need someone",
-    checkin: "Check in on me later tonight"
+    checkin: "Check in on me later tonight",
+    yourPeople: "Your people"
   },
 
   ok: {
