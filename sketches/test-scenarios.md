@@ -161,3 +161,18 @@ Run on 22 Oct by Anastasia with Claude, in a browser. New since the last run: Jo
 | 7.2 | "Jo is a volunteer supporter… Volunteer supporter." | **Still open** (`data/people.js`) |
 | 7.6 | "abc" accepted as a phone number | **Still open** (squad to decide) |
 | 8.13 | "again tomorrow at 1am" | **Still open** |
+
+## 11. Demo check before show and tell (about 18:30)
+
+Quick checks on the latest version, run by Anastasia with Claude, in a browser.
+
+| # | Scenario | Steps | Expected result | Outcome |
+|---|---|---|---|---|
+| 11.1 | Help right now, end to end | **I need help right now**, yes to a call, pretend number | Volunteer card, then "will call you soon" | Pass: Sam's card with an "S" avatar, "on until 3am", then "Sam will call you soon" |
+| 11.2 | Gary needs someone | Demo as Gary, **I need someone** | Choose who to reach | Pass: "Who would you like to reach?" with Lorraine, Mick, Sam, services and nobody |
+| 11.3 | Waiting for a yes | Add trusted people, don't answer for one | Status in words, not just colour | Pass: "waiting for a yes" and "said yes" next to each person |
+| 11.4 | Same person added twice | Add Lorraine three times | Stopped, or a warning | **Fail (small):** Lorraine is added three times |
+| 11.5 | Pretend phone: call menu | `phone.html`, **Call**, wait, press 2 then 3 | Menu read out, then what's open, then meetings | Pass. Keys pressed while "Connecting…" are ignored with no sign, so wait for the menu |
+| 11.6 | Pretend phone: meetings tonight | Press 3 at 11:10pm | Only meetings still to come tonight | **Fail (small):** lists the NA meeting at 7:30pm, which has finished |
+| 11.7 | Pretend phone: text in your own words | **Text**, type "help me" | Treated like HELP | **Fail:** "Sorry, I didn't get that". Only the exact word works. Someone struggling is likely to type naturally |
+| 11.8 | Pretend phone: text HELP | Tap **HELP** | Menu of replies | Pass: CALL, OPEN, MEET, STOP, plus the 999 line |

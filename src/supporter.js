@@ -284,6 +284,8 @@
         el("h1", {}, fill(W.waiting.heading, p())),
         el("p", {}, fill(W.waiting.body, p())),
         choices([
+          button(fill(W.waiting.yes, p()), "btn-demo", previewScreen),
+          button(fill(W.waiting.no, p()), "btn-demo", () => saidNo(false))
         ])
       ]);
     }

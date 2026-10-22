@@ -251,7 +251,10 @@
       const nodes = [el("h1", {}, W.asking.headingAll), el("p", {}, W.asking.bodyAll)];
       draft.trustedPeople.forEach((p) => {
       const v = { who: p.name };
-        nodes.push(card(p, []));
+        nodes.push(card(p, p.agreed === null ? [
+          button(fill(W.asking.yes, v), "btn-demo", () => { p.agreed = true; asking(); }),
+          button(fill(W.asking.no, v), "btn-demo", () => { p.agreed = false; asking(); })
+        ] : []));
       });
       nodes.push(el("p", {}, "What they'll see:"));
       nodes.push(el("p", { class: "message" }, fill(W.asking.text, vals)));
@@ -345,6 +348,7 @@
       if (draft.trustedPeople.length) {
         draft.trustedPeople.forEach((p) => {
           const actions = [];
+          if (p.agreed === null) actions.push(button(fill(W.asking.yes, { who: p.name }), "btn-demo", () => { p.agreed = true; save(); manage(); }));
           actions.push(button(W.people.edit, "btn-secondary", () => {
             draft.trustedPeople = draft.trustedPeople.filter((x) => x !== p);
             save();
