@@ -37,6 +37,7 @@ ai_use_week_after:
 - 17:37 I restyled the whole app and fixed its contrast, normally a developer's job: new purple look, flat style, motion and night mode, all text passing WCAG AA.
 - 18:02 surprise: I learned that Claude can produce mockups of design options before making any changes.
 - 18:19 prompt: "could add a mini vector graphic above each question, preview it to me first like a mockup" → Claude showed small line icons on the real screens first, then added them (moon, phone, people, clock, map pin, shield, speech bubble, heart)
+- 18:39 prompt (on another computer, exact words not kept): corrected the design by removing unnecessary buttons and links → a cleaner design
 
 ## At 19:00
 - What I worked on: <answers>
