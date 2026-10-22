@@ -82,7 +82,19 @@
     return profile ? profile.trustedPeople.filter((p) => p.agreed !== false) : [];
   }
   function contact() { return trustedPeople()[state.contactIndex]; }
-  function volunteer() { return D.volunteers[0]; }
+  // The volunteer supporter who's on now (at the demo's pretend time).
+  function volunteer() {
+    const now = toMinutes(D.demoNow.time);
+    return D.volunteers.find((v) => isOn(v.onFrom || "18:00", v.onUntil, now)) || null;
+  }
+
+  // Is "now" inside a shift? Shifts can run past midnight (20:00 to 02:00).
+  function isOn(from, until, now) {
+    const f = toMinutes(from);
+    let u = toMinutes(until);
+    if (u <= f) u += 1440;
+    return (now >= f && now < u) || (now + 1440 >= f && now + 1440 < u);
+  }
 
   // Who's been told and what happens next.
   function summary() {
@@ -103,8 +115,31 @@
     return s;
   }
 
+  // Back: every journey file draws into #screen, so watch it and remember
+  // each screen. Back puts the previous one back, with its buttons still working.
+  const backBtn = document.getElementById("back");
+  let history = [], current = [], restoring = false, clearHistory = false;
+  new MutationObserver(() => {
+    const now = [...screen.childNodes];
+    if (now.length === current.length && now.every((n, i) => n === current[i])) return;
+    if (clearHistory) history = [];
+    else if (!restoring && current.length) history.push(current);
+    restoring = clearHistory = false;
+    current = now;
+    backBtn.hidden = history.length === 0;
+  }).observe(screen, { childList: true });
+  backBtn.addEventListener("click", () => {
+    const prev = history.pop();
+    if (!prev) return;
+    restoring = true;
+    screen.replaceChildren(...prev);
+    const h1 = screen.querySelector("h1");
+    if (h1) h1.focus();
+  });
+
   // Home: the welcome screen for a stranger, or "How are you?" once signed up.
   function home() {
+    clearHistory = true;
     state = newState();
     if (profile) howAreYou();
     else welcome();
@@ -116,9 +151,9 @@
       el("h1", {}, C.welcome.heading),
       el("p", { class: "hint" }, C.welcome.body),
       choices([
-        button(C.welcome.helpNow, "btn-primary", helpNow),
-        button(C.welcome.setUp, "btn-secondary", journey("signup")),
-        button(C.welcome.support, "btn-secondary", journey("supporter")),
+        described(C.welcome.helpNow, C.welcome.helpNowDesc, "btn-primary", helpNow),
+        described(C.welcome.setUp, C.welcome.setUpDesc, "btn-secondary", journey("signup")),
+        described(C.welcome.support, C.welcome.supportDesc, "btn-secondary", journey("supporter")),
         button(C.welcome.demoSignedIn, "btn-demo", () => {
           setProfile({
             name: D.person.name,
@@ -129,6 +164,14 @@
         })
       ])
     ]);
+  }
+
+  // A big button with a short line underneath saying what it does.
+  function described(label, desc, style, onclick) {
+    const b = button("", style + " described", onclick);
+    b.appendChild(el("span", { class: "label" }, label));
+    b.appendChild(el("span", { class: "desc" }, desc));
+    return b;
   }
 
   // The trap door: help right now, no sign-up.
@@ -160,6 +203,8 @@
     const phoneField = field("cb-phone", C.callBack.phoneLabel, C.callBack.phoneHint, "tel", "off");
     const error = el("p", { class: "error", id: "cb-phone-error", hidden: "" }, fill(C.callBack.phoneError, vals));
     phoneField.insertBefore(error, phoneField.querySelector("input"));
+    // A made-up name, so nobody has to think of one (Joseph's helper in signup.js).
+    nameField.querySelector("input").value = StillHere.madeUpName ? StillHere.madeUpName() : "Blue Fox";
     form.appendChild(nameField);
     form.appendChild(phoneField);
     form.appendChild(choices([
@@ -179,8 +224,8 @@
       }
       const name = form.querySelector("#cb-name").value.trim() || "you";
       state.told.push(`${v.name} (volunteer supporter): asked to call ${name}`);
-      state.next = `${v.name} will call you soon. If you'd rather, you can still use a service above.`;
-      services({ banner: true });
+      state.next = `${v.name} will call you soon.`;
+      services({ banner: true, calling: v });
     });
 
     show([el("h1", {}, fill(C.callBack.heading, vals)), el("p", {}, C.callBack.body), form]);
@@ -303,8 +348,8 @@
       choices([
         button(fill(C.volunteer.yes, vals), "btn-primary", () => {
           state.told.push(`${v.name} (volunteer supporter): asked to call you`);
-          state.next = `${v.name} will call you soon. If you'd rather, you can still use a service above.`;
-          services();
+          state.next = `${v.name} will call you soon.`;
+          services({ calling: v });
         }),
         button(C.volunteer.services, "btn-secondary", services)
       ])
@@ -317,22 +362,52 @@
     const open = D.services.filter((s) =>
       s.days.includes(D.demoNow.day) && now >= toMinutes(s.opens) && now < toMinutes(s.closes)
     );
-    const nodes = [
-      el("h1", {}, C.services.heading),
-      el("p", { class: "hint" }, fill(C.services.nowLabel, { day: D.demoNow.day, time: formatTime(D.demoNow.time) }))
-    ];
+    const nodes = [];
+    // If a volunteer is calling, say so first, where it can't be missed.
+    if (opts && opts.calling) {
+      const call = el("div", { class: "callout", role: "status" });
+      call.appendChild(el("h1", {}, fill(C.services.calling, { volunteer: opts.calling.name })));
+      call.appendChild(el("p", {}, C.services.callingBody));
+      nodes.push(call);
+      nodes.push(el("h2", {}, C.services.heading));
+    } else {
+      nodes.push(el("h1", {}, C.services.heading));
+    }
+    nodes.push(el("p", { class: "hint" }, fill(C.services.nowLabel, { day: D.demoNow.day, time: formatTime(D.demoNow.time) })));
     if (open.length === 0) nodes.push(el("p", {}, C.services.none));
     open.forEach((s) => {
       const card = el("div", { class: "card" });
       card.appendChild(el("h3", {}, s.name));
       card.appendChild(el("p", {}, s.what));
+      if (s.where) card.appendChild(el("p", { class: "where" }, s.where));
       card.appendChild(el("p", { class: "how" }, s.how));
       card.appendChild(el("p", { class: "until" }, s.opens === "00:00" && s.closes === "24:00" ? C.services.allDay : fill(C.services.closesAt, { time: formatTime(s.closes) })));
       nodes.push(card);
     });
+    if (D.meetings) nodes.push(meetings());
     if (!profile && opts && opts.banner) nodes.push(banner());
     nodes.push(choices([button(C.summary.startAgain, "btn-link", home)]));
     show(nodes, true);
+  }
+
+  // Real recovery meetings (NA, AA, CA), from data/meetings.js.
+  function meetings() {
+    const s = el("section", { class: "meetings", "aria-labelledby": "meetings-h" });
+    s.appendChild(el("h2", { id: "meetings-h" }, C.services.meetingsHeading));
+    s.appendChild(el("p", { class: "hint" }, fill(C.services.meetingsNote, { checked: D.meetingsChecked })));
+    D.meetings.forEach((m) => {
+      const card = el("div", { class: "card" });
+      card.appendChild(el("h3", {}, m.name));
+      card.appendChild(el("p", {}, m.when));
+      card.appendChild(el("p", { class: "how" }, m.how));
+      if (m.contact) card.appendChild(el("p", {}, m.contact));
+      const link = el("a", { href: m.link, target: "_blank", rel: "noopener" }, m.linkText);
+      const p = el("p", { class: "until" });
+      p.appendChild(link);
+      card.appendChild(p);
+      s.appendChild(card);
+    });
+    return s;
   }
 
   function toMinutes(t) { const [h, m] = t.split(":").map(Number); return h * 60 + m; }
@@ -369,6 +444,7 @@
   document.getElementById("demo-note").textContent = C.demoNote;
   const exit = document.getElementById("quick-exit");
   exit.textContent = C.quickExit;
+  backBtn.textContent = C.back;
   exit.addEventListener("click", () => window.location.replace("https://www.bbc.co.uk/weather"));
 
   // Start once every file has loaded, so other journeys can register first.

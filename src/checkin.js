@@ -33,16 +33,53 @@
       demo: "Demo: skip to {time}"
     },
     text: {
-      heading: "A text from Still here",
-      message: "Hi {name}, it's {time}. How are you right now? Tap a reply.",
+      heading: "A text arrives on {name}'s phone",
+      app: "Messages",
+      from: "Alex",
+      message: "Hi {name}, it's {time}. How are you right now? Reply 1 if you're OK, 2 if not great, 3 if you need someone. Or tap {link}",
+      hint: "He can reply by text, which needs no data, or tap the link.",
+      reply1: "Reply 1: I'm OK",
+      reply2: "Reply 2: Not great",
+      reply3: "Reply 3: I need someone",
+      link: "Tap the link (needs data)",
+      // The same question on a web page, if he taps the link (preview only; the main page uses its own).
+      webHeading: "Hi {name}. How are you right now?",
       ok: "I'm OK",
       notGreat: "Not great",
       needSomeone: "I need someone",
       demoNoReply: "Demo: pretend he didn't reply"
     },
+    okText: {
+      message: "Thanks {name}. Glad you're OK. We'll text again tomorrow at {time}. If that changes tonight, reply 3 any time.",
+      changed: "Reply 3: I need someone",
+      done: "Done"
+    },
+    // He replied 3 ("I need someone"): the whole thing carries on by text.
+    needText: {
+      ask: "Want us to text your message to {people}? \"{message}\" Reply YES or NO.",
+      yes: "Reply YES",
+      no: "Reply NO",
+      noSent: "OK, we haven't sent anything. Reply 3 any time. If your life may be at risk, call 999.",
+      sentTo: "Sent to {who}. We'll text you when {who} replies.",
+      tryNext: "{who} hasn't replied yet, so we've texted {next} too.",
+      demoReplies: "Demo: {who} replies",
+      demoNobody: "Demo: nobody picks up",
+      calling: "{who} has seen your message and is calling you now.",
+      nobody: "{people} haven't replied yet. {volunteer}, a volunteer supporter, is on until {until}. Reply 1 for {volunteer} to call you, 2 to keep trying {people}, or 3 to see what's open now.",
+      nobodyOne: "{people} hasn't replied yet. {volunteer}, a volunteer supporter, is on until {until}. Reply 1 for {volunteer} to call you, 2 to keep trying {people}, or 3 to see what's open now.",
+      noPeople: "{volunteer}, a volunteer supporter, is on until {until}. Reply 1 for {volunteer} to call you, or 3 to see what's open now.",
+      pick1: "Reply 1: {volunteer} calls me",
+      pick2: "Reply 2: keep trying",
+      pick3: "Reply 3: what's open now",
+      volunteerCalling: "{volunteer} will call you in the next few minutes. The number will show as Alex.",
+      keepTrying: "OK, we'll keep trying {people} and text you when one replies. Reply 1 any time for {volunteer} to call you.",
+      openNow: "Open now: {list}. If your life may be at risk, call 999.",
+      noneOpen: "Nothing is open right now. Reply 1 for {volunteer} to call you. If your life may be at risk, call 999.",
+      done: "Done"
+    },
     nudge: {
-      heading: "We haven't heard from you.",
-      message: "Hi {name}, just checking you're OK. Tap a reply when you can.",
+      heading: "No reply after {wait} minutes",
+      message: "Hi {name}, just checking you're OK. Reply 1, 2 or 3 when you can. Or tap {link}",
       demoNoReply: "Demo: still no reply"
     },
     ok: {
@@ -80,6 +117,10 @@
   let hooks = {};
   // Only in this page, nothing saved.
   let plan = { time: "23:00", wait: 15, tell: [] };
+  // Texts so far tonight, for the pretend messages screen.
+  let sent = [];
+  // A made-up short link (.example is never a real website).
+  const LINK = "stillhere.example/c/7Q2";
 
   function fill(text, values) {
     return text.replace(/\{(\w+)\}/g, (m, key) => (values && key in values ? values[key] : m));
@@ -136,12 +177,7 @@
     const names = plan.tell.map((id) => trusted().find((p) => p.id === id).name);
     return names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
   }
-  function vals() { return { name: name(), time: formatTime(plan.time), wait: plan.wait, who: whoText() }; }
-
-  // A pretend text message.
-  function textBubble(text) {
-    return el("p", { class: "message" }, text);
-  }
+  function vals() { return { name: name(), time: formatTime(plan.time), wait: plan.wait, who: whoText(), link: LINK }; }
 
   // A group of radio buttons or checkboxes with a proper label for each.
   function group(legend, hint, type, nameAttr, options) {
@@ -207,18 +243,35 @@
   }
 
   // 3. The check-in text arrives. This is where "Hi Gary" and "I'm OK" belong.
+  // A pretend phone messages screen: texts from Alex on the left, Gary's replies on the right.
+  function phone(messages) {
+    const T = WORDS.text;
+    const box = el("section", { class: "phone", "aria-label": T.app + ": " + T.from });
+    box.appendChild(el("p", { class: "phone-top" }, T.app + " · " + T.from));
+    messages.forEach((m) => box.appendChild(el("p", { class: "sms " + (m.mine ? "sms-mine" : "sms-theirs") }, m.text)));
+    return box;
+  }
+
+  function smsReplies(next) {
+    const T = WORDS.text;
+    return choices([
+      button(T.reply1, "btn-secondary", () => okByText()),
+      button(T.reply2, "btn-secondary", () => handover(hooks.onNotGreat)),
+      button(T.reply3, "btn-primary", () => needByText()),
+      button(T.link, "btn-secondary", () => (hooks.onLink ? hooks.onLink() : webReply())),
+      button(next.label, "btn-demo", next.go)
+    ]);
+  }
+
   function checkinText() {
-    const W = WORDS.text;
+    const T = WORDS.text;
     const v = vals();
+    sent = [{ text: fill(T.message, v) }];
     show([
-      el("h1", {}, W.heading),
-      textBubble(fill(W.message, v)),
-      choices([
-        button(W.ok, "btn-secondary", ok),
-        button(W.notGreat, "btn-secondary", () => handover(hooks.onNotGreat)),
-        button(W.needSomeone, "btn-primary", () => handover(hooks.onNeedSomeone)),
-        button(W.demoNoReply, "btn-demo", nudge)
-      ])
+      el("h1", {}, fill(T.heading, v)),
+      phone(sent),
+      el("p", { class: "hint" }, T.hint),
+      smsReplies({ label: T.demoNoReply, go: nudge })
     ]);
   }
 
@@ -226,14 +279,112 @@
   function nudge() {
     const W = WORDS.nudge;
     const T = WORDS.text;
+    const v = vals();
+    sent = sent.concat([{ text: fill(W.message, v) }]);
     show([
-      el("h1", {}, W.heading),
-      textBubble(fill(W.message, vals())),
+      el("h1", {}, fill(W.heading, v)),
+      phone(sent),
+      el("p", { class: "hint" }, T.hint),
+      smsReplies({ label: W.demoNoReply, go: told })
+    ]);
+  }
+
+  // He replied "1" by text: thank him, by text.
+  function okByText() {
+    const T = WORDS.text;
+    const W = WORDS.okText;
+    const v = vals();
+    sent = sent.concat([{ text: "1", mine: true }, { text: fill(W.message, v) }]);
+    show([
+      el("h1", {}, fill(T.heading, v)),
+      phone(sent),
+      choices([
+        button(W.changed, "btn-secondary", () => needByText()),
+        button(W.done, "btn-link", done)
+      ])
+    ]);
+  }
+
+  // --- He replied 3: everything carries on by text, so it works with no data. ---
+
+  function names(list) {
+    return list.length > 1 ? list.slice(0, -1).join(", ") + " and " + list[list.length - 1] : (list[0] || "");
+  }
+
+  // Add texts to the conversation and show the reply buttons.
+  function sms(newTexts, buttons) {
+    sent = sent.concat(newTexts);
+    show([el("h1", {}, fill(WORDS.text.heading, vals())), phone(sent), choices(buttons)]);
+  }
+
+  function message() {
+    const p = profile();
+    return (p && p.message) || (D.person && D.person.savedMessage) || "";
+  }
+  function volunteerVals() {
+    const v = (D.volunteers || [])[0] || { name: "a volunteer", onUntil: "02:00" };
+    const people = trusted().map((p) => p.name);
+    return Object.assign(vals(), { volunteer: v.name, until: formatTime(v.onUntil), people: names(people), peopleCount: people.length });
+  }
+
+  // 1. Ask before sending anything.
+  function needByText() {
+    const W = WORDS.needText;
+    const people = trusted().map((p) => p.name);
+    if (people.length === 0) return nobodyPicksUp([{ text: "3", mine: true }]);
+    sms([{ text: "3", mine: true }, { text: fill(W.ask, { people: names(people), message: message() }) }], [
+      button(W.yes, "btn-primary", () => sendTo(0, [{ text: "YES", mine: true }])),
+      button(W.no, "btn-secondary", () => sms([{ text: "NO", mine: true }, { text: W.noSent }], [button(W.done, "btn-link", done)]))
+    ]);
+  }
+
+  // 2. Text one trusted person at a time, in Gary's order.
+  function sendTo(i, before) {
+    const W = WORDS.needText;
+    const people = trusted();
+    const who = people[i].name;
+    const texts = before.concat([{ text: i === 0 ? fill(W.sentTo, { who }) : fill(W.tryNext, { who: people[i - 1].name, next: who }) }]);
+    sms(texts, [
+      button(fill(W.demoReplies, { who }), "btn-demo", () => sms([{ text: fill(W.calling, { who }) }], [button(W.done, "btn-link", done)])),
+      button(W.demoNobody, "btn-demo", () => (i + 1 < people.length ? sendTo(i + 1, []) : nobodyPicksUp([])))
+    ]);
+  }
+
+  // 3. Nobody picked up: offer the volunteer, keep trying, or services open now.
+  function nobodyPicksUp(before) {
+    const W = WORDS.needText;
+    const v = volunteerVals();
+    const offer = v.peopleCount === 0
+      ? fill(W.noPeople, v)
+      : fill(v.peopleCount > 1 ? W.nobody : W.nobodyOne, v);
+    const buttons = [button(fill(W.pick1, v), "btn-primary", () => sms([{ text: "1", mine: true }, { text: fill(W.volunteerCalling, v) }], [button(W.done, "btn-link", done)]))];
+    if (v.peopleCount > 0) buttons.push(button(W.pick2, "btn-secondary", () => sms([{ text: "2", mine: true }, { text: fill(W.keepTrying, v) }], [button(W.done, "btn-link", done)])));
+    buttons.push(button(W.pick3, "btn-secondary", () => sms([{ text: "3", mine: true }, { text: openNowText(v) }], [button(W.done, "btn-link", done)])));
+    sms(before.concat([{ text: offer }]), buttons);
+  }
+
+  // Services open at the demo's pretend time, as one short text.
+  function openNowText(v) {
+    const W = WORDS.needText;
+    const now = D.demoNow;
+    const mins = (t) => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+    const open = (D.services || []).filter((s) =>
+      now && s.days.includes(now.day) && mins(now.time) >= mins(s.opens) && mins(now.time) < mins(s.closes));
+    if (open.length === 0) return fill(W.noneOpen, v);
+    // Keep it short enough for one text, and skip anything that needs data.
+    const byPhone = open.filter((s) => !/^Tap/i.test(s.how)).slice(0, 3);
+    return fill(W.openNow, { list: byPhone.map((s) => `${s.name}, ${s.how}`).join("; ") });
+  }
+
+  // He tapped the link: the same question on a web page (preview only).
+  function webReply() {
+    const T = WORDS.text;
+    show([
+      el("h1", {}, fill(T.webHeading, vals())),
       choices([
         button(T.ok, "btn-secondary", ok),
         button(T.notGreat, "btn-secondary", () => handover(hooks.onNotGreat)),
-        button(T.needSomeone, "btn-primary", () => handover(hooks.onNeedSomeone)),
-        button(W.demoNoReply, "btn-demo", told)
+        button(T.needSomeone, "btn-primary", () => handover(hooks.onNeedSomeone))
       ])
     ]);
   }
@@ -284,7 +435,12 @@
     .checkin-setup .option { display: flex; align-items: center; gap: 12px; margin: 0 0 8px; }
     .checkin-setup input { width: 24px; height: 24px; margin: 0; accent-color: var(--primary); }
     .checkin-setup input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
-    .checkin-setup label { flex: 1; padding: 6px 0; cursor: pointer; }`;
+    .checkin-setup label { flex: 1; padding: 6px 0; cursor: pointer; }
+    .phone { background: #fff; border: 2px solid var(--border); border-radius: 24px; padding: 12px 14px 16px; margin: 8px 0 12px; }
+    .phone-top { text-align: center; font-size: 0.9rem; color: var(--muted); font-weight: 600; margin: 0 0 12px; }
+    .sms { max-width: 85%; padding: 10px 14px; border-radius: 18px; margin: 0 0 8px; font-size: 1rem; overflow-wrap: anywhere; }
+    .sms-theirs { background: #e9e9eb; color: var(--text); border-bottom-left-radius: 4px; }
+    .sms-mine { background: var(--primary); color: #fff; margin-left: auto; border-bottom-right-radius: 4px; width: fit-content; }`;
   document.head.appendChild(css);
 
   window.Journeys = window.Journeys || {};
@@ -302,6 +458,7 @@
     S.journeys.checkin = () => window.Journeys.checkin.start({
       onNotGreat: S.notGreat || S.howAreYou,
       onNeedSomeone: S.ask || S.helpNow,
+      onLink: S.howAreYou,
       onDone: S.home
     });
   }

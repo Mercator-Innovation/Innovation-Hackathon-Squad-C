@@ -1,18 +1,22 @@
 // All the words people see. Change them here without touching the code.
 // {name}, {who} and {message} are filled in by app.js.
 window.CONTENT = {
-  appName: "Still here",
+  appName: "Alex",
   quickExit: "Quick exit",
+  back: "Back",
   emergency: "If someone's life may be at risk, call 999. We will never call it for you.",
   demoNote: "Demo only. Nothing is really sent.",
 
   // The first screen anyone sees. No name: we don't know who they are yet.
   welcome: {
     heading: "You don't have to face tonight alone.",
-    body: "Free to use. No sign-up needed to get help.",
+    body: "Choose what you need. It's free, and you don't need to sign up to get help.",
     helpNow: "I need help right now",
-    setUp: "Set up Still here for me",
+    helpNowDesc: "Talk to a volunteer supporter tonight. No sign-up.",
+    setUp: "Add people I trust",
+    setUpDesc: "Choose who we can message for you when you need someone.",
     support: "I want to support someone",
+    supportDesc: "Be there for a friend or family member, or volunteer.",
     demoSignedIn: "Demo: open as Gary (already set up)"
   },
 
@@ -30,7 +34,7 @@ window.CONTENT = {
     heading: "How can {volunteer} reach you?",
     body: "We only use this for this one call.",
     nameLabel: "What should {volunteer} call you?",
-    nameHint: "Any name is fine. It doesn't have to be your real one.",
+    nameHint: "We've picked a made-up name so you don't have to think of one. You can change it.",
     phoneLabel: "Phone number",
     phoneHint: "Demo only: please don't type a real number.",
     phoneError: "Enter a phone number so {volunteer} can call you",
@@ -40,7 +44,7 @@ window.CONTENT = {
 
   banner: {
     text: "Want to add people you trust, so they can be told next time?",
-    action: "Set up Still here"
+    action: "Add people I trust"
   },
 
   comingSoon: {
@@ -105,6 +109,10 @@ window.CONTENT = {
     nowLabel: "{day}, {time}",
     none: "Nothing nearby is open right now. You can still call 999 if life may be at risk.",
     closesAt: "Open until {time}",
+    calling: "{volunteer} will call you soon.",
+    callingBody: "Keep your phone nearby. You don't need to do anything else. If you'd rather, you can also use a service below.",
+    meetingsHeading: "Recovery meetings",
+    meetingsNote: "Real details, checked on {checked}. Times can change, so check before you go.",
     allDay: "Open 24 hours"
   },
 
