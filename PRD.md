@@ -132,9 +132,9 @@ For sensitive scenarios, consider privacy, consent, exclusion, inaccurate output
 
 | Test or check | Expected result | Actual result / evidence | Outcome |
 |---|---|---|---|
-| _Complete the core journey_ | _Expected behaviour_ | _Observation or link_ | Not run |
-| _Try a failure or edge case_ | _Expected behaviour_ | _Observation or link_ | Not run |
-| _Keyboard / narrow-screen check_ | _Usable and understandable_ | _Observation or link_ | Not run |
+| Help right now (trap door): ask for a call, then services open now | No sign-up; asks before connecting; shows who's been told | Works end to end (scenarios 7.1 to 7.4, 7.7, 7.8, 7.10, 7.12 to 7.14 in [test-scenarios.md](sketches/test-scenarios.md)) | Pass |
+| Edge cases: blank number, "abc" as a number, no volunteer on, just after midnight | Clear errors; nothing missed | Blank number: clear error. "abc" is accepted (7.6). "No volunteer on" message is easy to miss (7.9). **After midnight, the 6pm to 2am Night Line disappears** (7.11) | 1 fail, 2 to decide |
+| Keyboard and 375px phone width | Usable and understandable | Fits at 375px, focus clearly visible, quick exit leaves no Back-button trail. Quick exit is hard to reach by keyboard once you're on the page (5.1) | Partly |
 
 **What we have demonstrated:** _..._  
 **What we have not demonstrated:** _..._
