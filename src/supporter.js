@@ -104,9 +104,13 @@
     preview: {
       heading: "What you'll see when someone needs you",
       familyBody: "A text like this:",
-      familyText: "{person}: I'm not doing great tonight. Can you call me?",
+      familyText: "I'm not doing great tonight. Can you call me?",
       volunteerBody: "A text like this:",
-      volunteerText: "Alex: someone needs a person to talk to. Are you free to call?",
+      volunteerFrom: "Alex",
+      volunteerText: "Someone needs a person to talk to. Are you free to call?",
+      app: "Messages",
+      when: "now",
+      label: "Example text message from {from}",
       callNow: "I'll call now",
       cant: "I can't right now",
       okToMiss: "If you can't answer, that's OK. We'll offer them a volunteer, then services open now."
@@ -352,13 +356,26 @@
       ]);
     }
 
+    // A phone lock-screen notification, so supporters see exactly what would arrive.
+    function notification(from, text) {
+      const n = el("div", { class: "notif", role: "group", "aria-label": fill(W.preview.label, { from }) });
+      const top = el("div", { class: "notif-top" });
+      top.appendChild(el("span", { class: "notif-icon", "aria-hidden": "true" }));
+      top.appendChild(el("span", { class: "notif-app" }, W.preview.app));
+      top.appendChild(el("span", { class: "notif-when" }, W.preview.when));
+      n.appendChild(top);
+      n.appendChild(el("p", { class: "notif-from" }, from));
+      n.appendChild(el("p", { class: "notif-text" }, text));
+      return n;
+    }
+
     // 6. What you'll see when someone needs you
     function previewScreen() {
       const family = draft.type === "family";
       show([
         el("h1", {}, W.preview.heading),
         el("p", {}, family ? W.preview.familyBody : W.preview.volunteerBody),
-        el("p", { class: "message" }, family ? fill(W.preview.familyText, p()) : W.preview.volunteerText),
+        notification(family ? p().person : W.preview.volunteerFrom, family ? W.preview.familyText : W.preview.volunteerText),
         el("p", { class: "hint" }, W.preview.callNow + "  ·  " + W.preview.cant),
         el("p", {}, W.preview.okToMiss),
         choices([button(W.next, "btn-primary", done)])
@@ -409,6 +426,17 @@
     .check label { flex: 1; padding: 8px 0; }
     select { width: 100%; font: inherit; padding: 12px; border: 2px solid var(--text); border-radius: 8px; background: var(--card); color: var(--text); }
     select:focus-visible, .check input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+    /* Example phone notification (a picture of a phone, so it's allowed a box) */
+    .notif { background: rgba(255, 255, 255, 0.92); color: #1c1c1e; border-radius: 22px; padding: 14px 16px 16px; margin: 12px 0 20px;
+             box-shadow: 0 8px 24px rgba(31, 26, 61, 0.18); font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; }
+    .notif-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .notif-icon { width: 22px; height: 22px; border-radius: 6px; background: #34c759; position: relative; flex: none; }
+    .notif-icon::after { content: ""; position: absolute; left: 5px; top: 6px; width: 12px; height: 9px; background: #fff; border-radius: 50%; }
+    .notif-app { text-transform: uppercase; letter-spacing: 0.02em; font-size: 0.85rem; color: #5f5f64; flex: 1; }
+    .notif-when { font-size: 0.85rem; color: #5f5f64; }
+    .notif-from { font-weight: 700; margin: 0; }
+    .notif-text { margin: 0; }
   `;
   document.head.appendChild(css);
 })();
