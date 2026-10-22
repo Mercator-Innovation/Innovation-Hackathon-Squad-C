@@ -33,16 +33,30 @@
       demo: "Demo: skip to {time}"
     },
     text: {
-      heading: "A text from Still here",
-      message: "Hi {name}, it's {time}. How are you right now? Tap a reply.",
+      heading: "A text arrives on {name}'s phone",
+      app: "Messages",
+      from: "Still here",
+      message: "Hi {name}, it's {time}. How are you right now? Reply 1 if you're OK, 2 if not great, 3 if you need someone. Or tap {link}",
+      hint: "He can reply by text, which needs no data, or tap the link.",
+      reply1: "Reply 1: I'm OK",
+      reply2: "Reply 2: Not great",
+      reply3: "Reply 3: I need someone",
+      link: "Tap the link (needs data)",
+      // The same question on a web page, if he taps the link (preview only; the main page uses its own).
+      webHeading: "Hi {name}. How are you right now?",
       ok: "I'm OK",
       notGreat: "Not great",
       needSomeone: "I need someone",
       demoNoReply: "Demo: pretend he didn't reply"
     },
+    okText: {
+      message: "Thanks {name}. Glad you're OK. We'll text again tomorrow at {time}. If that changes tonight, reply 3 any time.",
+      changed: "Reply 3: I need someone",
+      done: "Done"
+    },
     nudge: {
-      heading: "We haven't heard from you.",
-      message: "Hi {name}, just checking you're OK. Tap a reply when you can.",
+      heading: "No reply after {wait} minutes",
+      message: "Hi {name}, just checking you're OK. Reply 1, 2 or 3 when you can. Or tap {link}",
       demoNoReply: "Demo: still no reply"
     },
     ok: {
@@ -80,6 +94,10 @@
   let hooks = {};
   // Only in this page, nothing saved.
   let plan = { time: "23:00", wait: 15, tell: [] };
+  // Texts so far tonight, for the pretend messages screen.
+  let sent = [];
+  // A made-up short link (.example is never a real website).
+  const LINK = "stillhere.example/c/7Q2";
 
   function fill(text, values) {
     return text.replace(/\{(\w+)\}/g, (m, key) => (values && key in values ? values[key] : m));
@@ -136,12 +154,7 @@
     const names = plan.tell.map((id) => trusted().find((p) => p.id === id).name);
     return names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
   }
-  function vals() { return { name: name(), time: formatTime(plan.time), wait: plan.wait, who: whoText() }; }
-
-  // A pretend text message.
-  function textBubble(text) {
-    return el("p", { class: "message" }, text);
-  }
+  function vals() { return { name: name(), time: formatTime(plan.time), wait: plan.wait, who: whoText(), link: LINK }; }
 
   // A group of radio buttons or checkboxes with a proper label for each.
   function group(legend, hint, type, nameAttr, options) {
@@ -207,18 +220,35 @@
   }
 
   // 3. The check-in text arrives. This is where "Hi Gary" and "I'm OK" belong.
+  // A pretend phone messages screen: texts from Still here on the left, Gary's replies on the right.
+  function phone(messages) {
+    const T = WORDS.text;
+    const box = el("section", { class: "phone", "aria-label": T.app + ": " + T.from });
+    box.appendChild(el("p", { class: "phone-top" }, T.app + " · " + T.from));
+    messages.forEach((m) => box.appendChild(el("p", { class: "sms " + (m.mine ? "sms-mine" : "sms-theirs") }, m.text)));
+    return box;
+  }
+
+  function smsReplies(next) {
+    const T = WORDS.text;
+    return choices([
+      button(T.reply1, "btn-secondary", () => okByText()),
+      button(T.reply2, "btn-secondary", () => handover(hooks.onNotGreat)),
+      button(T.reply3, "btn-primary", () => handover(hooks.onNeedSomeone)),
+      button(T.link, "btn-secondary", () => (hooks.onLink ? hooks.onLink() : webReply())),
+      button(next.label, "btn-demo", next.go)
+    ]);
+  }
+
   function checkinText() {
-    const W = WORDS.text;
+    const T = WORDS.text;
     const v = vals();
+    sent = [{ text: fill(T.message, v) }];
     show([
-      el("h1", {}, W.heading),
-      textBubble(fill(W.message, v)),
-      choices([
-        button(W.ok, "btn-secondary", ok),
-        button(W.notGreat, "btn-secondary", () => handover(hooks.onNotGreat)),
-        button(W.needSomeone, "btn-primary", () => handover(hooks.onNeedSomeone)),
-        button(W.demoNoReply, "btn-demo", nudge)
-      ])
+      el("h1", {}, fill(T.heading, v)),
+      phone(sent),
+      el("p", { class: "hint" }, T.hint),
+      smsReplies({ label: T.demoNoReply, go: nudge })
     ]);
   }
 
@@ -226,14 +256,41 @@
   function nudge() {
     const W = WORDS.nudge;
     const T = WORDS.text;
+    const v = vals();
+    sent = sent.concat([{ text: fill(W.message, v) }]);
     show([
-      el("h1", {}, W.heading),
-      textBubble(fill(W.message, vals())),
+      el("h1", {}, fill(W.heading, v)),
+      phone(sent),
+      el("p", { class: "hint" }, T.hint),
+      smsReplies({ label: W.demoNoReply, go: told })
+    ]);
+  }
+
+  // He replied "1" by text: thank him, by text.
+  function okByText() {
+    const T = WORDS.text;
+    const W = WORDS.okText;
+    const v = vals();
+    sent = sent.concat([{ text: "1", mine: true }, { text: fill(W.message, v) }]);
+    show([
+      el("h1", {}, fill(T.heading, v)),
+      phone(sent),
+      choices([
+        button(W.changed, "btn-secondary", () => handover(hooks.onNeedSomeone)),
+        button(W.done, "btn-link", done)
+      ])
+    ]);
+  }
+
+  // He tapped the link: the same question on a web page (preview only).
+  function webReply() {
+    const T = WORDS.text;
+    show([
+      el("h1", {}, fill(T.webHeading, vals())),
       choices([
         button(T.ok, "btn-secondary", ok),
         button(T.notGreat, "btn-secondary", () => handover(hooks.onNotGreat)),
-        button(T.needSomeone, "btn-primary", () => handover(hooks.onNeedSomeone)),
-        button(W.demoNoReply, "btn-demo", told)
+        button(T.needSomeone, "btn-primary", () => handover(hooks.onNeedSomeone))
       ])
     ]);
   }
@@ -284,7 +341,12 @@
     .checkin-setup .option { display: flex; align-items: center; gap: 12px; margin: 0 0 8px; }
     .checkin-setup input { width: 24px; height: 24px; margin: 0; accent-color: var(--primary); }
     .checkin-setup input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
-    .checkin-setup label { flex: 1; padding: 6px 0; cursor: pointer; }`;
+    .checkin-setup label { flex: 1; padding: 6px 0; cursor: pointer; }
+    .phone { background: #fff; border: 2px solid var(--border); border-radius: 24px; padding: 12px 14px 16px; margin: 8px 0 12px; }
+    .phone-top { text-align: center; font-size: 0.9rem; color: var(--muted); font-weight: 600; margin: 0 0 12px; }
+    .sms { max-width: 85%; padding: 10px 14px; border-radius: 18px; margin: 0 0 8px; font-size: 1rem; overflow-wrap: anywhere; }
+    .sms-theirs { background: #e9e9eb; color: var(--text); border-bottom-left-radius: 4px; }
+    .sms-mine { background: var(--primary); color: #fff; margin-left: auto; border-bottom-right-radius: 4px; width: fit-content; }`;
   document.head.appendChild(css);
 
   window.Journeys = window.Journeys || {};
@@ -302,6 +364,7 @@
     S.journeys.checkin = () => window.Journeys.checkin.start({
       onNotGreat: S.notGreat || S.howAreYou,
       onNeedSomeone: S.ask || S.helpNow,
+      onLink: S.howAreYou,
       onDone: S.home
     });
   }
