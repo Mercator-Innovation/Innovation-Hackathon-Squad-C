@@ -6,6 +6,7 @@ Presenter: Carl McCullagh. About 250 spoken words. Show the prototype from 0:20.
 
 - **Challenge 2: help when it's needed.** Most drug and alcohol support closes at 5pm, but people are most alone at night. About 60% of people who died a drug-related death in Scotland lived alone. Meet Gary: on his own on a Saturday night, struggling, and not wanting to go straight to 999.
 - **Still here helps Gary reach his own people first.** He can open a tiny page, no sign-up, and tap "I need someone". Or he gets an 11pm check-in **by text**: reply 1, 2 or 3, no data needed. With his say-so, it texts Lorraine, then Mick. If nobody picks up, Jo, a volunteer supporter, offers to call. Then services open now. It never calls 999 for him, and there's a quick exit on every screen. *(Demo: check-in → reply 3 → nobody picks up → Jo.)*
+- **Low data, low battery, poor signal or an old phone? He can call or text Still here instead and get all the same help.** No app, no data, no smartphone needed. *(Optional demo: `phone.html`, the pretend phone.)*
 
 ## 1:00 to 1:30 · One thing that didn't work
 
