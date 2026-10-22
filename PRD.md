@@ -72,12 +72,30 @@
 
 > As a person who uses drugs, alone on a Saturday night, I need to let someone I trust know I'm struggling, without typing much or being overheard, so that I don't face it alone.
 
-**Journey (3–5 steps):**
+> **Updated by Elena Barker (product owner) after looking at the first version:** the journey was missing its start. Nobody is greeted by name unless they've signed up. Brief: `sketches/brief-start-of-journey.md`.
 
-1. Gary opens a tiny page (no sign-up), or replies to the 11pm check-in he set up earlier.
-2. It asks "How are you right now?" He taps **I'm OK**, **Not great** or **I need someone**. He can type or talk instead.
-3. If he needs someone, it asks before it sends the message he wrote earlier ("Can you call me?") to Lorraine. If nobody replies within a few minutes, it offers a volunteer supporter, then services open now.
-4. Gary sees who's been told and what happens next. A quick exit is always there. If life may be at risk, 999 is shown clearly, but never called for him.
+**Journeys:**
+
+**A. First visit, which may be a crisis (no sign-up)**
+1. Anyone opens Still here. No name: "You don't have to face tonight alone." They choose **I need help right now**, **Set up Still here for me** or **I want to support someone**.
+2. **I need help right now:** no sign-up. It offers a volunteer supporter who's on now, and asks before connecting.
+3. If they'd like a call, they give any name (it doesn't have to be real) and a phone number, used only for that one call. If not, or nobody's on, they see services open now.
+4. They see what happens next. A banner offers to set things up for next time.
+
+**B. Setting up (optional, every step can be skipped)**
+1. **Set up Still here for me:** a name (a made-up one is fine), trusted people, and the message to send them.
+2. Each trusted person is invited and says yes or no. Nobody is added without their say-so.
+
+**C. Supporting someone**
+1. **I want to support someone:** as family or a friend of one person, or as a volunteer for anyone.
+2. Consent first. Vetting is shown as a step, not built.
+
+**D. Signed up, at night**
+1. Gary replies to the 11pm check-in he set up, or opens the page: "Hi Gary. How are you right now?" He taps **I'm OK**, **Not great** or **I need someone**. He can type or talk instead.
+2. If he needs someone, it asks before sending his message ("Can you call me?") to Lorraine. If nobody replies within a few minutes, it offers a volunteer supporter, then services open now.
+3. He sees who's been told and what happens next.
+
+**On every screen:** a quick exit, and "If someone's life may be at risk, call 999. We will never call it for you."
 
 **Definition of done for the hackathon MVP:**
 
@@ -91,14 +109,19 @@
 
 | Capability | Why it is essential | How we will check it | Status |
 |---|---|---|---|
-| "How are you right now?" with three tap answers | The most private, lowest-friction way in | Walk through Gary's night | First version |
+| Start screen with no name, and three ways in | Nobody is greeted by name out of nowhere | Open it fresh: no name shown | Built (Spencer) |
+| Help right now, no sign-up: volunteer on now, then services | A first visit may be a crisis; no barriers | Demo the trap door start to finish | Built (Spencer) |
+| Optional sign-up, every step skippable | Personal help next time, without pushing anyone | Demo, including skipping | Built (Joseph) |
+| Trusted people say yes before they're added | You can't sign someone up without their say-so | Demo Lorraine accepting and declining | Built (Joseph) |
+| Supporter sign-up (family or volunteer) | Gives people someone to reach when family don't answer | Demo, with vetting shown as a step | Patricia |
+| "How are you right now?" with three tap answers, once signed up | The most private, lowest-friction way in | Walk through Gary's night | First version |
 | Send a ready-made message to a trusted person | Keeps a human from his own circle in the loop | Demo with made-up contacts | First version |
 | If nobody replies: volunteer supporter, then services open now | He isn't left alone if family don't answer; more than a directory | Demo with synthetic data | First version |
-| Scheduled check-in (simulated) | Reaches people who won't reach out first | Demo with a pretend 11pm text | Next (grab and build) |
+| Scheduled check-in (simulated): where "I'm OK" belongs | Reaches people who won't reach out first | Demo with a pretend 11pm text | Built (Carl) |
 | Type or talk instead of tapping | Choice of input; type first, talk if time allows | Demo | Next (grab and build) |
 | Quick exit, and 999 shown but never automatic | Safety and trust | Keyboard and phone-width check | First version |
 
-**Explicitly out of MVP:** sending real texts, a free-form AI chat, maps or location, real sign-up and vetting of volunteer supporters, remembering anything about where someone was.
+**Explicitly out of MVP:** sending real texts or calls, a free-form AI chat, maps or location, real accounts or passwords, real vetting of volunteer supporters (shown as a step only), remembering anything about where someone was.
 
 ## 6. Beyond MVP: enhancements and future opportunities
 
@@ -162,6 +185,7 @@ Record important activities that cannot reasonably be completed during the hacka
 |---|---|---|---|
 | 16:04 | MVP scope had six capabilities | Too much for a 20-minute first version | Squad agreed: first version is journey steps 1 to 4 with tap answers; scheduled check-in and type or talk come next |
 | 16:06 | Separate ideas: scheduled check-ins (Carl's notes) and tap, type or talk with volunteer supporters (the talk-through) | They fit together as one journey; consent is needed at every step | Product owner agreed the combined idea and MVP scope; Spencer builds the first version |
+| 16:48 | The first version greeted Gary by name, with "I'm OK" leading nowhere | There was no way to sign up, and being named out of nowhere would spook people | Added the start of the journey: no-name start screen, help right now with no sign-up (volunteer, then services), optional sign-up, trusted people agree, supporter sign-up. Work split in TEAM.md |
 
 ## 11. End-of-day summary
 
