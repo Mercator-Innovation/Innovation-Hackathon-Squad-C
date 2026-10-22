@@ -67,6 +67,17 @@
       carryOn: "Carry on"
     },
 
+    manage: {
+      heading: "Your people",
+      body: "Only people who said yes can be messaged. You can change this any time.",
+      nobody: "Nobody yet. A volunteer supporter can be there for you instead.",
+      remove: "Remove {who}",
+      removed: "{who} has been removed. We won't tell them.",
+      add: "Add someone",
+      changeMessage: "Change your message",
+      back: "Back to Still here"
+    },
+
     done: {
       heading: "You're set up, {name}.",
       headingNoName: "You're set up.",
@@ -81,6 +92,12 @@
   const FIRST = ["Blue", "Quiet", "Brave", "Kind", "Bright", "Calm", "Silver", "Gentle"];
   const SECOND = ["Fox", "River", "Heron", "Oak", "Star", "Harbour", "Otter", "Hill"];
 
+  function madeUpName() {
+    const pick = (list) => list[Math.floor(Math.random() * list.length)];
+    return pick(FIRST) + " " + pick(SECOND);
+  }
+  StillHere.madeUpName = madeUpName;
+
   StillHere.journeys.signup = function () {
     const { show, el, button, choices, field, fill, home, helpNow, setProfile } = StillHere;
 
@@ -88,11 +105,6 @@
     const draft = { name: "", trustedPeople: [], message: "", helped: false };
 
     function escape() { return button(W.escape, "btn-link", helpNow); }
-
-    function madeUpName() {
-      const pick = (list) => list[Math.floor(Math.random() * list.length)];
-      return pick(FIRST) + " " + pick(SECOND);
-    }
 
     function intro() {
       show([
@@ -148,7 +160,7 @@
 
       if (draft.trustedPeople.length >= 3) {
         nodes.push(el("p", {}, W.people.max));
-        nodes.push(choices([button(W.people.done, "btn-primary", message), escape()]));
+        nodes.push(choices([button(W.people.done, "btn-primary", afterPeople), escape()]));
         return show(nodes);
       }
 
@@ -161,8 +173,8 @@
       form.appendChild(field("su-p-phone", W.people.phoneLabel, W.people.phoneHint, "tel", "off"));
 
       const buttons = [el("button", { type: "submit", class: "btn-primary" }, draft.trustedPeople.length ? W.people.addAnother : W.people.add)];
-      if (draft.trustedPeople.length) buttons.push(button(W.people.done, "btn-secondary", message));
-      else buttons.push(button(W.skip, "btn-link", message));
+      if (draft.trustedPeople.length) buttons.push(button(W.people.done, "btn-secondary", afterPeople));
+      else buttons.push(button(W.skip, "btn-link", afterPeople));
       buttons.push(escape());
       form.appendChild(choices(buttons));
 
@@ -198,13 +210,13 @@
       form.appendChild(wrap);
       form.appendChild(choices([
         el("button", { type: "submit", class: "btn-primary" }, W.message.use),
-        button(W.skip, "btn-link", () => { draft.message = ""; asking(); }),
+        button(W.skip, "btn-link", editing ? manage : () => { draft.message = ""; asking(); }),
         escape()
       ]));
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         draft.message = box.value.trim();
-        asking();
+        if (editing) { save(); manage(); } else asking();
       });
       show([el("h1", {}, W.message.heading), el("p", {}, W.message.body), form]);
     }
@@ -212,7 +224,11 @@
     // Each trusted person says yes or no. Nobody is added without agreeing.
     function asking() {
       const p = draft.trustedPeople.find((x) => x.agreed === null);
-      if (!p) return done();
+      if (!p) {
+        if (!editing) return done();
+        save();
+        return manage();
+      }
       const vals = { who: p.name, name: draft.name || "Someone you know" };
       show([
         el("h1", {}, fill(W.asking.heading, vals)),
@@ -259,6 +275,55 @@
       show(nodes);
     }
 
-    intro();
+    // Already signed up? Show their people, to add, remove or change the message.
+    let editing = false;
+    const existing = StillHere.getProfile();
+    if (existing) {
+      editing = true;
+      draft.name = existing.name === "there" ? "" : existing.name;
+      draft.message = existing.message;
+      draft.trustedPeople = existing.trustedPeople.map((p) => Object.assign({}, p, { agreed: true }));
+      manage();
+    } else {
+      intro();
+    }
+
+    function afterPeople() { return editing ? asking() : message(); }
+
+    function save() {
+      setProfile({
+        name: draft.name || "there",
+        message: draft.message || fill(W.message.ready, { name: draft.name || "me" }),
+        trustedPeople: draft.trustedPeople.filter((p) => p.agreed).map((p) => ({ name: p.name, relationship: p.relationship, agreed: true }))
+      });
+    }
+
+    function manage(note) {
+      draft.trustedPeople = draft.trustedPeople.filter((p) => p.agreed);
+      const nodes = [el("h1", {}, W.manage.heading)];
+      if (note) nodes.push(el("p", { class: "message" }, note));
+      nodes.push(el("p", {}, W.manage.body));
+      if (draft.trustedPeople.length) {
+        const ul = el("ul", { class: "people" });
+        draft.trustedPeople.forEach((p) => {
+          const li = el("li", {}, p.relationship ? `${p.name} (${p.relationship}) ` : p.name + " ");
+          li.appendChild(button(fill(W.manage.remove, { who: p.name }), "btn-link", () => {
+            draft.trustedPeople = draft.trustedPeople.filter((x) => x !== p);
+            save();
+            manage(fill(W.manage.removed, { who: p.name }));
+          }));
+          ul.appendChild(li);
+        });
+        nodes.push(ul);
+      } else {
+        nodes.push(el("p", {}, W.manage.nobody));
+      }
+      const buttons = [];
+      if (draft.trustedPeople.length < 3) buttons.push(button(W.manage.add, "btn-primary", people));
+      buttons.push(button(W.manage.changeMessage, "btn-secondary", message));
+      buttons.push(button(W.manage.back, "btn-link", home));
+      nodes.push(choices(buttons));
+      show(nodes);
+    }
   };
 })();
