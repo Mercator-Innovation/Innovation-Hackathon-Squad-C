@@ -4,8 +4,8 @@
 
 **Repo:** Innovation-Hackathon-Squad-C
 **Squad name:** the halluCinators
-**Challenge:** _chosen on the day_
-**Why we chose it:** _(one or two sentences)_
+**Challenge:** 2. Help when it's needed: connecting people affected by substance use with support, out of hours ([sheet](challenges/challenge-2-help-when-its-needed.md))
+**Why we chose it:** We care about it most personally.
 **The idea:** _(one or two sentences, agreed on the day: who it's for, when they need it, and what it does)_
 
 ## Members
