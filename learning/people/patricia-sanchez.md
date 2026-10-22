@@ -32,6 +32,8 @@ ai_use_week_after:
 - 17:05 prompt: "Could you make it look more like this?" (with a reference image from Google) → Claude picked the colours from the image, checked contrast and restyled the preview to match
 - 17:07 I built the supporter journey, normally a developer's job: family and volunteer sign-up in src/supporter.js, tested and shared.
 - 17:31 prompt: "For the 'a text like this' for 'What you'll see when someone needs you' The actual text, make it look like a iPhone notification like this" (with a screenshot from Google) → the example text became a phone notification in the supporter journey
+- 17:34 prompt: "Can you add a dark mode activation button" → a Dark mode / Light mode button in the header, remembered on the phone
+- 17:37 prompt: "Can you make the night mode the default and ensure the colours are WCAG AA contrast" → night mode on by default; Claude measured every screen and fixed two failures (phone mock-up text, ticked boxes)
 - 17:37 I restyled the whole app and fixed its contrast, normally a developer's job: new purple look, flat style, motion and night mode, all text passing WCAG AA.
 - 18:02 surprise: I learned that Claude can produce mockups of design options before making any changes.
 
