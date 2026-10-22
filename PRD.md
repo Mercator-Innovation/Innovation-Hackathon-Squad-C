@@ -9,8 +9,8 @@
 
 ## 1. Challenge and problem _(fill at 15:30)_
 
-**Selected challenge:** _To be agreed on the day_  
-**Why this challenge:** _..._
+**Selected challenge:** 2. Help when it's needed (out-of-hours support for people affected by substance use)  
+**Why this challenge:** We care about it most personally.
 
 **Primary user(s):** _Who is affected?_  
 **Problem:** _What are they trying to do, and what gets in the way?_  
