@@ -1,5 +1,7 @@
 # Test scenarios: Gary's Saturday night
 
+The app is now called **Alex** (it was "Still here" when sections 1 to 7 were first run).
+
 **Last run:** 22 Oct, after Spencer's start screen (PR #23), by Anastasia with Claude, in a browser on a laptop. Sections 1, 2, 4 and 6 not run yet.
 
 Checks for the first version (journey steps 1 to 4, from `PRD.md`). Run them once the prototype is in `src/`, and copy the results into section 8 of the PRD.
@@ -59,7 +61,7 @@ All names and contacts are made up (see `personas.md`).
 | 5.7 | Tap size | Measure every button on each screen | At least 44 by 44 pixels | Pass: smallest button 47px tall on 6 screens (measured) |
 | 5.8 | Focus ring contrast | Tab to a button. Compare the yellow ring with what's around it | At least 3:1 against the background | **Fail:** yellow ring is 1.5:1 on the cream page and 1.4:1 on grey buttons (4.6:1 on green). Easy to lose. Fix: add a dark edge to the ring (as GOV.UK does) |
 | 5.9 | Button edges | Look at the grey buttons on the cream page | You can tell where each button is | Weak: border is 1.4:1. The words still say it's a button, so low priority |
-| 5.10 | Page title per step | Move through the screens. Check the browser tab title | The title says where you are ("Who to tell – Still here") | **Fail:** "Still here" on every screen, so screen reader users don't hear which step they're on |
+| 5.10 | Page title per step | Move through the screens. Check the browser tab title | The title says where you are ("Who to tell – Alex") | **Fail:** "Alex" on every screen, so screen reader users don't hear which step they're on |
 | 5.11 | Zoom to 200% | Zoom the browser to 200% at laptop width | Nothing cut off, no sideways scroll | Not run |
 | 5.12 | Screen changes announced once | With VoiceOver, move to a new screen | The new heading is read once, not twice | Not run. The page both moves focus to the heading and announces changes, so it may read twice |
 | 5.13 | Quick exit by keyboard | Press Esc on any screen | Leaves straight away, like the button | **Fail:** no Esc shortcut (see 5.1) |
@@ -79,7 +81,7 @@ From Elena's brief (`brief-start-of-journey.md`) and Spencer's start screen.
 
 | # | Scenario | Steps | Expected result | Outcome |
 |---|---|---|---|---|
-| 7.1 | First visit, no name | Open the page fresh | No name anywhere. Three ways in: help right now, set up, support someone | Pass |
+| 7.1 | First visit, no name | Open the page fresh | No name anywhere. Three ways in: help right now, add people I trust, support someone | Pass |
 | 7.2 | Help right now, no sign-up | Tap **I need help right now** | A volunteer who's on now (name, until when). It asks before connecting. No sign-up asked for | Pass. Words repeat: "Jo is a volunteer supporter… Volunteer supporter. Her brother…" |
 | 7.3 | Asks for a call, happy path | Say yes. Enter any name and a pretend number. Send | Only a name and number asked for, "only for this one call". Then services open now, a "Who's been told" summary showing the volunteer, and the set-up banner | Pass |
 | 7.4 | No name given | Leave the name blank. Enter a number. Send | It still works. The summary reads naturally | Pass: summary says "asked to call you" |
@@ -90,7 +92,7 @@ From Elena's brief (`brief-start-of-journey.md`) and Spencer's start screen.
 | 7.9 | No volunteer on | Remove volunteers from `data/people.js` | Goes straight to services, saying no volunteer is on | Partly: goes to services, but "no volunteer on" is at the very bottom, easy to miss |
 | 7.10 | Services open now | At Saturday 11:10pm | Only services open then: not the 10am to 4pm café or the 11pm families line | Pass: café and 11pm families line hidden |
 | 7.11 | Just after midnight | Set the demo time to Sunday 00:30 | The night line that runs until 2am still shows | **Fail:** at Sunday 12:30am the Night Line (Saturday 6pm to 2am) doesn't show. Only today's opening times are checked |
-| 7.12 | Not built yet | Tap **Set up** and **I want to support someone** | "Coming soon", with a way back. No errors | Pass: "Coming soon" with Back to start |
+| 7.12 | Not built yet | Tap **Add people I trust** and **I want to support someone** | "Coming soon", with a way back. No errors | Pass: "Coming soon" with Back to start |
 | 7.13 | Demo sign-in | Tap **Demo: open as Gary** | "Hi Gary. How are you right now?" Name shown only now | Pass: "Hi Gary" only after demo sign-in |
 | 7.14 | Start again | From services, tap **Start again** | Back to the welcome screen, with tonight's state cleared | Pass: back to welcome, summary cleared |
 ## 8. Sign-up, your people and check-in
@@ -99,7 +101,7 @@ From Joseph's sign-up (`signup.js`) and Carl's check-in (`checkin.js`). Run on 2
 
 | # | Scenario | Steps | Expected result | Outcome |
 |---|---|---|---|---|
-| 8.1 | Skip everything | **Set up**, then **Skip** on every step | Ends "You're set up." with no name and "Nobody yet". No errors | Pass: "You're set up." and "Nobody yet". Home then says "Hi there." |
+| 8.1 | Skip everything | **Add people I trust**, then **Skip** on every step | Ends "You're set up." with no name and "Nobody yet". No errors | Pass: "You're set up." and "Nobody yet". Home then says "Hi there." |
 | 8.2 | Made-up name | On the name step, tap **Give me a made-up name** | A clearly made-up name (for example "Calm Otter") is used from then on | Pass: "Kind River". But see 8.16 |
 | 8.3 | Escape hatch on every step | Look for **Talk to someone now, no name needed** on each sign-up step | It's on every step, and goes to help right now | Partly: on every step except "We've asked Lorraine" (only demo buttons there) |
 | 8.4 | Add a person, they say yes | Add Lorraine. Demo: she says yes | Shows exactly what Lorraine sees. Then she's in "Your people" | Pass: shows Lorraine's text, then she's in Your people |
