@@ -66,7 +66,7 @@
 
 ## 4. MVP: smallest valuable journey _(fill at 15:30)_
 
-> **Combined draft. Squad to confirm.**
+> **Agreed by the squad (16:04).** First version: journey steps 1 to 4, with the tap answers. The scheduled check-in and type or talk come next, in grab and build.
 
 **Core scenario:**
 
@@ -91,12 +91,12 @@
 
 | Capability | Why it is essential | How we will check it | Status |
 |---|---|---|---|
-| "How are you right now?" with three tap answers | The most private, lowest-friction way in | Walk through Gary's night | Not started |
-| Send a ready-made message to a trusted person | Keeps a human from his own circle in the loop | Demo with made-up contacts | Not started |
-| If nobody replies: volunteer supporter, then services open now | He isn't left alone if family don't answer; more than a directory | Demo with synthetic data | Not started |
-| Scheduled check-in (simulated) | Reaches people who won't reach out first | Demo with a pretend 11pm text | Not started |
-| Type or talk instead of tapping | Choice of input; type first, talk if time allows | Demo | Not started |
-| Quick exit, and 999 shown but never automatic | Safety and trust | Keyboard and phone-width check | Not started |
+| "How are you right now?" with three tap answers | The most private, lowest-friction way in | Walk through Gary's night | First version |
+| Send a ready-made message to a trusted person | Keeps a human from his own circle in the loop | Demo with made-up contacts | First version |
+| If nobody replies: volunteer supporter, then services open now | He isn't left alone if family don't answer; more than a directory | Demo with synthetic data | First version |
+| Scheduled check-in (simulated) | Reaches people who won't reach out first | Demo with a pretend 11pm text | Next (grab and build) |
+| Type or talk instead of tapping | Choice of input; type first, talk if time allows | Demo | Next (grab and build) |
+| Quick exit, and 999 shown but never automatic | Safety and trust | Keyboard and phone-width check | First version |
 
 **Explicitly out of MVP:** sending real texts, a free-form AI chat, maps or location, real sign-up and vetting of volunteer supporters, remembering anything about where someone was.
 
@@ -160,7 +160,7 @@ Record important activities that cannot reasonably be completed during the hacka
 
 | Time | Original belief or decision | What we discovered | What changed / next action |
 |---|---|---|---|
-| _HH:MM_ | _..._ | _..._ | _..._ |
+| 16:04 | MVP scope had six capabilities | Too much for a 20-minute first version | Squad agreed: first version is journey steps 1 to 4 with tap answers; scheduled check-in and type or talk come next |
 
 ## 11. End-of-day summary
 
