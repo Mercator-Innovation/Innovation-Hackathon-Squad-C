@@ -77,7 +77,7 @@
 **Journeys:**
 
 **A. First visit, which may be a crisis (no sign-up)**
-1. Anyone opens Alex. No name: "You don't have to face tonight alone." They choose **I need help right now**, **Add people I trust** or **I want to support someone**.
+1. Anyone opens Still here. No name: "You don't have to face tonight alone." They choose **I need help right now**, **Add people I trust** or **I want to support someone**.
 2. **I need help right now:** no sign-up. It offers a volunteer supporter who's on now, and asks before connecting.
 3. If they'd like a call, they give any name (it doesn't have to be real) and a phone number, used only for that one call. If not, or nobody's on, they see services open now.
 4. They see what happens next. A banner offers to set things up for next time.
@@ -190,6 +190,7 @@ Record important activities that cannot reasonably be completed during the hacka
 | 16:06 | Separate ideas: scheduled check-ins (Carl's notes) and tap, type or talk with volunteer supporters (the talk-through) | They fit together as one journey; consent is needed at every step | Product owner agreed the combined idea and MVP scope; Spencer builds the first version |
 | 16:48 | The first version greeted Gary by name, with "I'm OK" leading nowhere | There was no way to sign up, and being named out of nowhere would spook people | Added the start of the journey: no-name start screen, help right now with no sign-up (volunteer, then services), optional sign-up, trusted people agree, supporter sign-up. Work split in TEAM.md |
 | 17:36 | The app was called "Still here" | The squad preferred a warmer, human name | Renamed to **Alex**, agreed by the product owner. "Set up Still here for me" became "Add people I trust" |
+| 18:16 | The app was called "Alex" | At the look together, "Alex" clashed with people's names ("Alex has asked Gary", "Alex, my brother") | Back to **Still here**, the product owner's call. All five look-together fixes went ahead and Spencer built them: the name, a shorter services list (nearest first), waiting-for-a-yes statuses, simpler sign-up, a volunteer person card |
 
 ## 11. End-of-day summary
 
