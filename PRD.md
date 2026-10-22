@@ -12,26 +12,46 @@
 **Selected challenge:** 2. Help when it's needed (out-of-hours support for people affected by substance use)  
 **Why this challenge:** We care about it most personally.
 
-**Primary user(s):** _Who is affected?_  
-**Problem:** _What are they trying to do, and what gets in the way?_  
-**Why it matters:** _What is the consequence of the problem?_  
-**Evidence we have:** _Link or summarise relevant existing evidence; distinguish facts from assumptions._
+> **Draft from the 15:30 talk-through (Carl's notes). Elena to confirm.**
+
+**Primary user(s):** People who use drugs or alcohol and need help, out of hours.  
+**Circle of support:** Friends and family, professionals and volunteers.  
+**Stakeholder (not a user):** Emergency services. They're affected by escalations but don't use the tool.  
+**Problem:** They need someone who can help in the moment, at night, but most support closes at 5pm and they don't want to go straight to 999.  
+**Why it matters:** They face it alone, or the situation escalates into a crisis.  
+**Evidence we have** (from Anastasia's research, **not yet checked with sources**):
+- Digital Lifelines Scotland gave people phones and data. People felt more connected, but feared being tracked, and the funding ran out.
+- A "call before you use" line was trialled in Glasgow.
+- Low trust in institutions and in tech; many people prefer a human.
 
 **Problem statement:**
 
-> [User] struggles to [task/outcome] because [barrier], resulting in [impact].
+> A person who uses drugs or alcohol struggles to reach someone who can help in the moment, at night, because most support closes at 5pm and they don't want to escalate to 999, resulting in them facing it alone or the situation reaching crisis.
 
 ## 2. Desired outcome
 
-**User outcome:** _What should become possible, easier or safer?_  
-**How we might recognise value:** _What observable change would indicate improvement?_  
-**Constraints:** _Accessibility, privacy, trust, available data, time or other material constraints._
+> **Draft. Elena to confirm.**
+
+**User outcome:** Feel safer and less alone at night, with someone who can help knowing when they need it, and the person staying in control.  
+**How we might recognise value:** _..._  
+**Constraints:**
+- **Low battery:** check-ins, and a last-known location only with consent.
+- **Low data or signal:** plain SMS (no data), a tiny web page, works on old phones.
+- **No barriers to start:** no sign-up, password or app store.
+- **Tone:** plain English, non-judgemental, easy to read.
+- **Trust and control:** never call 999 or share location automatically; the person decides.
 
 ## 3. Proposed solution hypothesis _(fill at 15:30)_
 
-> We believe that [solution approach] will help [user] achieve [outcome] by [mechanism]. We will test this by [hackathon demonstration or check].
+> **Draft. Elena to confirm.**
 
-**Alternative approaches considered:** _Briefly capture credible alternatives and why they were not chosen._
+> We believe that scheduled check-ins ("text me at 11pm; if I don't reply, tell these people") will help people who use drugs or alcohol feel safer and less alone at night by connecting them with someone in their own circle of support who's available now, escalating gently rather than straight to 999. We will test this by [hackathon demonstration or check].
+
+**Alternative approaches considered:**
+- **Automatically alerting emergency services:** rejected. It would stop people using it, and emergency services don't want an onslaught of alerts.
+- **A chatbot that triages and connects:** may sit in front of the check-ins, with a human in the loop.
+- **A Life360-style circle with a map:** location only with consent, because of fears about being tracked.
+- **Free short codes and zero-rated websites** (free to use with no data): may exist, **not yet checked**. Simulate them in the prototype.
 
 ## 4. MVP: smallest valuable journey _(fill at 15:30)_
 
@@ -80,7 +100,11 @@ Capture ideas freely, but **do not start them until the MVP works end to end**. 
 
 | Assumption or risk | Why it matters | Evidence / mitigation today | Confidence or status |
 |---|---|---|---|
-| _We believe..._ | _Impact if wrong_ | _How to challenge or reduce it_ | Unvalidated |
+| Automatically calling 999 or sharing location would stop people using it | They may be somewhere with illegal substances; they'd avoid the tool | The person always decides; escalation is gentle and opt-in | Unvalidated (draft) |
+| A human needs to stay in the loop | Something robotic could make a vulnerable moment worse | Any chatbot step hands over to a person in their circle | Unvalidated (draft) |
+| We must not give medical advice | Wrong advice could cause harm | Point to people and services, not diagnoses | Unvalidated (draft) |
+| Contacts, check-in times and location are sensitive personal data | Substance use is special category data; fear of being tracked | Ask for the bare minimum; consent for each use; synthetic data only | Unvalidated (draft) |
+| People have low battery, data or signal | Needs to work when the phone is nearly dead or out of data | SMS check-ins; tiny page; works on old phones | Unvalidated (draft) |
 
 For sensitive scenarios, consider privacy, consent, exclusion, inaccurate outputs and unintended harm. Keep a human decision-maker involved where appropriate.
 
