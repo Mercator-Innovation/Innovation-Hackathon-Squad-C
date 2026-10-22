@@ -141,3 +141,33 @@ input[aria-invalid="true"] { border-color: var(--error); }
   margin: 16px 0;
 }
 .banner p { margin-bottom: 10px; }
+
+/* Back, on every screen after the first */
+.back-nav { width: 100%; max-width: 480px; margin: 0 auto; padding: 0 16px; }
+.btn-back {
+  background: none;
+  color: var(--primary);
+  text-decoration: underline;
+  padding: 8px 0;
+}
+.btn-back::before { content: "‹ "; text-decoration: none; }
+
+/* Buttons with a line saying what they do */
+.described { display: flex; flex-direction: column; gap: 4px; }
+.described .label { font-weight: 700; }
+.described .desc { font-size: 1rem; font-weight: 400; }
+
+/* "Jo will call you soon": first thing on the page */
+.callout {
+  background: var(--primary);
+  color: var(--primary-text);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin: 8px 0 16px;
+}
+.callout h1 { margin-top: 0; }
+.callout p { margin: 0; }
+
+.card .where { color: var(--muted); font-size: 1rem; }
+.meetings { margin-top: 28px; }
+.meetings a { color: var(--primary); }

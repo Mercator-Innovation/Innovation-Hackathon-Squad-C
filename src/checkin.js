@@ -54,6 +54,29 @@
       changed: "Reply 3: I need someone",
       done: "Done"
     },
+    // He replied 3 ("I need someone"): the whole thing carries on by text.
+    needText: {
+      ask: "Want us to text your message to {people}? \"{message}\" Reply YES or NO.",
+      yes: "Reply YES",
+      no: "Reply NO",
+      noSent: "OK, we haven't sent anything. Reply 3 any time. If your life may be at risk, call 999.",
+      sentTo: "Sent to {who}. We'll text you when {who} replies.",
+      tryNext: "{who} hasn't replied yet, so we've texted {next} too.",
+      demoReplies: "Demo: {who} replies",
+      demoNobody: "Demo: nobody picks up",
+      calling: "{who} has seen your message and is calling you now.",
+      nobody: "{people} haven't replied yet. {volunteer}, a volunteer supporter, is on until {until}. Reply 1 for {volunteer} to call you, 2 to keep trying {people}, or 3 to see what's open now.",
+      nobodyOne: "{people} hasn't replied yet. {volunteer}, a volunteer supporter, is on until {until}. Reply 1 for {volunteer} to call you, 2 to keep trying {people}, or 3 to see what's open now.",
+      noPeople: "{volunteer}, a volunteer supporter, is on until {until}. Reply 1 for {volunteer} to call you, or 3 to see what's open now.",
+      pick1: "Reply 1: {volunteer} calls me",
+      pick2: "Reply 2: keep trying",
+      pick3: "Reply 3: what's open now",
+      volunteerCalling: "{volunteer} will call you in the next few minutes. The number will show as Still here.",
+      keepTrying: "OK, we'll keep trying {people} and text you when one replies. Reply 1 any time for {volunteer} to call you.",
+      openNow: "Open now: {list}. If your life may be at risk, call 999.",
+      noneOpen: "Nothing is open right now. Reply 1 for {volunteer} to call you. If your life may be at risk, call 999.",
+      done: "Done"
+    },
     nudge: {
       heading: "No reply after {wait} minutes",
       message: "Hi {name}, just checking you're OK. Reply 1, 2 or 3 when you can. Or tap {link}",
@@ -234,7 +257,7 @@
     return choices([
       button(T.reply1, "btn-secondary", () => okByText()),
       button(T.reply2, "btn-secondary", () => handover(hooks.onNotGreat)),
-      button(T.reply3, "btn-primary", () => handover(hooks.onNeedSomeone)),
+      button(T.reply3, "btn-primary", () => needByText()),
       button(T.link, "btn-secondary", () => (hooks.onLink ? hooks.onLink() : webReply())),
       button(next.label, "btn-demo", next.go)
     ]);
@@ -276,10 +299,81 @@
       el("h1", {}, fill(T.heading, v)),
       phone(sent),
       choices([
-        button(W.changed, "btn-secondary", () => handover(hooks.onNeedSomeone)),
+        button(W.changed, "btn-secondary", () => needByText()),
         button(W.done, "btn-link", done)
       ])
     ]);
+  }
+
+  // --- He replied 3: everything carries on by text, so it works with no data. ---
+
+  function names(list) {
+    return list.length > 1 ? list.slice(0, -1).join(", ") + " and " + list[list.length - 1] : (list[0] || "");
+  }
+
+  // Add texts to the conversation and show the reply buttons.
+  function sms(newTexts, buttons) {
+    sent = sent.concat(newTexts);
+    show([el("h1", {}, fill(WORDS.text.heading, vals())), phone(sent), choices(buttons)]);
+  }
+
+  function message() {
+    const p = profile();
+    return (p && p.message) || (D.person && D.person.savedMessage) || "";
+  }
+  function volunteerVals() {
+    const v = (D.volunteers || [])[0] || { name: "a volunteer", onUntil: "02:00" };
+    const people = trusted().map((p) => p.name);
+    return Object.assign(vals(), { volunteer: v.name, until: formatTime(v.onUntil), people: names(people), peopleCount: people.length });
+  }
+
+  // 1. Ask before sending anything.
+  function needByText() {
+    const W = WORDS.needText;
+    const people = trusted().map((p) => p.name);
+    if (people.length === 0) return nobodyPicksUp([{ text: "3", mine: true }]);
+    sms([{ text: "3", mine: true }, { text: fill(W.ask, { people: names(people), message: message() }) }], [
+      button(W.yes, "btn-primary", () => sendTo(0, [{ text: "YES", mine: true }])),
+      button(W.no, "btn-secondary", () => sms([{ text: "NO", mine: true }, { text: W.noSent }], [button(W.done, "btn-link", done)]))
+    ]);
+  }
+
+  // 2. Text one trusted person at a time, in Gary's order.
+  function sendTo(i, before) {
+    const W = WORDS.needText;
+    const people = trusted();
+    const who = people[i].name;
+    const texts = before.concat([{ text: i === 0 ? fill(W.sentTo, { who }) : fill(W.tryNext, { who: people[i - 1].name, next: who }) }]);
+    sms(texts, [
+      button(fill(W.demoReplies, { who }), "btn-demo", () => sms([{ text: fill(W.calling, { who }) }], [button(W.done, "btn-link", done)])),
+      button(W.demoNobody, "btn-demo", () => (i + 1 < people.length ? sendTo(i + 1, []) : nobodyPicksUp([])))
+    ]);
+  }
+
+  // 3. Nobody picked up: offer the volunteer, keep trying, or services open now.
+  function nobodyPicksUp(before) {
+    const W = WORDS.needText;
+    const v = volunteerVals();
+    const offer = v.peopleCount === 0
+      ? fill(W.noPeople, v)
+      : fill(v.peopleCount > 1 ? W.nobody : W.nobodyOne, v);
+    const buttons = [button(fill(W.pick1, v), "btn-primary", () => sms([{ text: "1", mine: true }, { text: fill(W.volunteerCalling, v) }], [button(W.done, "btn-link", done)]))];
+    if (v.peopleCount > 0) buttons.push(button(W.pick2, "btn-secondary", () => sms([{ text: "2", mine: true }, { text: fill(W.keepTrying, v) }], [button(W.done, "btn-link", done)])));
+    buttons.push(button(W.pick3, "btn-secondary", () => sms([{ text: "3", mine: true }, { text: openNowText(v) }], [button(W.done, "btn-link", done)])));
+    sms(before.concat([{ text: offer }]), buttons);
+  }
+
+  // Services open at the demo's pretend time, as one short text.
+  function openNowText(v) {
+    const W = WORDS.needText;
+    const now = D.demoNow;
+    const mins = (t) => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+    const open = (D.services || []).filter((s) =>
+      now && s.days.includes(now.day) && mins(now.time) >= mins(s.opens) && mins(now.time) < mins(s.closes));
+    if (open.length === 0) return fill(W.noneOpen, v);
+    // Keep it short enough for one text, and skip anything that needs data.
+    const byPhone = open.filter((s) => !/^Tap/i.test(s.how)).slice(0, 3);
+    return fill(W.openNow, { list: byPhone.map((s) => `${s.name}, ${s.how}`).join("; ") });
   }
 
   // He tapped the link: the same question on a web page (preview only).
