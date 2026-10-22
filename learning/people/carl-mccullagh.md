@@ -34,6 +34,7 @@ ai_use_week_after:
 - 18:04 something I expected: people tend to focus on the look of something vs how it works and if functional
 - 18:37 there is a big rush to the end
 - 18:38 the show and tell is hard to prep for
+- 19:10 needed to be more prepared for the s+T
 
 ## At 19:00
 - What I worked on: <answers>
