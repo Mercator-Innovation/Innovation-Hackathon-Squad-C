@@ -1,5 +1,5 @@
 // Dark mode button in the header. Switches the Night colours in styles.css on and off.
-// Starts dark if the phone is set to dark mode, and remembers the choice on this phone only.
+// Starts in Night colours, and remembers the choice on this phone only.
 (function () {
   const W = { dark: "Dark mode", light: "Light mode", key: "alex-theme" };
   const body = document.body;
@@ -11,8 +11,8 @@
     try { localStorage.setItem(W.key, v); } catch (e) { /* private browsing: just don't remember */ }
   }
 
-  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const start = saved() || (prefersDark ? "night" : "day");
+  // Night is the default: it's built for people using it after dark.
+  const start = saved() || "night";
 
   const btn = document.createElement("button");
   btn.type = "button";
