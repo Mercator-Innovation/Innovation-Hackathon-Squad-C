@@ -11,7 +11,7 @@ window.CONTENT = {
     heading: "You don't have to face tonight alone.",
     body: "Free to use. No sign-up needed to get help.",
     helpNow: "I need help right now",
-    setUp: "Set up Still here for me",
+    setUp: "Add people I trust",
     support: "I want to support someone",
     demoSignedIn: "Demo: open as Gary (already set up)"
   },
@@ -40,7 +40,7 @@ window.CONTENT = {
 
   banner: {
     text: "Want to add people you trust, so they can be told next time?",
-    action: "Set up Still here"
+    action: "Add people I trust"
   },
 
   comingSoon: {
