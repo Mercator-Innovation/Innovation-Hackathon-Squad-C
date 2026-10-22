@@ -62,7 +62,14 @@
     "3-1": () => "We've sent you a text with the meeting details. Press 0 for the main menu, or hang up."
   };
   let menu = null; // null = not in a call
-  let speakOn = false;
+  let speakOn = true; // speak out loud by default, like a real call
+
+  // A calm British voice if the computer has one.
+  function voice() {
+    const vs = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+    return vs.find((v) => /en-GB/i.test(v.lang) && /female|serena|kate|martha|libby|sonia/i.test(v.name)) ||
+      vs.find((v) => /en-GB/i.test(v.lang)) || vs.find((v) => /^en/i.test(v.lang)) || null;
+  }
 
   function say(key) {
     menu = key;
@@ -71,7 +78,11 @@
     $("caption").textContent = text;
     if (speakOn && window.speechSynthesis) {
       speechSynthesis.cancel();
-      speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+      const u = new SpeechSynthesisUtterance(text);
+      const v = voice();
+      if (v) { u.voice = v; u.lang = v.lang; } else u.lang = "en-GB";
+      u.rate = 0.95;
+      speechSynthesis.speak(u);
     }
   }
 
@@ -120,7 +131,7 @@
   $("speak").addEventListener("click", () => {
     speakOn = !speakOn;
     $("speak").setAttribute("aria-pressed", speakOn);
-    $("speak").textContent = "Read aloud: " + (speakOn ? "on" : "off");
+    $("speak").textContent = "Sound: " + (speakOn ? "on" : "off");
     if (!speakOn && window.speechSynthesis) speechSynthesis.cancel();
     else if (menu) say(menu);
   });
