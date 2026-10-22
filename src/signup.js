@@ -25,8 +25,9 @@
     name: {
       heading: "What should we call you?",
       label: "Your name",
-      hint: "Any name is fine. It doesn't have to be your real one.",
-      madeUp: "Give me a made-up name"
+      hint: "Your trusted people will see this name, so use one they know you by. A nickname is fine.",
+      // "Give me a made-up name" is for the anonymous trap door (StillHere.madeUpName), not here:
+      // trusted people need to recognise who's messaging them.
     },
 
     people: {
@@ -135,7 +136,6 @@
       const input = form.querySelector("#su-name");
       input.value = draft.name;
       form.appendChild(choices([
-        button(W.name.madeUp, "btn-secondary", () => { input.value = madeUpName(); input.focus(); }),
         el("button", { type: "submit", class: "btn-primary" }, W.next),
         button(W.skip, "btn-link", () => { draft.name = ""; people(); }),
         escape()
