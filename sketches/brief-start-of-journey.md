@@ -10,7 +10,7 @@ The first version starts in the middle: "Hi Gary" assumes he's already signed up
 
 1. **A new start screen, no name.** Three ways in:
    - **I need help right now** (the trap door, for a first visit that may be a crisis)
-   - **Set up Still here for me** (now "Add people I trust"; the app is now called Alex)
+   - **Set up Still here for me** (now "Add people I trust")
    - **I want to support someone**
 2. **The trap door: no sign-up.**
    - Offers a volunteer supporter who's on now. It asks before connecting, and asks only for a name (a made-up one is fine) and a phone number if they want a call back.
