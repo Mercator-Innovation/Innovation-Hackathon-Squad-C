@@ -1,10 +1,10 @@
-// Shows "Alex" in bold, in the same colour as the name in the top corner, wherever it
+// Shows "Still here" in bold, in the same colour as the name in the top corner, wherever it
 // appears in a sentence, so people can tell it's the app. Kept in its own file so nobody
 // else's files change: it watches the screen and wraps the word as screens appear.
 // Left alone: buttons (bold only, keeping the button's colour), links, form fields,
 // and pretend texts and notifications (.message, .phone, .notif), which show real messages.
 (function () {
-  const NAME = (window.CONTENT && window.CONTENT.appName) || "Alex";
+  const NAME = (window.CONTENT && window.CONTENT.appName) || "Still here";
   const WORD = new RegExp("\\b" + NAME + "\\b");
   const SKIP = "a, textarea, input, select, option, .brand-name, .message, .phone, .notif";
 

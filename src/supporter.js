@@ -50,7 +50,7 @@
     invite: {
       heading: "{person} has asked you to be their supporter",
       body: "This is the text you got:",
-      text: "{person} would like you to be someone they can reach at night, using Alex, a free night-time support service. You can say no, and you can stop at any time.",
+      text: "{person} would like you to be someone they can reach at night, using Still here, a free night-time support service. You can say no, and you can stop at any time.",
       question: "Would you like to be {person}'s supporter?",
       yes: "Yes, I'll be their supporter",
       no: "No, not right now"
@@ -113,7 +113,7 @@
       familyBody: "A text like this:",
       familyText: "I'm not doing great tonight. Can you call me?",
       volunteerBody: "A text like this:",
-      volunteerFrom: "Alex",
+      volunteerFrom: "Still here",
       volunteerText: "Someone needs a person to talk to. Are you free to call?",
       app: "Messages",
       when: "now",

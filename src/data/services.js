@@ -1,6 +1,6 @@
 // Made-up services for the demo. Names, numbers and hours are invented.
 // Phone numbers are from Ofcom's range kept for TV and drama (0808 157 0xxx), so none are real.
-// "where" is shown on each card.
+// "where" is shown on each card. "miles" is the made-up distance from Gary (none = phone, text or online).
 // Times are 24-hour. "closes" after midnight is written as 24:00 or more (e.g. 26:00 = 2am).
 window.DATA = window.DATA || {};
 
@@ -31,7 +31,7 @@ window.DATA.services = [
   },
   {
     name: "Drop-in Café (example)",
-    where: "Greenock town centre",
+    where: "Greenock town centre", miles: 0.4,
     what: "A warm place to sit and talk, with tea.",
     how: "12 Example Street, Greenock",
     opens: "10:00", closes: "16:00", days: ["Saturday"]
@@ -45,14 +45,14 @@ window.DATA.services = [
   },
   {
     name: "Late Pharmacy (example)",
-    where: "Port Glasgow, 10 minutes by bus from Greenock",
+    where: "Port Glasgow, 10 minutes by bus from Greenock", miles: 3.2,
     what: "Ask about naloxone, a medicine that reverses an opioid overdose. Free, and they'll show you how to use it.",
     how: "3 Example Road, Port Glasgow",
     opens: "08:00", closes: "23:30", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   },
   {
     name: "Safe Space at Night (example)",
-    where: "Greenock, near the train station",
+    where: "Greenock, near the train station", miles: 0.6,
     what: "Somewhere warm and safe to be tonight. Staff who won't judge you.",
     how: "45 Example Lane, Greenock",
     opens: "21:00", closes: "31:00", days: ["Friday", "Saturday"]
@@ -66,7 +66,7 @@ window.DATA.services = [
   },
   {
     name: "Drug and Alcohol Service (example)",
-    where: "Greenock",
+    where: "Greenock", miles: 0.5,
     what: "Your key worker and the team. Closed now, but you can leave a message for Monday.",
     how: "Call 0808 157 0004",
     opens: "09:00", closes: "17:00", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]

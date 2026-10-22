@@ -9,8 +9,8 @@
 
     intro: {
       heading: "Add people you trust",
-      body: "Best done when you're feeling OK. It takes about 2 minutes, and you can skip any step.",
-      promise: "Alex never tells anyone anything without asking you first.",
+      body: "This takes about 2 minutes. Best done when you're feeling OK.",
+      promise: "Still here never tells anyone anything without asking you first.",
       start: "Start",
       helped: "Someone's helping me set this up",
       notNow: "Not now"
@@ -23,7 +23,7 @@
     },
 
     name: {
-      heading: "What should Alex call you?",
+      heading: "What should we call you?",
       label: "Your name",
       hint: "Your trusted people will see this name, so use one they know you by. A nickname is fine.",
       // "Give me a made-up name" is for the anonymous trap door (StillHere.madeUpName), not here:
@@ -32,33 +32,36 @@
 
     people: {
       heading: "Who would you like to reach when you need someone?",
-      body: "Pick people you trust. Alex will ask them first, and they can say no.",
+      body: "Pick people you trust. You'll give us their name and number. We'll ask them first, and they can say no.",
       nameLabel: "Their name",
       relationshipLabel: "Who they are to you",
       relationshipHint: "For example, sister or friend.",
       phoneLabel: "Their phone number",
       phoneHint: "Demo only: please don't type a real number.",
-      nameError: "Enter their name, or skip this step",
+      nameError: "Enter their name",
       add: "Add this person",
-      added: "You've added:",
+      added: "You've asked:",
+      waiting: "waiting for a yes",
+      saidYes: "said yes",
+      saidNo: "said no",
       addAnother: "Add someone else",
-      done: "That's everyone",
+      done: "That's it for now",
       max: "That's 3 people, which is plenty to start with."
     },
 
     message: {
       heading: "Write a message for later",
-      body: "Alex will only send it if you ask. You can change it any time.",
+      body: "We'll only send it if you ask. You can change it any time.",
       label: "Your message",
       ready: "Hi, it's {name}. I'm not doing great. Can you call me?",
       use: "Use this message"
     },
 
     asking: {
-      heading: "Alex has asked {who}.",
-      body: "{who} will get a text asking if they're happy to be someone you can reach. Alex won't add them unless they say yes.",
+      heading: "{who} has been asked.",
+      body: "Waiting for {who} to say yes. They'll get a text asking if they're happy to be someone you can reach. They won't be added unless they say yes.",
       theySee: "What {who} sees:",
-      text: "{name} would like you to be someone they can reach at night, using Alex, a free night-time support service. You can say no, and you can stop at any time. Reply YES or NO.",
+      text: "{name} would like you to be someone they can reach at night, using Still here, a free night-time support service. You can say no, and you can stop at any time. Reply YES or NO.",
       yes: "Demo: {who} says yes",
       no: "Demo: {who} says no",
       saidYes: "{who} said yes.",
@@ -73,7 +76,7 @@
       body: "Only people who said yes can be messaged. You can change this any time.",
       nobody: "Nobody yet. A volunteer supporter can be there for you instead.",
       remove: "Remove {who}",
-      removed: "{who} has been removed. Alex won't tell them.",
+      removed: "{who} has been removed. We won't tell them.",
       add: "Add someone",
       changeMessage: "Change your message",
       back: "Back to start"
@@ -82,7 +85,7 @@
     done: {
       heading: "You're set up, {name}.",
       headingNoName: "You're set up.",
-      body: "Next time, Alex will ask how you are. You decide who's told, every time.",
+      body: "Next time, Still here will ask how you are. You decide who's told, every time.",
       yourPeople: "Your people:",
       nobody: "Nobody yet. A volunteer supporter can be there for you instead.",
       go: "Done"
@@ -137,7 +140,6 @@
       input.value = draft.name;
       form.appendChild(choices([
         el("button", { type: "submit", class: "btn-primary" }, W.next),
-        button(W.skip, "btn-link", () => { draft.name = ""; people(); }),
         escape()
       ]));
       form.addEventListener("submit", (e) => {
@@ -154,7 +156,7 @@
       if (draft.trustedPeople.length) {
         nodes.push(el("p", {}, W.people.added));
         const ul = el("ul");
-        draft.trustedPeople.forEach((p) => ul.appendChild(el("li", {}, p.relationship ? `${p.name} (${p.relationship})` : p.name)));
+        draft.trustedPeople.forEach((p) => ul.appendChild(el("li", {}, `${label(p)}: ${status(p)}`)));
         nodes.push(ul);
       }
 
@@ -169,12 +171,12 @@
       const error = el("p", { class: "error", id: "su-p-name-error", hidden: "" }, W.people.nameError);
       nameField.insertBefore(error, nameField.querySelector("input"));
       form.appendChild(nameField);
-      form.appendChild(field("su-p-rel", W.people.relationshipLabel, W.people.relationshipHint, "text", "off"));
       form.appendChild(field("su-p-phone", W.people.phoneLabel, W.people.phoneHint, "tel", "off"));
+      form.appendChild(field("su-p-rel", W.people.relationshipLabel, W.people.relationshipHint, "text", "off"));
 
       const buttons = [el("button", { type: "submit", class: "btn-primary" }, draft.trustedPeople.length ? W.people.addAnother : W.people.add)];
       if (draft.trustedPeople.length) buttons.push(button(W.people.done, "btn-secondary", afterPeople));
-      else buttons.push(button(W.skip, "btn-link", afterPeople));
+      else buttons.push(button(W.intro.notNow, "btn-link", editing ? manage : home));
       buttons.push(escape());
       form.appendChild(choices(buttons));
 
@@ -210,7 +212,7 @@
       form.appendChild(wrap);
       form.appendChild(choices([
         el("button", { type: "submit", class: "btn-primary" }, W.message.use),
-        button(W.skip, "btn-link", editing ? manage : () => { draft.message = ""; asking(); }),
+        button(editing ? W.manage.back.replace("Back to start", "Cancel") : "Write it later", "btn-link", editing ? manage : () => { draft.message = ""; asking(); }),
         escape()
       ]));
       form.addEventListener("submit", (e) => {
@@ -264,9 +266,9 @@
         el("p", {}, W.done.body),
         el("h2", {}, W.done.yourPeople)
       ];
-      if (agreed.length) {
+      if (draft.trustedPeople.length) {
         const ul = el("ul");
-        agreed.forEach((p) => ul.appendChild(el("li", {}, p.relationship ? `${p.name} (${p.relationship})` : p.name)));
+        draft.trustedPeople.forEach((p) => ul.appendChild(el("li", {}, `${label(p)}: ${status(p)}`)));
         nodes.push(ul);
       } else {
         nodes.push(el("p", {}, W.done.nobody));
@@ -288,6 +290,9 @@
       intro();
     }
 
+    function label(p) { return p.relationship ? `${p.name} (${p.relationship})` : p.name; }
+    function status(p) { return p.agreed === true ? W.people.saidYes : p.agreed === false ? W.people.saidNo : W.people.waiting; }
+
     function afterPeople() { return editing ? asking() : message(); }
 
     function save() {
@@ -306,7 +311,7 @@
       if (draft.trustedPeople.length) {
         const ul = el("ul", { class: "people" });
         draft.trustedPeople.forEach((p) => {
-          const li = el("li", {}, p.relationship ? `${p.name} (${p.relationship}) ` : p.name + " ");
+          const li = el("li", {}, `${label(p)}: ${status(p)} `);
           li.appendChild(button(fill(W.manage.remove, { who: p.name }), "btn-link", () => {
             draft.trustedPeople = draft.trustedPeople.filter((x) => x !== p);
             save();
