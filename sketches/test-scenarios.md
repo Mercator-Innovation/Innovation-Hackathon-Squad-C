@@ -113,9 +113,9 @@ From Joseph's sign-up (`signup.js`) and Carl's check-in (`checkin.js`). Run on 2
 | 8.12 | Check-in, needs someone | Reply **I need someone** to the check-in text | Hands over to "Send this to Lorraine?" and asks first | Pass: goes to "Send this to Sam?" and asks first |
 | 8.13 | Check-in after midnight | Set the check-in for 00:00 or 01:00 | Times read correctly ("12am", "1am"), and "tomorrow" means the right day | Partly: "midnight" and "1am" read well. But after a 1am check-in it says "again **tomorrow** at 1am", which could mean the wrong night |
 | 8.14 | Only agreed people offered | Have one person say no. Open check-in set-up | Only people who said yes are listed | Pass: removed and declined people aren't listed |
-| 8.15 | Words | Read every new screen | Short, kind, no jargon. The demo button says "pretend he didn't reply": use "you" or "they" | **Fail (small):** demo buttons say "pretend **he** didn't reply" for every person. Use "you" |
+| 8.15 | Words | Read every new screen | Short, kind, no jargon. The demo button says "pretend he didn't reply": use "you" or "they" | **Fixed** (Anastasia, approved by the squad): now "Demo: pretend they didn't reply". Re-tested: pass |
 | 8.16 | Made-up name in messages to trusted people | Sign up with a made-up name. Add Lorraine | Lorraine can tell who's asking | **Fail:** Lorraine is asked by "Kind River" and later gets "Hi, it's Kind River". She won't know it's Gary. Suggest a separate "name your people know you by" |
-| 8.17 | Reach Your people after sign-up | Signed up, look for a way to see or change your people | A button on the home screen | **Fail:** no way in. Needs a button (Spencer's `app.js`) to open Joseph's Your people |
+| 8.17 | Reach Your people after sign-up | Signed up, look for a way to see or change your people | A button on the home screen | **Fixed** (Anastasia, approved by the squad): a **Your people** button on the "Hi Gary" screen opens Your people. Re-tested: pass |
 | 8.18 | Check-in options tap size | Measure each time and wait option | At least 44 pixels tall | Partly: 39 pixels. Passes the 24-pixel minimum, under the 44 we're aiming for |
 ## 9. Supporter sign-up
 
