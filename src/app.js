@@ -160,7 +160,15 @@
       choices([
         described(C.welcome.helpNow, C.welcome.helpNowDesc, "btn-primary", helpNow),
         described(C.welcome.setUp, C.welcome.setUpDesc, "btn-secondary", journey("signup")),
-        described(C.welcome.support, C.welcome.supportDesc, "btn-secondary", journey("supporter"))
+        described(C.welcome.support, C.welcome.supportDesc, "btn-secondary", journey("supporter")),
+        button(C.welcome.demoSignedIn, "btn-demo", () => {
+          setProfile({
+            name: D.person.name,
+            message: D.person.savedMessage,
+            trustedPeople: D.trustedPeople.map((p) => Object.assign({ agreed: true }, p))
+          });
+          home();
+        })
       ])
     ]);
   }
@@ -381,6 +389,8 @@
       el("h1", {}, fill(C.waiting.heading, { who })),
       el("p", {}, fill(C.waiting.body, { who })),
       choices([
+        button(fill(C.waiting.replied, { who: chosen()[0].name }), "btn-demo", replied),
+        button(C.waiting.skip, "btn-demo", noReply)
       ])
     ], true);
   }
