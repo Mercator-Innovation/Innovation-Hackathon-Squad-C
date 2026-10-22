@@ -52,3 +52,14 @@ The **squad lead** runs the squad's setup before the day: agreeing the two roles
 <!-- Optional. Anything the squad agrees about how it works, for example "say what you're grabbing in the Teams chat". -->
 
 Our objectives: win ethically, learn something new, enjoy our time.
+
+**Who's on what (from 16:40, the product owner's call).** Brief: [sketches/brief-start-of-journey.md](sketches/brief-start-of-journey.md). Each journey gets its own new file, so only Spencer touches `app.js` and `index.html`. Spencer goes first and shares the hooks; everyone else starts from those. Put each journey's words in its own file, not `content.js`.
+
+| Who | Grabs | Files |
+|---|---|---|
+| Spencer | New start screen and the trap door; empty hooks for the other journeys, shared first | `index.html`, `app.js` |
+| Joseph | The person's optional sign-up, with trusted people agreeing | `src/signup.js` |
+| Patricia | The supporter sign-up journey (family or volunteer) | `src/supporter.js` |
+| Carl | The scheduled check-in (simulated): where "Hi Gary" and "I'm OK" belong | `src/checkin.js` |
+| Anastasia | Test scenarios for the trap door and sign-up, keyboard and phone-width checks, results in PRD section 8 | `sketches/`, `PRD.md` section 8 |
+| Elena | PRD journey and scope, more made-up volunteers and services | `PRD.md` sections 4 and 5, `src/data/` |
