@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Still here: check-in preview</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- A preview of the scheduled check-in on its own, until it's hooked into index.html. -->
+  <header class="top">
+    <span class="app-name">Still here</span>
+    <button type="button" class="quick-exit" id="quick-exit">Quick exit</button>
+  </header>
+
+  <main id="screen" tabindex="-1" aria-live="polite"></main>
+
+  <footer class="bottom">
+    <p class="emergency">If someone's life may be at risk, call 999. We will never call it for you.</p>
+    <p class="demo-note">Demo only. Nothing is really sent.</p>
+  </footer>
+
+  <script src="data/people.js"></script>
+  <script src="checkin.js"></script>
+  <script>
+    document.getElementById("quick-exit").addEventListener("click", () => window.location.replace("https://www.bbc.co.uk/weather"));
+    window.Journeys.checkin.start();
+  </script>
+</body>
+</html>
