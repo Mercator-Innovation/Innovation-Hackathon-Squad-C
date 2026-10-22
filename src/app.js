@@ -79,7 +79,7 @@
 
   // Trusted people Gary can message: only those who've agreed.
   function trustedPeople() {
-    return profile ? profile.trustedPeople.filter((p) => p.agreed !== false) : [];
+    return profile ? profile.trustedPeople.filter((p) => p.agreed === true) : [];
   }
   function contact() { return trustedPeople()[state.contactIndex]; }
   // Who the message goes to: the people picked on "Who would you like to reach?", or the first in the list.
@@ -277,7 +277,7 @@
       choices([
         button(C.start.ok, "btn-secondary", ok),
         button(C.start.notGreat, "btn-secondary", notGreat),
-        button(C.start.needSomeone, "btn-primary", ask),
+        button(C.start.needSomeone, "btn-primary", chooseSomeone),
         button(C.start.checkin, "btn-link", journey("checkin")),
         // Once signed up, signup.js opens "Your people" to add, remove or change the message.
         button(C.start.yourPeople, "btn-link", journey("signup"))
@@ -451,8 +451,10 @@
     open.sort((a, b) => (a.miles || 0) - (b.miles || 0));
     const list = el("div", { class: "service-list" });
     open.forEach((s, i) => {
-      const card = el("div", { class: "card" });
+      const card = el("div", { class: "card service-card" });
       if (i >= 3) card.hidden = true;
+      const kind = /^(Free call|Call|Join by phone)/.test(s.how) ? "Phone" : /^Text/.test(s.how) ? "Text" : s.miles ? "Place" : "Online";
+      card.appendChild(el("p", { class: "tag" }, kind));
       card.appendChild(el("h3", {}, s.name));
       card.appendChild(el("p", {}, s.what));
       if (s.where) card.appendChild(el("p", { class: "where" }, s.miles ? `${s.where} · ${fill(C.services.miles, { miles: s.miles })}` : s.where));
@@ -473,7 +475,7 @@
     if (D.meetings) nodes.push(meetings());
     if (!profile && opts && opts.banner) nodes.push(banner());
     nodes.push(choices([button(C.summary.startAgain, "btn-link", home)]));
-    show(nodes, true);
+    show(nodes);
   }
 
   // Real recovery meetings (NA, AA, CA), from data/meetings.js.
