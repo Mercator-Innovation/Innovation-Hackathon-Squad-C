@@ -18,10 +18,10 @@ pace: right
 worked_best: [building, mixed-squad, screen-badges, setup]
 again: definitely
 # In the week after
-specialist:
-helped_squad: []
-idea_where: []
-ai_use_week_after:
+specialist: rarely
+helped_squad: [screen, talking]
+idea_where: [internal, bid, my-team, client]
+ai_use_week_after: 4
 ---
 
 # Carl McCullagh: learning log
@@ -52,11 +52,11 @@ ai_use_week_after:
 - One thing to change next time: I think this one worked really well. Having a bit more setup time so having access to the rooms a little bit more beforehand and getting the niceties out of the way would have worked a little bit better, because you would have been off for a flying start. It would have been good to have the rooms set up before the start time so you could acclimatise with your teammates, make sure the screens were set up and that type of stuff. Unfortunately, the meeting rooms were in use right up to the time.
 
 ## In the week after
-- Did I still need a human specialist: <answer>, for <what>
-- What helped most when building as a squad: <answers>
-- The most useful thing I learned: <in my words>
-- **One idea to carry forward:** <in my words>, and where it could fit: <answers>
-- How much I expect to use AI tools from now on: <answer>
+- Did I still need a human specialist: Rarely, for: It was less about needing help and more of a courtesy to the specialist in the room
+- What helped most when building as a squad: The shared screen; Talking it through first
+- The most useful thing I learned: The structure and set as well as having the tool connect directly to git hub etc so it can do everything
+- **One idea to carry forward:** get structured md files sorted, and where it could fit: Internal work; A bid; My team; Client work where the tools are permitted
+- How much I expect to use AI tools from now on: Every day
 
 ## Three-week check-in (around 12 Nov)
 - Did I try, share or suggest my idea anywhere? What happened, or what got in the way?
