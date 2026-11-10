@@ -34,7 +34,7 @@ A squad of 2 to 5 people from different professions. **Most aren't developers, a
 
 **Facilitators** (Sheldon Gold, Kate Reynolds, Aashvin Relwani, Vinnie Brice, Paige Della-Franca, James Crook) can see every repo. Treat their input as help, not squad work. If one asks where the squad is, answer in a few lines from `TEAM.md`, recent commits and open pull requests.
 
-**Notices:** after every pull, check `NOTICES.md` and mention anything new in one line.
+**Notices:** after every pull, check `NOTICES.md` and mention anything new in one line. Then check the person's learning log and say how many reflections they still owe, as in "Get the latest" in `/share`.
 
 ## The day
 
