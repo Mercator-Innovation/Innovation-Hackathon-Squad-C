@@ -66,6 +66,14 @@ Then check `NOTICES.md` and mention anything new in one line, and say in a line 
 - **The facilitators' setup changes:** one line on what's different for the squad (for example, "the plan for the day is updated"). Don't list file names, and leave out changes to your own instructions and notes (`CLAUDE.md` and `.claude/`) unless a skill they use now works differently.
 - **A share that earned someone a badge:** just say who earned a badge.
 
+**Then remind them what reflections they still owe.** Find the person in `TEAM.md` and open their log in `learning/people/`. Count the parts not done yet, using the same fields as `/reflect`:
+
+1. **At 19:00**: `ai_use_after` is blank
+2. **The week after**: `ai_use_week_after` is blank
+3. **The three-week check-in**: `idea_tried` is blank or missing
+
+If any are outstanding, say it in one line, for example: "You've got 2 reflections to do (the week after and the three-week check-in). Run `/reflect` and it does them all in about 5 minutes, before our show and tell." If they're all done, say "Your reflections are all done, thanks." Don't ask the questions here: offer `/reflect`.
+
 ## Clashes
 
 A clash means two people changed the same lines.
