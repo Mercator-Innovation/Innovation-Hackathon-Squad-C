@@ -59,4 +59,4 @@ idea_tried: planned
 
 ## Three-week check-in
 - Have I tried, shared or suggested my idea: Not yet, but I plan to
-- What happened, or what got in the way: "My role as a UR simply doesn't have much permissions for using Claude / LLMs more than I have been already. It's limited by personal data policies"
+- What happened, or what got in the way: "My role as a UR simply doesn't have much permissions for using Claude / LLMs more than I have been already. It's limited by personal data policies" "I am still looking for opportunities"
