@@ -18,10 +18,12 @@ pace: right
 worked_best: [building, mixed-squad, screen-badges]
 again: definitely
 # In the week after
-specialist:
-helped_squad: []
-idea_where: []
-ai_use_week_after:
+specialist: sometimes
+helped_squad: [screen, explaining, small-shares, talking]
+idea_where: [internal, bid, client]
+ai_use_week_after: 4
+# Three-week check-in
+idea_tried: planned
 ---
 
 # Joseph Thrush: learning log
@@ -49,11 +51,12 @@ ai_use_week_after:
 - One thing to change next time: "The set up took a bit longer than 20 minutes and I found it a tad confusing, but that might just be because I don't routinely use github."
 
 ## In the week after
-- Did I still need a human specialist: <answer>, for <what>
-- What helped most when building as a squad: <answers>
-- The most useful thing I learned: <in my words>
-- **One idea to carry forward:** <in my words>, and where it could fit: <answers>
-- How much I expect to use AI tools from now on: <answer>
+- Did I still need a human specialist: Sometimes, for "niche tax knowledge, but I combine it with claude outputs"
+- What helped most when building as a squad: The shared screen; Claude explaining what it did; Small, frequent shares; Talking it through first
+- The most useful thing I learned: "How to efficiently and quickly create using AI."
+- **One idea to carry forward:** "the importance of multi-specialism to the future of work", and where it could fit: Internal work; A bid; Client work where the tools are permitted
+- How much I expect to use AI tools from now on: Every day
 
-## Three-week check-in (around 12 Nov)
-- Did I try, share or suggest my idea anywhere? What happened, or what got in the way?
+## Three-week check-in
+- Have I tried, shared or suggested my idea: Not yet, but I plan to
+- What happened, or what got in the way: "My role as a UR simply doesn't have much permissions for using Claude / LLMs more than I have been already. It's limited by personal data policies"
