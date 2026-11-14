@@ -22,6 +22,8 @@ specialist: often
 helped_squad: [screen, small-shares, talking]
 idea_where: [internal, my-team]
 ai_use_week_after: 3
+# Three-week check-in
+idea_tried: planned
 ---
 
 # Patricia Sanchez: learning log
@@ -61,5 +63,6 @@ ai_use_week_after: 3
 - **One idea to carry forward:** I will carry forward the idea of defining a sharp scope early and backing it up with .md files and skills, so scope stays aligned and I can prompt faster without wasting time repeating myself., and where it could fit: Internal work; My team
 - How much I expect to use AI tools from now on: Most weeks
 
-## Three-week check-in (around 12 Nov)
-- Did I try, share or suggest my idea anywhere? What happened, or what got in the way?
+## Three-week check-in
+- Have I tried, shared or suggested my idea: Not yet, but I plan to
+- What happened, or what got in the way: I've mostly been experimenting on my own with personal vibe coding projects, as well as using Claude for our service design course to generate an interactive prototype for testing. Whenever the topic comes up with others who are interested in getting more out of AI, I've also been sharing the tip around using skills and .md files.
