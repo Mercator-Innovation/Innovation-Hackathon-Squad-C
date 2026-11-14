@@ -60,7 +60,7 @@ idea_tried: shared
 - Did I still need a human specialist: Often, for: Human specialists are still essential because AI simply can't replace the empathy we need to define the right problem, or the taste, judgement, and accountability it takes to make sure a solution actually works for real people.
 - What helped most when building as a squad: The shared screen; Small, frequent shares; Talking it through first
 - The most useful thing I learned: Providing specific prompts to Claude. And making use of skills and .md files.
-- **One idea to carry forward:** I will carry forward the idea of defining a sharp scope early and backing it up with .md files and skills, so scope stays aligned and I can prompt faster without wasting time repeating myself., and where it could fit: Internal work; My team
+- **One idea to carry forward:** I will carry forward the idea of defining a sharp scope early and backing it up with .md files and skills, so scope stays aligned and I can prompt faster without wasting time repeating myself. Also to use Claude to help come up with ideas and have fun with it., and where it could fit: Internal work; My team
 - How much I expect to use AI tools from now on: Most weeks
 
 ## Three-week check-in
