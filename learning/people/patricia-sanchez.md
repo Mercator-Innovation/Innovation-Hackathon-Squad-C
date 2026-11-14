@@ -9,15 +9,19 @@ ai_use_before: 4
 hopes: [see-claude, build-fast, other-jobs, new-people]
 feeling: excited
 # At 19:00
-worked_on: []
-outside_usual_job:
-got_in_way: []
-ai_use_after:
+worked_on: [code, design, content, research]
+outside_usual_job: a-bit
+got_in_way: [claude-wrong]
+ai_use_after: 4
+enjoyed: loved
+pace: right
+worked_best: [building, mixed-squad, screen-badges, setup]
+again: definitely
 # In the week after
-specialist:
-helped_squad: []
-idea_where: []
-ai_use_week_after:
+specialist: often
+helped_squad: [screen, small-shares, talking]
+idea_where: [internal, my-team]
+ai_use_week_after: 3
 ---
 
 # Patricia Sanchez: learning log
@@ -40,17 +44,22 @@ ai_use_week_after:
 - 18:39 prompt (on another computer, exact words not kept): corrected the design by removing unnecessary buttons and links → a cleaner design
 
 ## At 19:00
-- What I worked on: <answers>
-- How much of it was outside my usual job: <answer>
-- What got in the way: <answers>
-- How much I'd use AI tools in my work now: <answer>
+- What I worked on: Code or features; The design or the look; The words people see; Research or finding things out
+- How much of it was outside my usual job: A bit
+- What got in the way: Claude getting things wrong
+- How much I'd use AI tools in my work now: Every day
+- How much I enjoyed the hackathon: Loved it
+- The pace of the afternoon: About right
+- What worked best for me: Building with Claude; Working in a mixed squad; The shared screen and badges; The setup before the day
+- Would I take part in another: Definitely
+- One thing to change next time: Nothing
 
 ## In the week after
-- Did I still need a human specialist: <answer>, for <what>
-- What helped most when building as a squad: <answers>
-- The most useful thing I learned: <in my words>
-- **One idea to carry forward:** <in my words>, and where it could fit: <answers>
-- How much I expect to use AI tools from now on: <answer>
+- Did I still need a human specialist: Often, for: Human specialists are still essential because AI simply can't replace the empathy we need to define the right problem, or the taste, judgement, and accountability it takes to make sure a solution actually works for real people.
+- What helped most when building as a squad: The shared screen; Small, frequent shares; Talking it through first
+- The most useful thing I learned: Providing specific prompts to Claude. And making use of skills and .md files.
+- **One idea to carry forward:** I will carry forward the idea of defining a sharp scope early and backing it up with .md files and skills, so scope stays aligned and I can prompt faster without wasting time repeating myself., and where it could fit: Internal work; My team
+- How much I expect to use AI tools from now on: Most weeks
 
 ## Three-week check-in (around 12 Nov)
 - Did I try, share or suggest my idea anywhere? What happened, or what got in the way?
