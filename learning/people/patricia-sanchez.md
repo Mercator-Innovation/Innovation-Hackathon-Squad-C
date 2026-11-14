@@ -23,7 +23,7 @@ helped_squad: [screen, small-shares, talking]
 idea_where: [internal, my-team]
 ai_use_week_after: 3
 # Three-week check-in
-idea_tried: planned
+idea_tried: shared
 ---
 
 # Patricia Sanchez: learning log
@@ -64,5 +64,5 @@ idea_tried: planned
 - How much I expect to use AI tools from now on: Most weeks
 
 ## Three-week check-in
-- Have I tried, shared or suggested my idea: Not yet, but I plan to
+- Have I tried, shared or suggested my idea: Yes, I've shared or suggested it
 - What happened, or what got in the way: I've mostly been experimenting on my own with personal vibe coding projects, as well as using Claude for our service design course to generate an interactive prototype for testing. Whenever the topic comes up with others who are interested in getting more out of AI, I've also been sharing the tip around using skills and .md files.
