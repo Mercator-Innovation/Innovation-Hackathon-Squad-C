@@ -70,12 +70,22 @@ Read from the git history: over 200 commits from six people in four hours.
   - the rush to the end
   - the many small changes in parallel
   - looks getting more attention than how things work. Carl: *"people tend to focus on the look of something vs how it works"*.
-- **Did we still need specialists?** Carl: *"rarely… it was less about needing help and more of a courtesy to the specialist in the room"*. [TO FILL from the others' week-after reflections]
+- **What helped most** (week after): all three who've answered picked the shared screen and talking it through first. Joseph and Patricia also picked small, frequent shares.
+- **Did we still need specialists?** Answers range from rarely to often:
+  - Carl, rarely: *"it was less about needing help and more of a courtesy to the specialist in the room"*.
+  - Joseph, sometimes, for *"niche tax knowledge, but I combine it with claude outputs"*.
+  - Patricia, often: *"AI simply can't replace the empathy we need to define the right problem, or the taste, judgement, and accountability it takes to make sure a solution actually works for real people."*
+  - Anastasia, Elena, Spencer: [TO FILL]
+- **Claude getting things wrong** is what got in Patricia's way.
 
 ## 7. Ideas to carry forward, and where they went (7:45 to 8:30)
 
+A theme: **structure and scope**, through Markdown files and skills, and **working across specialisms**.
+
 - **Carl:** *"get structured md files sorted"*, for internal work, bids, his team, and client work where the tools are allowed. Three-week check-in: [TO FILL]
-- **Anastasia, Elena, Joseph, Patricia, Spencer:** [TO FILL from `/reflect`]
+- **Patricia (shared it):** *"defining a sharp scope early and backing it up with .md files and skills"*. Since the hackathon she has used Claude on a service design course to build an interactive prototype for testing, and has been *"sharing the tip around using skills and .md files"*.
+- **Joseph (plans to):** *"the importance of multi-specialism to the future of work"*. What's in the way: *"My role as a UR simply doesn't have much permissions for using Claude / LLMs more than I have been already. It's limited by personal data policies"*. He's *"still looking for opportunities"*.
+- **Anastasia, Elena, Spencer:** [TO FILL from `/reflect`]
 
 ## 8. What Mercator should take from this (8:30 to 9:00)
 
@@ -84,14 +94,15 @@ A draft for the squad to agree or change:
 - **Anyone can build, if the work is split well.** Six professions, six journeys, very few clashes.
 - **Test as the person, early.** Our biggest fixes came from 10 minutes using it as Gary, not from Claude.
 - **Give it time and space.** We'd like more time and rooms ready before the start. Elena asked for *"more time please"*.
-- **Honest mix of views.** All six of us loved it and would definitely do it again. But we don't all expect to use AI every day: answers range from "every day" to "hardly ever". [TO CONFIRM on the call: Elena's 19:00 answer is "never or hardly ever"]
+- **Honest mix of views.** Everyone who answered loved it and would definitely do it again. But we don't all expect to use AI every day: answers range from "every day" to "hardly ever". Joseph went from "now and then" on the day to "every day" a week later. [TO CONFIRM: Elena's 19:00 answer is "never or hardly ever"]
+- **Policy can block it.** Joseph can't use it more in his role because of personal data policies. Clear guidance on where these tools are allowed would help people carry ideas forward.
 
 ---
 
 ## For the prep call
 
 1. Agree the presenter(s), and live or recorded.
-2. Chase `/reflect`. Still to do the week-after reflection: Anastasia, Elena, Joseph, Patricia, Spencer. Patricia and Spencer also have the 19:00 questions to do.
+2. Chase `/reflect`. Still to do (16 Nov): Anastasia and Elena (week after, three-week check-in), Spencer (all three), Carl (three-week check-in). Joseph and Patricia are done.
 3. Check each person is happy with their quote in section 5.
 4. Agree section 8.
 5. Pick the demo moments, and do a timed run-through.
