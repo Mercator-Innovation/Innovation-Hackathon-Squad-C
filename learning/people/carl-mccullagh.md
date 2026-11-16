@@ -22,6 +22,8 @@ specialist: rarely
 helped_squad: [screen, talking]
 idea_where: [internal, bid, my-team, client]
 ai_use_week_after: 4
+# Three-week check-in
+idea_tried: tried
 ---
 
 # Carl McCullagh: learning log
@@ -58,5 +60,6 @@ ai_use_week_after: 4
 - **One idea to carry forward:** get structured md files sorted, and where it could fit: Internal work; A bid; My team; Client work where the tools are permitted
 - How much I expect to use AI tools from now on: Every day
 
-## Three-week check-in (around 12 Nov)
-- Did I try, share or suggest my idea anywhere? What happened, or what got in the way?
+## Three-week check-in
+- Have I tried, shared or suggested my idea: Yes, I've tried it
+- What happened, or what got in the way: "I have used the ideas in the hackathon to use AI personally, I build a autobooker for contended gym classes"
