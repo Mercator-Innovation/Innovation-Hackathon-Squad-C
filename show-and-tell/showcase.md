@@ -82,7 +82,7 @@ Read from the git history: over 200 commits from six people in four hours.
 
 A theme: **structure and scope**, through Markdown files and skills, and **working across specialisms**.
 
-- **Carl:** *"get structured md files sorted"*, for internal work, bids, his team, and client work where the tools are allowed. Three-week check-in: [TO FILL]
+- **Carl:** *"get structured md files sorted"*, for internal work, bids, his team, and client work where the tools are allowed. **Tried it:** *"I have used the ideas in the hackathon to use AI personally, I build a autobooker for contended gym classes"*.
 - **Patricia (shared it):** *"defining a sharp scope early and backing it up with .md files and skills"*. Since the hackathon she has used Claude on a service design course to build an interactive prototype for testing, and has been *"sharing the tip around using skills and .md files"*.
 - **Joseph (plans to):** *"the importance of multi-specialism to the future of work"*. What's in the way: *"My role as a UR simply doesn't have much permissions for using Claude / LLMs more than I have been already. It's limited by personal data policies"*. He's *"still looking for opportunities"*.
 - **Anastasia, Elena, Spencer:** [TO FILL from `/reflect`]
@@ -102,7 +102,7 @@ A draft for the squad to agree or change:
 ## For the prep call
 
 1. Agree the presenter(s), and live or recorded.
-2. Chase `/reflect`. Still to do (16 Nov): Anastasia and Elena (week after, three-week check-in), Spencer (all three), Carl (three-week check-in). Joseph and Patricia are done.
+2. Chase `/reflect`. Still to do (16 Nov): Anastasia and Elena (week after, three-week check-in), Spencer (all three). Carl, Joseph and Patricia are done.
 3. Check each person is happy with their quote in section 5.
 4. Agree section 8.
 5. Pick the demo moments, and do a timed run-through.
