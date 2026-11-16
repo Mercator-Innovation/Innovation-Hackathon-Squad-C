@@ -4,7 +4,7 @@
 
 **Status: first draft (10 Nov), for the squad's prep call.** It's built from the learning logs, `TEAM.md`, the PRD and the git history. Gaps are marked **[TO FILL]**. Only Carl has done the week-after reflection so far, so sections 6 and 7 are thin until everyone runs `/reflect`.
 
-- **Presenter(s):** [TO AGREE on the call]
+- **Presenters:** Carl McCullagh, assisted by Spencer Clarke-Griffiths
 - **Live or recorded:** [TO AGREE on the call]
 - **Spoken words:** about 1,100 in all, which is roughly 9 minutes at a calm pace
 
