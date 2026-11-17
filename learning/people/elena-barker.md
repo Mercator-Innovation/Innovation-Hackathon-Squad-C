@@ -12,7 +12,7 @@ feeling: excited
 worked_on: [code, design, content, research]
 outside_usual_job: a-bit
 got_in_way: [time]
-ai_use_after: 1
+ai_use_after: 3
 enjoyed: loved
 pace: right
 worked_best: [building, mixed-squad]
@@ -43,7 +43,7 @@ idea_tried: blocked
 - What I worked on: Code or features; The design or the look; The words people see; Research or finding things out
 - How much of it was outside my usual job: A bit
 - What got in the way: Not enough time
-- How much I'd use AI tools in my work now: Never or hardly ever
+- How much I'd use AI tools in my work now: Most weeks
 - How much I enjoyed the hackathon: Loved it
 - The pace of the afternoon: About right
 - What worked best for me: Building with Claude; Working in a mixed squad
