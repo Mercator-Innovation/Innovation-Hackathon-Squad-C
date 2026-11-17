@@ -9,15 +9,21 @@ ai_use_before: 3
 hopes: [new-people]
 feeling: curious
 # At 19:00
-worked_on: []
-outside_usual_job:
-got_in_way: []
-ai_use_after:
+worked_on: [code, research]
+outside_usual_job: none
+got_in_way: [time]
+ai_use_after: 2
+enjoyed: loved
+pace: right
+worked_best: [building, mixed-squad, setup]
+again: definitely
 # In the week after
-specialist:
-helped_squad: []
-idea_where: []
-ai_use_week_after:
+specialist: often
+helped_squad: [screen, explaining, talking]
+idea_where: [bid]
+ai_use_week_after: 3
+# Three-week check-in
+idea_tried: blocked
 ---
 
 # Spencer Clarke-Griffiths: learning log
@@ -34,17 +40,23 @@ ai_use_week_after:
 18:04 dead end: everyone making small changes in parallel → where we currently are fels like there are so many small things in lots of places and hard to manage were the progression is
 
 ## At 19:00
-- What I worked on: <answers>
-- How much of it was outside my usual job: <answer>
-- What got in the way: <answers>
-- How much I'd use AI tools in my work now: <answer>
+- What I worked on: Code or features; Research or finding things out
+- How much of it was outside my usual job: None of it
+- What got in the way: Not enough time
+- How much I'd use AI tools in my work now: Now and then
+- How much I enjoyed the hackathon: Loved it
+- The pace of the afternoon: About right
+- What worked best for me: Building with Claude; Working in a mixed squad; The setup before the day
+- Would I take part in another: Definitely
+- One thing to change next time: More time to present what people had been working on
 
 ## In the week after
-- Did I still need a human specialist: <answer>, for <what>
-- What helped most when building as a squad: <answers>
-- The most useful thing I learned: <in my words>
-- **One idea to carry forward:** <in my words>, and where it could fit: <answers>
-- How much I expect to use AI tools from now on: <answer>
+- Did I still need a human specialist: Often, for Different professions have different skills. As a developer i dont have an eye for design and would take a long time so having designers and interaction designers to impact was signficant. Having those to organise the roles and ensure delivery was also very valuable. The finished app was more finished and polished than when working with just developers
+- What helped most when building as a squad: The shared screen; Claude explaining what it did; Talking it through first
+- The most useful thing I learned: The way different professions shape claudes building and output versus just having developers do it
+- **One idea to carry forward:** The value of design schemes that exist when working with ai, and where it could fit: A bid
+- How much I expect to use AI tools from now on: Most weeks
 
-## Three-week check-in (around 12 Nov)
-- Did I try, share or suggest my idea anywhere? What happened, or what got in the way?
+## Three-week check-in
+- Have I tried, shared or suggested my idea: Not yet, something got in the way
+- What happened, or what got in the way: Project work
