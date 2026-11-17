@@ -18,10 +18,12 @@ pace: right
 worked_best: [building, mixed-squad, setup]
 again: definitely
 # In the week after
-specialist:
-helped_squad: []
-idea_where: []
-ai_use_week_after:
+specialist: sometimes
+helped_squad: [small-shares]
+idea_where: [client]
+ai_use_week_after: 2
+# Three-week check-in
+idea_tried: planned
 ---
 
 # Anastasia Florentis: learning log
@@ -52,11 +54,12 @@ ai_use_week_after:
 - One thing to change next time: nothing!
 
 ## In the week after
-- Did I still need a human specialist: <answer>, for <what>
-- What helped most when building as a squad: <answers>
-- The most useful thing I learned: <in my words>
-- **One idea to carry forward:** <in my words>, and where it could fit: <answers>
-- How much I expect to use AI tools from now on: <answer>
+- Did I still need a human specialist: Sometimes, for: I relied on my teammates as subject matter experts. When I came with ideas and they validated them and added theoretical knowledge and real world experience I didn't have.
+- What helped most when building as a squad: Small, frequent shares
+- The most useful thing I learned: The most useful thing I took away was how much a multidiciplinary team changes the way you approach a problem. Everyone in our group came from a different background and that meant we looked at the same challenge differently. It also made me notice how much a job title can shape the way I think. At work, I tend to approach things through my own role but during the hackathon the framing sort of fell away and I found myself not feeling bound by my role. That showed me how much value there is in contributing beyond your title.
+- **One idea to carry forward:** The idea I want to cary forward is bringing people from different disciplines into a piece of work early, not just at review. Our different backgrounds shaped what we built in ways that none of us would have managed alone and I would love for that to be the norm in my day to day work. And where it could fit: Client work where the tools are permitted
+- How much I expect to use AI tools from now on: Now and then
 
-## Three-week check-in (around 12 Nov)
-- Did I try, share or suggest my idea anywhere? What happened, or what got in the way?
+## Three-week check-in
+- Have I tried, shared or suggested my idea: Not yet, but I plan to
+- What happened, or what got in the way: On project, our focus has been tech debt recently so there hasn't been a natural opportunity yet but I plan to apply it to the next CR that comes in.
