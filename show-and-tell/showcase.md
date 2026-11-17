@@ -109,7 +109,7 @@ A draft for the squad to agree or change:
 - Patricia and Elena: most weeks
 - Anastasia: now and then
 
-It moves both ways. Joseph went up from "now and then" on the day. Anastasia went down from "every day", because her project's focus on tech debt hasn't given her the openings.
+It moves both ways. Joseph went up from "now and then" on the day. Anastasia went down from "every day".
 - **Policy can block it.** Joseph can't use it more in his role because of personal data policies. Clear guidance on where these tools are allowed would help people carry ideas forward.
 
 ---
