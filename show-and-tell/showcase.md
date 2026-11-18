@@ -121,7 +121,7 @@ A draft for the squad to agree or change:
   - Anastasia: now and then
 
   It moves both ways. Joseph and Spencer went up from "now and then" on the day. Anastasia went down from "every day".
-- **The developer valued the non-developers most.** Spencer did nothing outside his usual job, but he said he often needed the other specialists, and that the app was *"more finished and polished than when working with just developers"*.
+- **The developer valued the non-developers most.** Spencer counted none of his work as outside his usual job, yet he said he often needed the other specialists, and that the app was *"more finished and polished than when working with just developers"*.
 - **Leave room to show the work.** Spencer: *"More time to present what people had been working on"*.
 - **Policy can block it.** Joseph can't use it more in his role because of personal data policies. Clear guidance on where these tools are allowed would help people carry ideas forward.
 
