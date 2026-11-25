@@ -1,16 +1,16 @@
 # the halluCinators: showcase script
 
-**Wed 25 Nov, Teams.** 9 minutes, then 1 for questions. **Carl** presents, and **Spencer** drives the demo and takes two parts.
+**Wed 25 Nov, Teams.** 9 minutes, then 1 for questions. **Carl** presents on his own and drives the demo.
 
 About 850 spoken words: roughly 7 minutes of talking, plus time for the demo and pauses. Everything comes from `showcase.md`, the learning logs and the git history. Quotes are word for word.
 
-**Before you start:** say `get the latest and make it run for me`. Open the prototype at phone width, with `phone.html` in a second tab.
+**Before you start:** say `get the latest and make it run for me`. Open the prototype at phone width on the start screen, ready to share.
 
 ---
 
 ## 1. Who we built for (Carl, 0:00 to 1:00)
 
-Hi, we're the halluCinators: six people from six professions. I'm Carl, a product manager, and with me is Spencer, our developer.
+Hi, we're the halluCinators: six people from six professions. I'm Carl, a product manager.
 
 We took Challenge 2, "help when it's needed". Most drug and alcohol support closes at 5pm, but people are most alone at night.
 
@@ -18,21 +18,21 @@ So meet Gary. It's Saturday night, he's on his own, and he's struggling. He does
 
 We built **Still here**. It helps Gary reach his own people first.
 
-## 2. What it does (Spencer drives, Carl talks, 1:00 to 2:30)
+## 2. What it does (1:00 to 2:30)
 
-> **Spencer:** start screen → **I need help right now**
+> **Click 1:** start screen → **I need help right now**
 
 Gary doesn't have to sign up. He taps one button.
 
-> **Spencer:** yes to a call → the volunteer's card
+> **Click 2:** yes to a call → the volunteer's card
 
 If his own people don't pick up, a volunteer offers to call him back. Every screen has a quick exit, and Still here never calls 999 for him.
 
 He can also set up a check-in. At 11pm he gets a **text**: "How are you doing? Reply 1, 2 or 3." He needs no data. If he replies 3, it texts Lorraine, then Mick. If nobody answers, it offers the volunteer, then services that are open right now.
 
-> **Spencer:** switch to `phone.html` → **Text** → HELP
+> **Stop sharing the screen here**, or leave it on the volunteer card.
 
-Low battery, no data or an old phone? Gary can just call or text Still here and get the same help.
+Low battery, no data or an old phone? Gary can just call or text Still here and get the same help. No app and no smartphone needed.
 
 That's what we built in four hours. But today we want to talk about *how* we built it.
 
@@ -50,15 +50,15 @@ Then job titles stopped mattering:
 
 Anastasia put it best: *"the framing sort of fell away and I found myself not feeling bound by my role."*
 
-## 4. The developer's view (Spencer, 3:45 to 4:45)
+## 4. The developer's view (3:45 to 4:45)
 
-> **Spencer:**
+Our developer, Spencer, couldn't be here today, but he said something that surprised us.
 
-I'm the developer, so you might think this was my day. It was the opposite.
+You might think this was his day. He'd say it was the opposite.
 
-Claude is very quick at building, but on its own the result *"doesn't come across human in some of the text or design."* What made the difference was the other professions shaping what Claude built.
+He found Claude very quick at building, but on its own the result *"doesn't come across human in some of the text or design."* What made the difference was the other professions shaping what Claude built.
 
-As a developer, I don't have an eye for design. Having designers and a researcher in the room meant the app was *"more finished and polished than when working with just developers."*
+In his words: *"As a developer i dont have an eye for design"*. Having designers and a researcher in the room meant the app was *"more finished and polished than when working with just developers."*
 
 ## 5. Humans drive it (Carl, 4:45 to 6:00)
 
