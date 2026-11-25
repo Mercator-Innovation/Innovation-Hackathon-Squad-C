@@ -4,7 +4,7 @@
 
 **Status: first draft (10 Nov), for the squad's prep call.** It's built from the learning logs, `TEAM.md`, the PRD and the git history. Updated 18 Nov: all six have reflected.
 
-- **Presenters:** Carl McCullagh, assisted by Spencer Clarke-Griffiths
+- **Presenter:** Carl McCullagh, on his own (Spencer couldn't make it)
 - **Live or recorded:** [TO AGREE on the call]
 - **Spoken words:** about 1,100 in all, which is roughly 9 minutes at a calm pace
 
@@ -16,7 +16,7 @@
 - **Meet Gary** (Anastasia's persona): on his own on a Saturday night, struggling, and not wanting to go straight to 999.
 - **Still here helps Gary reach his own people first.** He can open a tiny page with no sign-up and tap "I need help right now". Or he gets an 11pm check-in **by text**, and replies 1, 2 or 3 with no data needed. With his say-so, Still here texts Lorraine, then Mick. If nobody picks up, Jo, a volunteer, offers to call. After that, it shows services open now. It never calls 999 for him, and every screen has a quick exit.
 - **Low data, low battery, poor signal or an old phone?** He can call or text Still here instead and get the same help, with no app and no smartphone.
-- *Demo, about 45 seconds:* **I need help right now** → yes to a call → the volunteer's card. Then `phone.html` → **Text** → HELP.
+- *Demo, about 45 seconds:* **Demo: open as Gary** → **Not great** → **Message someone I trust** → **Yes, send it** → nobody replies → the volunteer offers a call. Then `phone.html` → **Text** → HELP.
 
 ## 2. How the afternoon actually went (1:30 to 3:00)
 

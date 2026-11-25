@@ -20,17 +20,21 @@ We built **Still here**. It helps Gary reach his own people first.
 
 ## 2. What it does (1:00 to 2:30)
 
-> **Click 1:** start screen → **I need help right now**
+> **Click 1:** start screen → **Demo: open as Gary (already set up)** → **Not great**
 
-Gary doesn't have to sign up. He taps one button.
+Gary is set up already. He tells Still here he's not doing great.
 
-> **Click 2:** yes to a call → the volunteer's card
+> **Click 2:** **Message someone I trust**
 
-If his own people don't pick up, a volunteer offers to call him back. Every screen has a quick exit, and Still here never calls 999 for him.
+Here's the message he wrote earlier, ready to go to his own people. One tap sends it.
+
+> **Click 3:** **Yes, send it** → **Demo: pretend nobody replied**
+
+If his own people don't pick up, a volunteer offers to call him back. Someone who hasn't signed up can get the same volunteer straight away, from **I need help right now**. Every screen has a quick exit, and Still here never calls 999 for him.
 
 He can also set up a check-in. At 11pm he gets a **text**: "How are you doing? Reply 1, 2 or 3." He needs no data. If he replies 3, it texts Lorraine, then Mick. If nobody answers, it offers the volunteer, then services that are open right now.
 
-> **Stop sharing the screen here**, or leave it on the volunteer card.
+> **Stop sharing the screen here**, or leave it on the volunteer's offer.
 
 Low battery, no data or an old phone? Gary can just call or text Still here and get the same help. No app and no smartphone needed.
 
@@ -108,5 +112,5 @@ All six of us loved it, and all six would definitely do it again. Thank you.
 
 - **Timing:** do a run-through with a stopwatch. If it runs long, cut from section 6 first.
 - **The quotes:** each person checks their own.
-- **The demo:** practise the two clicks once before 14:00. If the volunteer screen has changed, update the cues.
+- **The demo:** practise the three clicks once before 14:00. If the volunteer screen has changed, update the cues.
 - **Live or recorded:** still to decide. A recording goes to Sheldon Gold by Tue 24 Nov.
