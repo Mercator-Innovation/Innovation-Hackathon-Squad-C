@@ -8,7 +8,7 @@ About 850 spoken words: roughly 7 minutes of talking, plus time for the demo and
 
 ---
 
-## 1. Who we built for (Carl, 0:00 to 1:00)
+## 1. Who we built for (0:00 to 1:00)
 
 Hi, we're the halluCinators: six people from six professions. I'm Carl, a product manager.
 
@@ -36,7 +36,7 @@ Low battery, no data or an old phone? Gary can just call or text Still here and 
 
 That's what we built in four hours. But today we want to talk about *how* we built it.
 
-## 3. Anyone can build, if the work is split well (Carl, 2:30 to 3:45)
+## 3. Anyone can build, if the work is split well (2:30 to 3:45)
 
 Six of us shared one codebase: over 200 commits in four hours.
 
@@ -60,7 +60,7 @@ He found Claude very quick at building, but on its own the result *"doesn't come
 
 In his words: *"As a developer i dont have an eye for design"*. Having designers and a researcher in the room meant the app was *"more finished and polished than when working with just developers."*
 
-## 5. Humans drive it (Carl, 4:45 to 6:00)
+## 5. Humans drive it (4:45 to 6:00)
 
 Some things didn't work, and in every case a person caught them, not Claude.
 - We renamed the app "Alex". At our look together it clashed with real names, as in "Alex, my brother", so we changed it back.
@@ -73,7 +73,7 @@ Patricia said it best: *"AI simply can't replace the empathy we need to define t
 
 And Elena: *"humans are driving the ideas, which is great."*
 
-## 6. What made it work (Carl, 6:00 to 7:00)
+## 6. What made it work (6:00 to 7:00)
 
 When we asked what helped most, five of us said **talking it through first**. Next came the shared screen and small, frequent shares.
 
@@ -81,7 +81,7 @@ Before we built anything, we agreed a one-page plan. When ideas grew, we checked
 
 That's the idea most of us want to carry forward: **give AI structure.** Agree a sharp scope early, and write it down in files that Claude reads every time. Patricia called it *"defining a sharp scope early and backing it up with .md files and skills."*
 
-## 7. Three weeks on (Carl, 7:00 to 8:15)
+## 7. Three weeks on (7:00 to 8:15)
 
 We wanted to be honest about what happened next.
 
@@ -92,7 +92,7 @@ We wanted to be honest about what happened next.
 
 Views on how much we'll use AI also vary, from every day to now and then. Joseph, our researcher, wants to use it more, but personal data policies limit what his role can use it for.
 
-## 8. What Mercator could take from this (Carl, 8:15 to 9:00)
+## 8. What Mercator could take from this (8:15 to 9:00)
 
 So, three things from us:
 
@@ -108,5 +108,5 @@ All six of us loved it, and all six would definitely do it again. Thank you.
 
 - **Timing:** do a run-through with a stopwatch. If it runs long, cut from section 6 first.
 - **The quotes:** each person checks their own.
-- **The demo:** practise the three clicks with Spencer. If the volunteer screen has changed, update the cues.
+- **The demo:** practise the two clicks once before 14:00. If the volunteer screen has changed, update the cues.
 - **Live or recorded:** still to decide. A recording goes to Sheldon Gold by Tue 24 Nov.
